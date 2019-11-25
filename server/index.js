@@ -7,7 +7,7 @@ const port = 8080;
 const bodyParser = require('body-parser');
 // const port = 8080;
 
-const dbConnection = require('./db/index.js');
+
 const profileRoutes = require('./routes/profile');
 const courseRoutes = require('./routes/course');
 const toolRoutes = require('./routes/tool');
