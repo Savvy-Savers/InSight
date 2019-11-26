@@ -8,9 +8,9 @@ module.exports = (sequelize, type) => sequelize.define('answer', {
   description: type.TEXT,
   idConcept: { 
     type: type.INTEGER, 
+    references: {
+      model: 'concept',
+      key: 'id'
+    }
   },
-  references: {
-    model: 'concept',
-    key: 'id'
-  }
 });
