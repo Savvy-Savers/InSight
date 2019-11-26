@@ -38,9 +38,38 @@ const enterFakeData = () => {
     idBadge: 4,
   });
 
+  Concept.create({
+    idCourse: 1,
+    question: 'What is a budget tool?',
+    description: 'We are discussing the concept of budget tools',
+  });
 
+  Concept.create({
+    idCourse: 1,
+    question: 'How do you create a budget?',
+    description: 'this is not a bad thing to know',
+  });
 
+  Answer.create({
+    choice: 'you buy everything',
+    description: 'No, dont do that!',
+    isCorrect: false,
+    idConcept: 1,
+  }),
 
+  Answer.create({
+    choice: 'you plan it out',
+    description: 'Yes, dont do that!',
+    isCorrect: true,
+    idConcept: 1,
+  }),
+
+  Answer.create({
+    choice: 'you cry',
+    description: 'budgeting isnt that bad!',
+    isCorrect: false,
+    idConcept: 1,
+  }),
 };
 
 module.exports = { enterFakeData };
