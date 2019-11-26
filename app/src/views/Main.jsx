@@ -1,14 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
-const Main = () => (
-    <View style={styles.container}>
-        <Text>Hello, this is our main page!
-      </Text>
-    </View>
-)
-
-export default Main;
+export default class MainScreen extends React.Component {
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text>Hello, this is our main page!</Text>
+                <Button
+                    title="Go to Profile"
+                    onPress={() => this.props.navigation.navigate('Profile')}
+                />
+            </View>
+        );
+    }
+};
 
 
 const styles = StyleSheet.create({
