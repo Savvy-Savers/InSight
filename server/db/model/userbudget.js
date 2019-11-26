@@ -1,16 +1,16 @@
-module.exports = (sequelize, type) => sequelize.define('concept', {
+module.exports = (sequelize, type) => sequelize.define('userBudget', {
   id: {
     type: type.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  idCourse: {
+  income: type.INTEGER,
+  outcome: type.INTEGER,
+  idUser: {
     type: type.INTEGER,
     references: {
-      model: 'courses',
+      model: 'users',
       key: 'id',
     },
   },
-  question: type.STRING,
-  description: type.STRING,
 });

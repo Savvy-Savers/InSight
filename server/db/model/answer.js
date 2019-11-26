@@ -9,8 +9,9 @@ module.exports = (sequelize, type) => sequelize.define('answer', {
   idConcept: {
     type: type.INTEGER,
     references: {
-      model: 'concept',
+      model: 'concepts',
       key: 'id',
     },
   },
+  isCorrect: type.BOOLEAN,
 });
