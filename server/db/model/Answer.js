@@ -6,11 +6,11 @@ module.exports = (sequelize, type) => sequelize.define('answer', {
   },
   choice: type.STRING,
   description: type.TEXT,
-  idConcept: { 
-    type: type.INTEGER, 
+  idConcept: {
+    type: type.INTEGER,
     references: {
       model: 'concept',
-      key: 'id'
-    }
+      key: 'id',
+    },
   },
 });
