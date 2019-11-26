@@ -55,21 +55,21 @@ const enterFakeData = () => {
     description: 'No, dont do that!',
     isCorrect: false,
     idConcept: 1,
-  }),
+  });
 
   Answer.create({
     choice: 'you plan it out',
     description: 'Yes, dont do that!',
     isCorrect: true,
     idConcept: 1,
-  }),
+  });
 
   Answer.create({
     choice: 'you cry',
     description: 'budgeting isnt that bad!',
     isCorrect: false,
     idConcept: 1,
-  }),
+  });
 };
 
 module.exports = { enterFakeData };

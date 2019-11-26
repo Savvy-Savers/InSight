@@ -6,6 +6,8 @@ const answerModel = require('./model/answer');
 const userModel = require('./model/user');
 const userBadgeModel = require('./model/userbadge');
 const userBudgetModel = require('./model/userbudget');
+const levelModel = require('./model/level');
+
 const { enterFakeData } = require('./testdata.js');
 
 const {
@@ -28,6 +30,7 @@ const Answer = answerModel(db, Sequelize);
 const User = userModel(db, Sequelize);
 const UserBadge = userBadgeModel(db, Sequelize);
 const Userbudget = userBudgetModel(db, Sequelize);
+const Level = levelModel(db, Sequelize);
 
 // create connection to DB
 db.sync({ force: true })
@@ -48,4 +51,5 @@ module.exports = {
   User,
   UserBadge,
   Userbudget,
+  Level,
 };
