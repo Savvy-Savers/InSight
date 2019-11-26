@@ -7,6 +7,7 @@ const userModel = require('./model/user');
 const userBadgeModel = require('./model/userbadge');
 const userBudgetModel = require('./model/userbudget');
 const badgeModel = require('./model/badge');
+const levelModel = require('./model/level');
 
 const {
   dialect,
@@ -29,6 +30,7 @@ const Answer = answerModel(db, Sequelize);
 const User = userModel(db, Sequelize);
 const UserBadge = userBadgeModel(db, Sequelize);
 const Userbudget = userBudgetModel(db, Sequelize);
+const Level = levelModel(db, Sequelize);
 const Badge = badgeModel(db, Sequelize);
 
 // create connection to DB
@@ -49,4 +51,5 @@ module.exports = {
   UserBadge,
   Userbudget,
   Badge,
+  Level,
 };
