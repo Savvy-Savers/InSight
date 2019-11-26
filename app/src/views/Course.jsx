@@ -13,10 +13,6 @@ export default class CourseScreen extends React.Component {
                     onPress={() => this.props.navigation.push('Course')}
                 />
                 <Button
-                    title="Go to Map"
-                    onPress={() => this.props.navigation.navigate('Map')}
-                />
-                <Button
                     title="Go back"
                     onPress={() => this.props.navigation.goBack()}
                 />

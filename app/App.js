@@ -8,6 +8,9 @@ import CourseScreen from './src/views/Course';
 import MapScreen from './src/views/Map.jsx';
 import ProfileScreen from './src/views/Profile.jsx';
 import MainScreen from './src/views/Main.jsx';
+import AboutScreen from './src/views/About.jsx';
+import SettingScreen from './src/views/Setting.jsx';
+import PolicyScreen from './src/views/Policy.jsx';
 
 
 // This is the entry point for Expo! We cann't move this file - so instead, 
@@ -22,9 +25,12 @@ export default class App extends React.Component {
 const AppNavigator = createDrawerNavigator(
   {
     Main: MainScreen,
-    Course: CourseScreen,
-    Map: MapScreen,
     Profile: ProfileScreen,
+    Map: MapScreen,
+    Course: CourseScreen,
+    About: AboutScreen,
+    Settings: SettingScreen,
+    Policy: PolicyScreen,
   },
   {
     initialRouteName: 'Main',

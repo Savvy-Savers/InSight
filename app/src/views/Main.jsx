@@ -6,11 +6,7 @@ export default class MainScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <Text>Hello, this is our main page!</Text>
-                <Button
-                    title="Go to Profile"
-                    onPress={() => this.props.navigation.navigate('Profile')}
-                />
-            </View>
+            </View> 
         );
     }
 };
