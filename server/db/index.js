@@ -1,7 +1,7 @@
 require('dotenv').config();
 const Sequelize = require('sequelize');
 const courseModel = require('./model/course');
-const { enterFakeData } = require('./testdata.js');
+const { enterFakeData } = require('./testdata.js')
 
 const {
   dialect,
