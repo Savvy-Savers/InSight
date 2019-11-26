@@ -5,6 +5,7 @@ const conceptModel = require('./model/concept');
 const answerModel = require('./model/answer');
 const userModel = require('./model/user');
 const userBadgeModel = require('./model/userbadge');
+const userBudgetModel = require('./model/userbudget');
 
 const {
   dialect,
@@ -25,6 +26,7 @@ const Concept = conceptModel(db, Sequelize);
 const Answer = answerModel(db, Sequelize);
 const User = userModel(db, Sequelize);
 const UserBadge = userBadgeModel(db, Sequelize);
+const Userbudget = userBudgetModel(db, Sequelize);
 
 // create connection to DB
 db.sync({ force: true })
@@ -42,4 +44,5 @@ module.exports = {
   Answer,
   User,
   UserBadge,
+  Userbudget,
 };
