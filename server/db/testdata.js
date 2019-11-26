@@ -1,4 +1,11 @@
-const { Course } = require('./index.js');
+const {
+  Course,
+  Concept,
+  Answer,
+  User,
+  UserBadge,
+}
+ = require('./index.js');
 
 
 const enterFakeData = () => {
@@ -31,7 +38,7 @@ const enterFakeData = () => {
     idBadge: 4,
   });
 
-  
+
 
 
 };
