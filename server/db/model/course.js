@@ -9,8 +9,9 @@ module.exports = (sequelize, type) => sequelize.define('course', {
   idBadge: type.INTEGER,
   idParent: {
     type: type.INTEGER,
+    allowNull: true,
     references: {
-      model: 'course',
+      model: 'courses',
       key: 'id',
     },
   },
