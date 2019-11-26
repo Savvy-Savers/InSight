@@ -7,17 +7,10 @@ module.exports = (sequelize, type) => sequelize.define('concept', {
   idCourse: {
     type: type.INTEGER,
     references: {
-      model: 'course',
+      model: 'courses',
       key: 'id',
     },
   },
   question: type.STRING,
   description: type.STRING,
-  idCorrectAnswer: {
-    type: type.INTEGER,
-    references: {
-      model: 'answer',
-      key: 'id',
-    },
-  },
 });
