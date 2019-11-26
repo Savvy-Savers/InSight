@@ -3,6 +3,8 @@ const Sequelize = require('sequelize');
 const courseModel = require('./model/course');
 const conceptModel = require('./model/concept');
 const answerModel = require('./model/answer');
+const userModel = require('./model/user');
+const userBadgeModel = require('./model/userbadge');
 
 const {
   dialect,
@@ -21,6 +23,8 @@ const db = new Sequelize(database, user, pwd, options);
 const Course = courseModel(db, Sequelize);
 const Concept = conceptModel(db, Sequelize);
 const Answer = answerModel(db, Sequelize);
+const User = userModel(db, Sequelize);
+const UserBadge = userBadgeModel(db, Sequelize);
 
 // create connection to DB
 db.sync({ force: true })
@@ -36,4 +40,6 @@ module.exports = {
   Course,
   Concept,
   Answer,
+  User,
+  UserBadge,
 };
