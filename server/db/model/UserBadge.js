@@ -7,14 +7,14 @@ module.exports = (sequelize, type) => sequelize.define('userBadge', {
   idUser: {
     type: type.INTEGER,
     references: {
-      model: 'user',
+      model: 'users',
       key: 'id',
     },
   },
   idBadge: {
     type: type.INTEGER,
     references: {
-      model: 'badge',
+      model: 'badges',
       key: 'id',
     },
   },
