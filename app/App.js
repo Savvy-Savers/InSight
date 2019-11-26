@@ -12,6 +12,7 @@ import AboutScreen from './src/views/About.jsx';
 import SettingScreen from './src/views/Setting.jsx';
 import PolicyScreen from './src/views/Policy.jsx';
 import ResourcesScreen from './src/views/Resources.jsx';
+import ToolsScreen from './src/views/Tools.jsx';
 
 
 // This is the entry point for Expo! We cann't move this file - so instead, 
@@ -28,7 +29,7 @@ const AppNavigator = createDrawerNavigator(
     Main: MainScreen,
     Profile: ProfileScreen,
     Map: MapScreen,
-    Course: CourseScreen,
+    'Course Tools': ToolsScreen,
     About: AboutScreen,
     Settings: SettingScreen,
     Resources: ResourcesScreen,
