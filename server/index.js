@@ -5,7 +5,6 @@ const port = 8080;
 
 
 const bodyParser = require('body-parser');
-// const port = 8080;
 
 
 const profileRoutes = require('./routes/profile');
@@ -21,4 +20,5 @@ app.use('/tool', toolRoutes);
  
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
 
