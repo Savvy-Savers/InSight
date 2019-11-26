@@ -41,7 +41,14 @@ db.sync({ force: true })
     console.log('connected to database!');
   })
   .then(() => {
-    enterFakeData();
+    enterFakeData(Course,
+      Concept,
+      Answer,
+      User,
+      UserBadge,
+      Userbudget,
+      Badge,
+      Level);
   })
   .catch((err) => {
     console.error(err);

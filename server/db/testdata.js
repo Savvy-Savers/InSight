@@ -1,14 +1,12 @@
-const {
-  Course,
-  Concept,
-  Answer,
-  User,
-  UserBadge,
-}
- = require('./index.js');
 
-
-const enterFakeData = () => {
+const enterFakeData = (Course,
+    Concept,
+    Answer,
+    User,
+    UserBadge,
+    Userbudget,
+    Badge,
+    Level) => {
 
   Course.create({
     idParent: null,
@@ -34,7 +32,7 @@ const enterFakeData = () => {
   Course.create({
     idParent: null,
     topic: 'Taxes 101',
-    description: 'What are taxes?',
+    description: 'This is a description on the taxes course',
     idBadge: 4,
   });
 
