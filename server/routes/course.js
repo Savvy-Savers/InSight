@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { getCourse, getCourses } = require('../db/helper');
 
 // Endpoint to retrieve a single course from id
-router.get('/:id', (req, res) => {
+router.get('/list/:id', (req, res) => {
   const { id } = req.params;
   getCourse(id) // TODO: create getCourse helper for DB
     .then((course) => {
