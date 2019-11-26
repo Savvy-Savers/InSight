@@ -5,8 +5,6 @@ const port = 8080;
 
 
 const bodyParser = require('body-parser');
-
-
 const profileRoutes = require('./routes/profile');
 const courseRoutes = require('./routes/course');
 const toolRoutes = require('./routes/tool');
@@ -17,6 +15,5 @@ app.use(bodyParser.json());
 app.use('/profile', profileRoutes);
 app.use('/course', courseRoutes);
 app.use('/tool', toolRoutes);
-
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
