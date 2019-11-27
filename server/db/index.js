@@ -9,6 +9,8 @@ const userBudgetModel = require('./model/userbudget');
 const badgeModel = require('./model/badge');
 const levelModel = require('./model/level');
 
+const { enterFakeData } = require('./testdata.js');
+
 const {
   dialect,
   host,
@@ -38,7 +40,16 @@ db.sync({ force: true })
   .then(() => {
     console.log('connected to database!');
   })
-
+  .then(() => {
+    enterFakeData(Course,
+      Concept,
+      Answer,
+      User,
+      UserBadge,
+      Userbudget,
+      Badge,
+      Level);
+  })
   .catch((err) => {
     console.error(err);
   });
