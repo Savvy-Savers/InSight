@@ -1,13 +1,12 @@
 
 const enterFakeData = (Course,
-    Concept,
-    Answer,
-    User,
-    UserBadge,
-    Userbudget,
-    Badge,
-    Level) => {
-
+  Concept,
+  Answer,
+  User,
+  UserBadge,
+  Userbudget,
+  Badge,
+  Level) => {
   Course.create({
     idParent: null,
     topic: 'Budgeting 101',
@@ -68,6 +67,35 @@ const enterFakeData = (Course,
     isCorrect: false,
     idConcept: 1,
   });
+
+  User.create({
+    firstName: 'Amber',
+    lastName: 'Jones',
+    totalExperiencePoints: 9999,
+    goal: 'to become a dog mother',
+  });
+
+  User.create({
+    firstName: 'Titus',
+    lastName: 'Charles',
+    totalExperiencePoints: 504,
+    goal: 'to get a job',
+  });
+
+  User.create({
+    firstName: 'Brandon',
+    lastName: 'T',
+    totalExperiencePoints: 1010,
+    goal: 'go to Thailand',
+  });
+
+  User.create({
+    firstName: 'Eliott',
+    lastName: 'Frilet',
+    totalExperiencePoints: 42,
+    goal: 'own all the wallpapers',
+  });
+
 };
 
 module.exports = { enterFakeData };
