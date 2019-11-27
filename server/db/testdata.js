@@ -95,7 +95,7 @@ const enterFakeData = (Course,
     totalExperiencePoints: 42,
     goal: 'own all the wallpapers',
   });
-
 };
+
 
 module.exports = { enterFakeData };
