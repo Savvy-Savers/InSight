@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { getUser } = require('../db/helper');
-// const { user } = require('../db/model/user');
 
 router.get('/', (req, res) => {
   res.send('Hello World!');

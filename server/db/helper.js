@@ -4,13 +4,12 @@ const {
   Answer,
   User,
 } = require('./index');
-const { Course, Concept, Answer } = require('./index');
 
 const getCourses = () => Course.findAll({
   attributes: ['id', 'idParent', 'topic'],
 });
 
-const getUser = (userId) => User.findAll({
+const getUser = (userId) => User.findOne({
   where: {
     id: userId,
   },
