@@ -69,6 +69,27 @@ const enterFakeData = (
     idConcept: 1,
   });
 
+  Answer.create({
+    choice: 'you do nothing',
+    description: 'no you have to do something',
+    isCorrect: false,
+    idConcept: 2,
+  });
+
+  Answer.create({
+    choice: 'you make it yourself',
+    description: 'yes! know your budget',
+    isCorrect: true,
+    idConcept: 2,
+  });
+
+  Answer.create({
+    choice: 'you have your cousin do it',
+    description: 'maybe you should take charge of your financial life',
+    isCorrect: false,
+    idConcept: 2,
+  });
+
   User.create({
     firstName: 'Amber',
     lastName: 'Jones',
