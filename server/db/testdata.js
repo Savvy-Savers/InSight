@@ -1,10 +1,11 @@
 
-const enterFakeData = (Course,
+const enterFakeData = (
+  Course,
   Concept,
   Answer,
   User,
   UserBadge,
-  Userbudget,
+  UserBudget,
   Badge,
   Level) => {
   Course.create({
@@ -66,6 +67,27 @@ const enterFakeData = (Course,
     description: 'budgeting isnt that bad!',
     isCorrect: false,
     idConcept: 1,
+  });
+
+  Answer.create({
+    choice: 'you do nothing',
+    description: 'no you have to do something',
+    isCorrect: false,
+    idConcept: 2,
+  });
+
+  Answer.create({
+    choice: 'you make it yourself',
+    description: 'yes! know your budget',
+    isCorrect: true,
+    idConcept: 2,
+  });
+
+  Answer.create({
+    choice: 'you have your cousin do it',
+    description: 'maybe you should take charge of your financial life',
+    isCorrect: false,
+    idConcept: 2,
   });
 
   User.create({
