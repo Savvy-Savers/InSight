@@ -1,10 +1,11 @@
 
-const enterFakeData = (Course,
+const enterFakeData = (
+  Course,
   Concept,
   Answer,
   User,
   UserBadge,
-  Userbudget,
+  UserBudget,
   Badge,
   Level) => {
   Course.create({
@@ -95,7 +96,6 @@ const enterFakeData = (Course,
     totalExperiencePoints: 42,
     goal: 'own all the wallpapers',
   });
-
 };
 
 module.exports = { enterFakeData };

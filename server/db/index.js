@@ -31,7 +31,7 @@ const Concept = conceptModel(db, Sequelize);
 const Answer = answerModel(db, Sequelize);
 const User = userModel(db, Sequelize);
 const UserBadge = userBadgeModel(db, Sequelize);
-const Userbudget = userBudgetModel(db, Sequelize);
+const UserBudget = userBudgetModel(db, Sequelize);
 const Level = levelModel(db, Sequelize);
 const Badge = badgeModel(db, Sequelize);
 
@@ -46,7 +46,7 @@ db.sync({ force: true })
       Answer,
       User,
       UserBadge,
-      Userbudget,
+      UserBudget,
       Badge,
       Level);
   })
@@ -60,7 +60,7 @@ module.exports = {
   Answer,
   User,
   UserBadge,
-  Userbudget,
+  UserBudget,
   Badge,
   Level,
 };
