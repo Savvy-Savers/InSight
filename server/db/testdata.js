@@ -1,10 +1,11 @@
 
-const enterFakeData = (Course,
+const enterFakeData = (
+  Course,
   Concept,
   Answer,
   User,
   UserBadge,
-  Userbudget,
+  UserBudget,
   Badge,
   Level) => {
   Course.create({
