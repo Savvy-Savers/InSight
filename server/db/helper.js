@@ -1,7 +1,19 @@
-const { Course, Concept, Answer } = require('./index');
+const {
+  Course,
+  Concept,
+  Answer,
+  User,
+} = require('./index');
 
 const getCourses = () => Course.findAll({
   attributes: ['id', 'idParent', 'topic'],
+});
+
+const getUser = (userId) => User.findOne({
+  where: {
+    id: userId,
+  },
+  attributes: { exclude: ['createdAt', 'updatedAt'] },
 });
 
 const getCourse = (id) => {
@@ -58,4 +70,6 @@ const getCourse = (id) => {
 module.exports = {
   getCourses,
   getCourse,
+  getUser,
 };
+
