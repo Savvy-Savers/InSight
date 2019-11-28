@@ -23,7 +23,7 @@ export default class Login extends React.component {
 
   render() {
     return (
-      <View style={StyleSheet.container}>
+      <Main style={StyleSheet.container}>
         <TextInput
           style={styles.input}
           placeholder="Username"
@@ -50,7 +50,7 @@ export default class Login extends React.component {
               title="Login"
               onPress={this.login}
               />
-      </View>
+      </Main>
     )
   }
 }
