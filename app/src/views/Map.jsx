@@ -10,7 +10,7 @@ function MapScreen() {
   const { navigate } = useNavigation();
 
   useEffect(() => {
-      axios.get('http://18.206.35.110:8080/course/list') // FIXME: modify for deployment
+      axios.get('http://localhost:8080/course/list') // FIXME: modify for deployment
       .then((allCourses) => {
         setCourses(allCourses.data);
       });
