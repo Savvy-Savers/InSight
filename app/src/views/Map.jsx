@@ -18,10 +18,6 @@ function MapScreen() {
 
   return (
     <View>
-      <Header // Temporary header for display purposes
-        leftComponent={{ icon: 'menu', color: '#fff' }}
-        centerComponent={{ text: 'Courses', style: { color: '#fff' } }}
-      />
       <View>
         {
           courses.map((course) => (
@@ -31,7 +27,7 @@ function MapScreen() {
               leftAvatar={{ source: { uri: 'https://i.chzbgr.com/full/8762786048/hDA3B4D87/' } }}
               bottomDivider
               chevron
-              onPress={() => { navigate('Course', { id: course.id }); }}
+              onPress={() => { navigate('Course', { id: course.id, name: course.topic }); }}
             />
           ))
         }
