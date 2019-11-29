@@ -89,7 +89,7 @@ const enterFakeData = (
     isCorrect: false,
     idConcept: 2,
   });
-  
+
   User.create({
     firstName: 'Amber',
     lastName: 'Jones',
@@ -118,7 +118,6 @@ const enterFakeData = (
     goal: 'own all the wallpapers',
   });
 
-  
 };
 
 module.exports = { enterFakeData };
