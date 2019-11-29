@@ -2,7 +2,7 @@ const {
   Course,
   Concept,
   Answer,
-  User,
+  UserBadge,
 } = require('./index');
 
 const getCourses = () => Course.findAll({
@@ -67,9 +67,18 @@ const getCourse = (id) => {
     });
 };
 
+const getUserBadges = (userId) => UserBadge.findAll({ 
+  where: {
+    id: userId,
+  },
+  
+  attributes: ['idBadge'],
+});
+
 module.exports = {
   getCourses,
   getCourse,
   getUser,
+  getUserBadges
 };
 
