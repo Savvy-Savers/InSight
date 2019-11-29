@@ -68,17 +68,26 @@ const getCourse = (id) => {
     });
 };
 
-const getUserBadges = (userId) => UserBadge.findAll({ 
-  
-  where: {
-    idUser: userId,
-  },
-  
-  attributes: ['idBadge'],
-})
-.then((badges) => {
+const getUserBadges = (userId) => {
+  return UserBadge.findAll({
+    where: {
+      id: userId,
+    },
+    
+    attributes: ['idBadge'],
+  })
+  .then((badge) => {
+    return badge.forEach((Badge.findAll({
+      where: {
+        id,
+      },
 
-});
+      attributes: ['name', 'iconUrl', 'description'],
+    })))
+  })
+}
+
+
 
 module.exports = {
   getCourses,
