@@ -1,20 +1,39 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View } from 'react-native';
+import { ListItem, Header } from 'react-native-elements';
+import { useNavigation } from 'react-navigation-hooks';
+import axios from 'axios';
 
 
-export default class MapScreen extends React.Component {
-    render() {
-        return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>Map Screen</Text>
-                <Button
-                    title="Go to course... "
-                    // each push we add a new route to the navigation stack
-                    onPress={() => this.props.navigation.navigate('Course')}
-                />
+function MapScreen() {
+  const [courses, setCourses] = useState([]);
+  const { navigate } = useNavigation();
 
-            </View>
-        );
-    }
+  useEffect(() => {
+    axios.get('http://localhost:8080/course/list') // FIXME: modify for deployment
+      .then((allCourses) => {
+        setCourses(allCourses.data);
+      });
+  }, []); // Array necessary to not repeat endlessly
+
+  return (
+    <View>
+      <View>
+        {
+          courses.map((course) => (
+            <ListItem
+              key={course.topic}
+              title={course.topic}
+              leftAvatar={{ source: { uri: 'https://i.chzbgr.com/full/8762786048/hDA3B4D87/' } }}
+              bottomDivider
+              chevron
+              onPress={() => { navigate('Course', { id: course.id, name: course.topic }); }}
+            />
+          ))
+        }
+      </View>
+    </View>
+  );
 }
 
+export default MapScreen;

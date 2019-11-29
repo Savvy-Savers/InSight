@@ -1,23 +1,55 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View } from 'react-native';
+import Swiper from 'react-native-swiper';
+import axios from 'axios';
 
+function CourseScreen(props) {
+  const [course, setCourse] = useState({});
+  const [concepts, setConcepts] = useState([{ description: 'hello', id: 1 }]);
+  const { id } = props.navigation.state.params;
 
-export default class CourseScreen extends React.Component {
-    render() {
-        return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>Course Screen</Text>
-                <Button
-                    title="Go to Next part of course... "
-                    // each push we add a new route to the navigation stack
-                    onPress={() => this.props.navigation.push('Course')}
-                />
-                <Button
-                    title="Go back"
-                    onPress={() => this.props.navigation.goBack()}
-                />
-            </View>
-        );
-    }
+  useEffect(() => {
+    axios.get(`http://localhost:8080/course/list/${id}`) // FIXME: modify for deployment
+      .then((courseData) => {
+        setCourse(courseData.data);
+        setConcepts(courseData.data.concepts);
+      });
+  }, []); // Array necessary to not repeat endlessly
+
+  const styles = {
+    wrapper: {
+      backgroundColor: '#fff',
+    },
+    slides: {
+      flex: 4,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    text: {
+      color: '#000',
+      fontSize: 30,
+      fontWeight: 'bold',
+      margin: 5,
+    },
+  };
+
+  return (
+    <View style={{ flex: 1 }}>
+      <Swiper
+        key={concepts.length}
+        style={styles.wrapper}
+        showsButtons
+        loop={false}
+      >
+        {concepts.map((concept) => (
+          <View key={concept.id} style={styles.slides}>
+            <Text style={styles.text}>{concept.description}</Text>
+          </View>
+        ))}
+      </Swiper>
+    </View>
+  );
 }
 
+export default CourseScreen;
