@@ -3,7 +3,29 @@ const {
   Concept,
   Answer,
   User,
+  UserBadge,
 } = require('./index');
+
+const updateUserXp = (userId, userXp) => {
+  console.log(userId);
+  console.log(userXp);
+  return User.findOne({
+    where: {
+      id: userId,
+    },
+  })
+    .then((user) => {
+      console.log(user);
+      User.update({
+        totalExpriencePoints: +userXp,
+      }, {
+        where: { id: userId },
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
 
 const getCourses = () => Course.findAll({
   attributes: ['id', 'idParent', 'topic'],
@@ -71,4 +93,5 @@ module.exports = {
   getCourses,
   getCourse,
   getUser,
+  updateUserXp,
 };
