@@ -7,7 +7,8 @@ const enterFakeData = (
   UserBadge,
   UserBudget,
   Badge,
-  Level) => {
+  Level
+) => {
   Course.create({
     idParent: null,
     topic: 'Budgeting 101',
@@ -118,6 +119,33 @@ const enterFakeData = (
     goal: 'own all the wallpapers',
   });
 
+  Badge.create({
+    name: 'Budgetling',
+    iconUrl: 'https://image.flaticon.com/icons/svg/2250/2250687.svg',
+    expriencePoints: 1,
+    description: 'Growth you will achieve.',
+  });
+
+  Badge.create({
+    name: 'Budgeteer',
+    iconUrl: 'https://image.flaticon.com/icons/svg/2250/2250716.svg',
+    expriencePoints: 2,
+    description: 'Yarr don\'t plunder ye savings',
+  });
+
+  Badge.create({
+    name: 'Budgetor',
+    iconUrl: 'https://image.flaticon.com/icons/svg/2250/2250702.svg',
+    expriencePoints: 3,
+    description: 'I\'ll be bach to save some more money$',
+  });
+
+  Badge.create({
+    name: 'Taxling',
+    iconUrl: 'https://image.flaticon.com/icons/svg/2250/2250704.svg',
+    expriencePoints: 4,
+    description: 'This money won\'t grow on trees',
+  });
 };
 
 module.exports = { enterFakeData };
