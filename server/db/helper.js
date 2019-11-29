@@ -2,7 +2,7 @@ const {
   Course,
   Concept,
   Answer,
-  UserBadge,
+  UserBadge
 } = require('./index');
 
 const getCourses = () => Course.findAll({
@@ -69,7 +69,7 @@ const getCourse = (id) => {
 
 const getUserBadges = (userId) => UserBadge.findAll({ 
   where: {
-    id: userId,
+    idUser: userId,
   },
   
   attributes: ['idBadge'],
