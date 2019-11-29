@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "start": "node index.js"
+    "start": "node start.js"
   },
   "author": "Amber Brandon Eliott Titus",
   "license": "ISC",

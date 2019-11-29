@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
+import { useNavigation } from 'react-navigation-hooks';
 import axios from 'axios';
 
 function CourseScreen(props) {
   const [course, setCourse] = useState({});
-  const [concepts, setConcepts] = useState([{ description: 'hello', id: 1 }]);
+  const [concepts, setConcepts] = useState([]);
   const { id } = props.navigation.state.params;
+  const { navigate } = useNavigation();
 
   useEffect(() => {
     axios.get(`http://localhost:8080/course/list/${id}`) // FIXME: modify for deployment
@@ -48,6 +51,12 @@ function CourseScreen(props) {
           </View>
         ))}
       </Swiper>
+      <View style={{ marginBottom: 25, alignSelf: 'center', width: '50%' }}>
+        <Button
+          title="Quiz"
+          onPress={() => { navigate('Quiz', { concepts }); }}
+        />
+      </View>
     </View>
   );
 }

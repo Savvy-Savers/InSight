@@ -5,6 +5,7 @@ import axios from 'axios';
 
 function QuizScreen(props) {
   // Use state hooks to access concept object
+  const [concepts, setConcepts] = useState(props.navigation.state.params.concepts); // All concepts available here
   const styles = {
     wrapper: {
       backgroundColor: '#fff',
@@ -25,6 +26,7 @@ function QuizScreen(props) {
 
   return (
     <View style={{ flex: 1 }}>
+      <Text>{concepts[0].question}</Text>
       {/* <Swiper
         key={questions.length}
         style={styles.wrapper}
