@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
 import axios from 'axios';
 
@@ -48,6 +49,12 @@ function CourseScreen(props) {
           </View>
         ))}
       </Swiper>
+      <View style={{ marginBottom: 25, alignSelf: 'center', width: '50%' }}>
+        <Button
+          title="Quiz"
+          onPress={() => {}}
+        />
+      </View>
     </View>
   );
 }
