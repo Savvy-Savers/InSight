@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
 import Swiper from 'react-native-swiper';
+import { useNavigation } from 'react-navigation-hooks';
 import axios from 'axios';
 
 function QuizScreen(props) {
   // Use state hooks to access concept object
-  const [concepts, setConcepts] = useState(props.navigation.state.params.concepts); // All concepts available here
+  // All concepts available here
+  const [concepts, setConcepts] = useState(props.navigation.state.params.concepts);
+  const { id } = props.navigation.state.params;
+  const { navigate } = useNavigation();
+
   const styles = {
     wrapper: {
       backgroundColor: '#fff',
@@ -25,22 +30,20 @@ function QuizScreen(props) {
   };
 
   return (
+    // mapping over the concpets, and getting their questions
     <View style={{ flex: 1 }}>
-      <Text>{concepts[0].question}</Text>
-      {/* <Swiper
-        key={questions.length}
+      <Swiper
+        key={concepts.length}
         style={styles.wrapper}
         showsButtons
         loop={false}
       >
-
-      // will be mapping over questions
-        {questions.map((question) => (
-          <View key={question.id} style={styles.slides}>
-            <Text style={styles.text}>{question.description}</Text>
+        {concepts.map((concept) => (
+          <View key={concept.id} style={styles.slides}>
+            <Text style={styles.text}>{concept.question}</Text>
           </View>
         ))}
-      </Swiper> */}
+      </Swiper>
     </View>
   );
 }
