@@ -24,8 +24,18 @@ export default class App extends React.Component {
 // This is our navigation router, these are the pages names, and the screens.
 const CourseNavigator = createStackNavigator(
   {
-    Map: MapScreen,
-    Course: CourseScreen,
+    Map: {
+      screen: MapScreen,
+      navigationOptions: {
+        title: 'Map',
+      },
+    },
+    Course: {
+      screen: CourseScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: `${navigation.state.params.name}`,
+      }),
+    },
   },
   {
     initialRouteName: 'Map',
