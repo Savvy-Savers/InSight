@@ -39,7 +39,7 @@ const Badge = badgeModel(db, Sequelize);
 // create connection to DB
 db.sync({ force: true })
   .then(() => {
-    console.log('connected to database!');
+    // console.log('connected to database!');
   })
   .then(() => {
     enterFakeData(Course,
