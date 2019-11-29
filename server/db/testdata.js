@@ -7,7 +7,7 @@ const enterFakeData = (
   UserBadge,
   UserBudget,
   Badge,
-  Level
+  Level,
 ) => {
   Course.create({
     idParent: null,
@@ -145,6 +145,12 @@ const enterFakeData = (
     iconUrl: 'https://image.flaticon.com/icons/svg/2250/2250704.svg',
     expriencePoints: 4,
     description: 'This money won\'t grow on trees',
+  });
+
+  UserBadge.create({
+    id: 1,
+    idUser: 1,
+    idbadge: 1,
   });
 };
 
