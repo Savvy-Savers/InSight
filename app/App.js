@@ -11,6 +11,7 @@ import SettingScreen from './src/views/Setting';
 import PolicyScreen from './src/views/Policy';
 import ResourcesScreen from './src/views/Resources';
 import ToolsScreen from './src/views/Tools';
+import QuizScreen from './src/views/Quiz';
 
 
 // This is the entry point for Expo! We cann't move this file - so instead,
@@ -36,6 +37,7 @@ const CourseNavigator = createStackNavigator(
         title: `${navigation.state.params.name}`,
       }),
     },
+    Quiz: QuizScreen,
   },
   {
     initialRouteName: 'Map',
