@@ -22,6 +22,7 @@ const {
 const options = {
   host,
   dialect,
+  logging: false,
 };
 
 const db = new Sequelize(database, user, pwd, options);

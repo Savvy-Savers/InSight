@@ -4,6 +4,7 @@
 const supertest = require('supertest');
 const app = require('../index.js');// Link to your server file
 
+// allows testing of endpoints
 const request = supertest(app);
 
 // This test fails because 1 !== 2
@@ -11,8 +12,10 @@ it('Testing to see if Jest works', () => {
   expect(1).toBe(1);
 });
 
-it('Async test', async done => {
-  // Do your async tests here
+it('gets the courselist endpoint', async done => {
+  const response = await request.get('/course/list/1');
 
+  expect(response.status).toBe(200);
+  // expect(response.body.message).toBe('pass!');
   done();
 });
