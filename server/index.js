@@ -1,8 +1,6 @@
 const express = require('express');
 
 const app = express();
-const port = 8080;
-
 
 const bodyParser = require('body-parser');
 const profileRoutes = require('./routes/profile');
@@ -16,4 +14,8 @@ app.use('/profile', profileRoutes);
 app.use('/course', courseRoutes);
 app.use('/tool', toolRoutes);
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+module.exports = app;
+/* the 'listing on port 8080' was moved to start.js
+to account for jest tests needing to run a sever for each 
+test page.
+*/

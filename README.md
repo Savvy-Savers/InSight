@@ -48,3 +48,11 @@ pwd = YOURPASSWORD
 * [Jest](https://jestjs.io/) - Testing library
 * [MariaDB](https://mariadb.org/) - Database Manager
 * [D3](https://d3js.org/) - Used to generate visual data graphs
+
+## Team
+
+| <a href="https://github.com/tcharles23" target="_blank">**Titus**</a> | <a href="https://github.com/amberjones" target="_blank">**Amber**</a> |   <a href="https://github.com/btheard3" target="_blank">**Brandon**</a> |<a href="https://github.com/BunnyDunker" target="_blank">**Eliott**</a> |
+| :---: |:---:| :---:| :---: |
+| [![Titus](https://avatars3.githubusercontent.com/u/46572767?s=50)](https://github.com/tcharles23)  |[![Amber](https://avatars0.githubusercontent.com/u/51866859?s=50)](https://github.com/amberjones)  | [![Brandon](https://avatars0.githubusercontent.com/u/24530908?s=50)](https://github.com/btheard3)  | [![Eliott](https://avatars0.githubusercontent.com/u/35610640?s=50)](https://github.com/BunnyDunker) | 
+
+
