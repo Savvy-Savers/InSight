@@ -26,14 +26,16 @@ function QuizScreen(props) {
   return (
     <View style={{ flex: 1 }}>
       {/* <Swiper
-        key={concepts.length}
+        key={questions.length}
         style={styles.wrapper}
         showsButtons
         loop={false}
       >
-        {concepts.map((concept) => (
-          <View key={concept.id} style={styles.slides}>
-            <Text style={styles.text}>{concept.description}</Text>
+
+      // will be mapping over questions
+        {questions.map((question) => (
+          <View key={question.id} style={styles.slides}>
+            <Text style={styles.text}>{question.description}</Text>
           </View>
         ))}
       </Swiper> */}
