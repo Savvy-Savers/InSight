@@ -25,6 +25,7 @@ const options = {
   logging: false,
 };
 
+
 const db = new Sequelize(database, user, pwd, options);
 // models
 const Course = courseModel(db, Sequelize);
@@ -35,6 +36,7 @@ const UserBadge = userBadgeModel(db, Sequelize);
 const UserBudget = userBudgetModel(db, Sequelize);
 const Level = levelModel(db, Sequelize);
 const Badge = badgeModel(db, Sequelize);
+
 
 // create connection to DB
 db.sync({ force: true })

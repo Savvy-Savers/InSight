@@ -3,7 +3,34 @@ const {
   Concept,
   Answer,
   User,
+  UserBadge,
+  Badge,
 } = require('./index');
+
+const insertUserBadge = (userId, badgeId) => UserBadge.create({
+  idUser: userId,
+  idBadge: badgeId,
+});
+
+const updateUserXp = (userId, badgeId) => {
+  return Badge.findOne({
+    where: {
+      id: badgeId,
+    },
+    attributes: ['experiencePoints'],
+  })
+    .then((xp) => {
+      User.increment({
+        totalExperiencePoints: xp.dataValues.experiencePoints,
+      }, {
+        where: { id: userId },
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
 
 const getCourses = () => Course.findAll({
   attributes: ['id', 'idParent', 'topic'],
@@ -71,5 +98,6 @@ module.exports = {
   getCourses,
   getCourse,
   getUser,
+  updateUserXp,
+  insertUserBadge,
 };
-
