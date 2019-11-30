@@ -122,11 +122,11 @@ const getCompletedCourse = (userId) => UserBadge.findAll({
   attributes: ['idBadge']
 })
 .then((badgesId) => {
-  let courseId = badgesId.map((badgeId) => badgeId.dataValues.idBadge)
+  badgesId = badgesId.map((badgeId) => badgeId.dataValues.idBadge)
   
   return Course.findAll({
     where: {
-      idBadge: courseId
+      idBadge: badgesId
     },
 
     attributes: ['id']
