@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getUser, getUserBadges } = require('../db/helper');
+const { getUser, updateUserXp, insertUserBadge } = require('../db/helper');
 
 router.get('/', (req, res) => {
   res.send('Hello World!');
@@ -15,14 +15,20 @@ router.get('/user/:id', (req, res) => {
     .catch((err) => console.error(err));
 });
 
-
-router.get('/user/:id/badges', (req, res) => {
-  const { id } = req.params;
-  getUserBadges(id)
-    .then((badge) => {
-      res.send(badge);
+router.post('/user/badge', (req, res) => {
+  console.log(req.body);
+  const userId = req.body.id;
+  const userBadge = req.body.badgeId;
+  updateUserXp(userId, userBadge)
+    .then(() => {
+      return insertUserBadge(userId, userBadge);
     })
-    .catch((err) => console.error(err));
-})
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
 
 module.exports = router;

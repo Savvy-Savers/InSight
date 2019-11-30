@@ -7,7 +7,7 @@ const enterFakeData = (
   UserBadge,
   UserBudget,
   Badge,
-  Level
+  Level,
 ) => {
   Course.create({
     idParent: null,
@@ -82,49 +82,49 @@ const enterFakeData = (
   .then(() => User.create({
     firstName: 'Amber',
     lastName: 'Jones',
-    totalExperiencePoints: 9999,
+    totalExperiencePoints: 50,
     goal: 'to become a dog mother',
   }))
   .then(() => User.create({
     firstName: 'Titus',
     lastName: 'Charles',
-    totalExperiencePoints: 504,
+    totalExperiencePoints: 102,
     goal: 'to get a job',
   }))
   .then(() => User.create({
     firstName: 'Brandon',
     lastName: 'T',
-    totalExperiencePoints: 1010,
+    totalExperiencePoints: 300,
     goal: 'go to Thailand',
   }))
   .then(() => User.create({
     firstName: 'Eliott',
     lastName: 'Frilet',
-    totalExperiencePoints: 42,
+    totalExperiencePoints: 202,
     goal: 'own all the wallpapers',
   }))
   .then(() => Badge.create({
     name: 'Budgetling',
     iconUrl: 'https://image.flaticon.com/icons/svg/2250/2250687.svg',
-    expriencePoints: 1,
+    experiencePoints: 100,
     description: 'Growth you will achieve.',
   }))
   .then(() => Badge.create({
     name: 'Budgeteer',
     iconUrl: 'https://image.flaticon.com/icons/svg/2250/2250716.svg',
-    expriencePoints: 2,
+    experiencePoints: 200,
     description: 'Yarr don\'t plunder ye savings',
   }))
   .then(() => Badge.create({
     name: 'Budgetor',
     iconUrl: 'https://image.flaticon.com/icons/svg/2250/2250702.svg',
-    expriencePoints: 3,
+    experiencePoints: 300,
     description: 'I\'ll be bach to save some more money$',
   }))
   .then(() => Badge.create({
     name: 'Taxling',
     iconUrl: 'https://image.flaticon.com/icons/svg/2250/2250704.svg',
-    expriencePoints: 4,
+    experiencePoints: 400,
     description: 'This money won\'t grow on trees',
   }))
   .then(() => UserBadge.create({
