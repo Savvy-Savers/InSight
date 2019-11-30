@@ -127,6 +127,22 @@ const enterFakeData = (
     expriencePoints: 4,
     description: 'This money won\'t grow on trees',
   }))
+  .then(() => UserBadge.create({
+    idUser: 1,
+    idBadge: 1, 
+  }))
+  .then(() => UserBadge.create({
+    idUser: 2,
+    idBadge: 2,
+  }))
+  .then(() => UserBadge.create({
+    idUser: 3,
+    idBadge: 3,
+  }))
+  .then(() => UserBadge.create({
+    idUser: 4,
+    idBadge: 4,
+  }))
 };
 
 module.exports = { enterFakeData };
