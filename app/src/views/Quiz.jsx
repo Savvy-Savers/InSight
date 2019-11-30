@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import Swiper from 'react-native-swiper';
+import { List, CheckBox, CheckBoxProps } from 'react-native-elements';
 import { useNavigation } from 'react-navigation-hooks';
-
-import axios from 'axios';
 
 function QuizScreen(props) {
   // Use state hooks to access concept object
   // All concepts available here
   const [concepts, setConcepts] = useState(props.navigation.state.params.concepts);
+  // holds the state of the answer choice selected
+  const [isChecked, setChecked] = useState(false);
   const { id } = props.navigation.state.params;
   const { navigate } = useNavigation();
 
@@ -48,16 +49,21 @@ function QuizScreen(props) {
         {/* map over the concept and displays each associated question
         there is only one question per concept */}
         {concepts.map((concept) => (
-            <View key={concept.id} style={styles.slides}>
-              <Text style={styles.text}>{concept.question}</Text>
-              <Text style={styles.answer}>
-                {/* {concept.answers.map((choice) => } */}
-                {concept.answers[0].choice}
-                {concept.answers[1].choice}
-                {concept.answers[2].choice}
-              </Text>
-              {/* // is it clicked on? if so show answer.description */}
+          <View>
+            <Text style={styles.text}>{concept.question}</Text>
+            <View>
+              {concept.answers.map((answer) => (
+                <CheckBox
+                  center
+                  title={answer.choice}
+                  checkedIcon='dot-circle-o'
+                  uncheckedIcon='circle-o'
+                  checked={isChecked}
+                  onPress={() => setChecked(!isChecked)}
+                />
+              ))}
             </View>
+          </View>
         ))}
       </Swiper>
     </View>
