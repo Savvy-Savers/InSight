@@ -125,7 +125,7 @@ const getCompletedCourse = (userId) => UserBadge.findAll({
 })
 .then((courses) => {
   let courseId = courses.map((course) => course.dataValues.idBadge)
-  console.log('courses', courseInfo)
+  
   return Course.findAll({
     where: {
       id: courseId
