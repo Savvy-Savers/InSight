@@ -31,12 +31,6 @@ const updateUserXp = (userId, badgeId) => {
     });
 };
 
-const getUserBadge = (userId, badgeId) => UserBadge.findOne({
-  where: {
-    idUser: userId,
-    idBadge: badgeId,
-  },
-});
 
 const getCourses = () => Course.findAll({
   attributes: ['id', 'idParent', 'topic'],
@@ -105,6 +99,5 @@ module.exports = {
   getCourse,
   getUser,
   updateUserXp,
-  getUserBadge,
   insertUserBadge,
 };
