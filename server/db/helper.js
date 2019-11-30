@@ -4,20 +4,24 @@ const {
   Answer,
   User,
   UserBadge,
+  Badge,
 } = require('./index');
 
-const updateUserXp = (userId, userXp) => {
-  console.log(userId);
-  console.log(userXp);
-  return User.findOne({
+const insertUserBadge = (userId, badgeId) => UserBadge.create({
+  idUser: userId,
+  idBadge: badgeId,
+});
+
+const updateUserXp = (userId, badgeId) => {
+  return Badge.findOne({
     where: {
-      id: userId,
+      id: badgeId,
     },
+    attributes: ['experiencePoints'],
   })
-    .then((user) => {
-      console.log(user);
-      User.update({
-        totalExpriencePoints: +userXp,
+    .then((xp) => {
+      User.increment({
+        totalExperiencePoints: xp.dataValues.experiencePoints,
       }, {
         where: { id: userId },
       });
@@ -26,6 +30,13 @@ const updateUserXp = (userId, userXp) => {
       console.error(err);
     });
 };
+
+const getUserBadge = (userId, badgeId) => UserBadge.findOne({
+  where: {
+    idUser: userId,
+    idBadge: badgeId,
+  },
+});
 
 const getCourses = () => Course.findAll({
   attributes: ['id', 'idParent', 'topic'],
@@ -94,4 +105,6 @@ module.exports = {
   getCourse,
   getUser,
   updateUserXp,
+  getUserBadge,
+  insertUserBadge,
 };
