@@ -12,7 +12,7 @@ function CourseScreen(props) {
   const { navigate } = useNavigation();
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/course/list/${id}`) // FIXME: modify for deployment
+    axios.get(`http://18.206.35.110:8080/course/list/${id}`)
       .then((courseData) => {
         setCourse(courseData.data);
         setConcepts(courseData.data.concepts);
