@@ -132,7 +132,7 @@ const enterFakeData = (
     idBadge: 1, 
   }))
   .then(() => UserBadge.create({
-    idUser: 2,
+    idUser: 1,
     idBadge: 2,
   }))
   .then(() => UserBadge.create({
