@@ -76,13 +76,17 @@ const getUserBadges = (userId) => UserBadge.findAll({
 
   attributes: ['idBadge']
 })
-.then((badgesId) => Badge.findAll({
-  where: {
-    id: badgesId,
-  },
-
-  attributes: ['name', 'iconUrl', 'description']
-}))
+.then((badges) => {
+  let badgeInfo = badges.map((badge) => badge.dataValues.idBadge);
+  
+  return Badge.findAll({
+    where: {
+      id: badgeInfo,
+    },
+    
+    attributes: ['name', 'iconUrl', 'description']
+  });
+});
 
 
 
