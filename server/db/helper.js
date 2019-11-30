@@ -113,7 +113,9 @@ const getUserBadges = (userId) => UserBadge.findAll({
   });
 });
 
-
+//function takes in a userId
+//function returns list of courseId
+//course completion is based of acquired badges
 const getCompletedCourse = (userId) => UserBadge.findAll({
   where: {
     idUser: userId
