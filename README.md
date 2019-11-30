@@ -7,7 +7,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Clone to your local machine. 
+Before you begin, ensure you have met the following requirements: 
+  * You have installed the latest version of npm and node
+  * You have installed Expo
+
+Fork this reposity and clone to your local machine. 
 
 There are two repos inside the InSight's root repository - app and server. 
 Inside each of these run:
@@ -35,22 +39,24 @@ pwd = YOURPASSWORD
   * 3 folders in here: fonts, icons and images
 
 ### components 
-  * This is where we place all our shared React components. Usually these components are the ones that we call “dummy”, that have no state logic and can be easily reused across the app.
+  * This is where we place all our shared React components. Usually these components are the ones that we call stateless or function components, that have no state logic and can be easily reused across the app.
 
 ### views 
-  * These are our application screens, the ones that we navigate from one to another. These are also React components, but they are the ones that we call containers, because they contain their own state.
+  * These are our application screens, the ones that we navigate from one to another. 
+
 ### services 
   *  These are the functions that wrap the API calls.
 
 ## Built With
 
 * [React-Native](https://facebook.github.io/react-native/) - The mobile framework used
+* [Expo.io](https://expo.io/) - Dev tools
 * [Jest](https://jestjs.io/) - Testing library
 * [MariaDB](https://mariadb.org/) - Database Manager
 * [D3](https://d3js.org/) - Used to generate visual data graphs
 
-## Note on the server
-When running the phone emulators with expo, only the ios one through Xcode can connect to localhost without tunneling. Running the android emulator or the expo phone app will require either tunneling or deployment of the server.
+## Note on the Localhost Testing In Expo
+Only IOS through Xcode can connect to localhost without tunneling. Running the Android Studio emulator or the Expo app will require either tunneling or deployment of the server.
 
 ## Team
 
