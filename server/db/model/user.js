@@ -6,9 +6,6 @@ module.exports = (sequelize, type) => sequelize.define('user', {
   },
   firstName: type.STRING,
   lastName: type.STRING,
-  totalExpriencePoints: {
-    type: type.INTEGER,
-    allowNull: false,
-  },
+  totalExperiencePoints: type.INTEGER,
   goal: type.STRING,
 });
