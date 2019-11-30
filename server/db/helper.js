@@ -2,8 +2,8 @@ const {
   Course,
   Concept,
   Answer,
-  User,
   UserBadge,
+  User,
   Badge,
 } = require('./index');
 
@@ -94,10 +94,32 @@ const getCourse = (id) => {
     });
 };
 
+const getUserBadges = (userId) => UserBadge.findAll({
+  where: {
+    idUser: userId
+  },
+
+  attributes: ['idBadge']
+})
+.then((badges) => {
+  let badgeInfo = badges.map((badge) => badge.dataValues.idBadge);
+  
+  return Badge.findAll({
+    where: {
+      id: badgeInfo,
+    },
+    
+    attributes: ['name', 'iconUrl', 'description']
+  });
+});
+
+
+
 module.exports = {
   getCourses,
   getCourse,
   getUser,
+  getUserBadges,
   updateUserXp,
   insertUserBadge,
 };
