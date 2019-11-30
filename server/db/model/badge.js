@@ -6,6 +6,6 @@ module.exports = (sequelize, type) => sequelize.define('badge', {
   },
   name: type.STRING,
   iconUrl: type.STRING,
-  expriencePoints: type.INTEGER,
+  experiencePoints: type.INTEGER,
   description: type.STRING,
 });

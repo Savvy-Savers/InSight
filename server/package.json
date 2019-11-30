@@ -4,8 +4,9 @@
   "description": "Package for InSight server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "start": "node start.js"
   },
   "author": "Amber Brandon Eliott Titus",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "eslint": "^6.7.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "jest": "^24.9.0"
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
   }
 }

@@ -7,7 +7,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Clone to your local machine. 
+Before you begin, ensure you have met the following requirements: 
+  * You have installed the latest version of npm and node
+  * You have installed Expo
+
+Fork this reposity and clone to your local machine. 
 
 There are two repos inside the InSight's root repository - app and server. 
 Inside each of these run:
@@ -35,16 +39,29 @@ pwd = YOURPASSWORD
   * 3 folders in here: fonts, icons and images
 
 ### components 
-  * This is where we place all our shared React components. Usually these components are the ones that we call “dummy”, that have no state logic and can be easily reused across the app.
+  * This is where we place all our shared React components. Usually these components are the ones that we call stateless or function components, that have no state logic and can be easily reused across the app.
 
 ### views 
-  * These are our application screens, the ones that we navigate from one to another. These are also React components, but they are the ones that we call containers, because they contain their own state.
+  * These are our application screens, the ones that we navigate from one to another. 
+
 ### services 
   *  These are the functions that wrap the API calls.
 
 ## Built With
 
 * [React-Native](https://facebook.github.io/react-native/) - The mobile framework used
+* [Expo.io](https://expo.io/) - Dev tools
 * [Jest](https://jestjs.io/) - Testing library
 * [MariaDB](https://mariadb.org/) - Database Manager
 * [D3](https://d3js.org/) - Used to generate visual data graphs
+
+## Note on the Localhost Testing In Expo
+Only IOS through Xcode can connect to localhost without tunneling. Running the Android Studio emulator or the Expo app will require either tunneling or deployment of the server.
+
+## Team
+
+| <a href="https://github.com/tcharles23" target="_blank">**Titus**</a> | <a href="https://github.com/amberjones" target="_blank">**Amber**</a> |   <a href="https://github.com/btheard3" target="_blank">**Brandon**</a> |<a href="https://github.com/BunnyDunker" target="_blank">**Eliott**</a> |
+| :---: |:---:| :---:| :---: |
+| [![Titus](https://avatars3.githubusercontent.com/u/46572767?s=50)](https://github.com/tcharles23)  |[![Amber](https://avatars0.githubusercontent.com/u/51866859?s=50)](https://github.com/amberjones)  | [![Brandon](https://avatars0.githubusercontent.com/u/24530908?s=50)](https://github.com/btheard3)  | [![Eliott](https://avatars0.githubusercontent.com/u/35610640?s=50)](https://github.com/BunnyDunker) | 
+
+
