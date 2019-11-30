@@ -79,62 +79,54 @@ const enterFakeData = (
     isCorrect: false,
     idConcept: 2,
   }))
-
-  User.create({
+  .then(() => User.create({
     firstName: 'Amber',
     lastName: 'Jones',
     totalExperiencePoints: 9999,
     goal: 'to become a dog mother',
-  });
-
-  User.create({
+  }))
+  .then(() => User.create({
     firstName: 'Titus',
     lastName: 'Charles',
     totalExperiencePoints: 504,
     goal: 'to get a job',
-  });
-
-  User.create({
+  }))
+  .then(() => User.create({
     firstName: 'Brandon',
     lastName: 'T',
     totalExperiencePoints: 1010,
     goal: 'go to Thailand',
-  });
-
-  User.create({
+  }))
+  .then(() => User.create({
     firstName: 'Eliott',
     lastName: 'Frilet',
     totalExperiencePoints: 42,
     goal: 'own all the wallpapers',
-  });
-
-  Badge.create({
+  }))
+  .then(() => Badge.create({
     name: 'Budgetling',
     iconUrl: 'https://image.flaticon.com/icons/svg/2250/2250687.svg',
     expriencePoints: 1,
     description: 'Growth you will achieve.',
-  });
-
-  Badge.create({
+  }))
+  .then(() => Badge.create({
     name: 'Budgeteer',
     iconUrl: 'https://image.flaticon.com/icons/svg/2250/2250716.svg',
     expriencePoints: 2,
     description: 'Yarr don\'t plunder ye savings',
-  });
-
-  Badge.create({
+  }))
+  .then(() => Badge.create({
     name: 'Budgetor',
     iconUrl: 'https://image.flaticon.com/icons/svg/2250/2250702.svg',
     expriencePoints: 3,
     description: 'I\'ll be bach to save some more money$',
-  });
-
-  Badge.create({
+  }))
+  .then(() => Badge.create({
     name: 'Taxling',
     iconUrl: 'https://image.flaticon.com/icons/svg/2250/2250704.svg',
     expriencePoints: 4,
     description: 'This money won\'t grow on trees',
-  });
+  }))
 };
 
 module.exports = { enterFakeData };
