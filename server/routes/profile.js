@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getUser, updateUserXp, insertUserBadge, getUserBadges } = require('../db/helper');
+const { getUser, updateUserXp, insertUserBadge, getUserBadges, getCompletedCourse } = require('../db/helper');
 
 router.get('/', (req, res) => {
   res.send('Hello World!');
@@ -24,6 +24,16 @@ router.get('/user/:id/badges', (req, res) => {
     })
     .catch((err) => console.error(err));
 });
+
+router.get('/user/:id/completed', (req, res) => {
+  const { id } = req.params;
+
+  getCompletedCourse(id)
+    .then((coursesId) => {
+      res.send(coursesId)
+    })
+    .catch((err) => console.error(err));
+})
 
 router.post('/user/badge', (req, res) => {
   console.log(req.body);
