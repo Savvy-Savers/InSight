@@ -3,6 +3,7 @@ const {
   Concept,
   Answer,
   UserBadge,
+  User,
   Badge
 } = require('./index');
 
