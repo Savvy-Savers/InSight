@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getUser, updateUserXp, getUserBadge, insertUserBadge } = require('../db/helper');
+const { getUser, updateUserXp, insertUserBadge } = require('../db/helper');
 
 router.get('/', (req, res) => {
   res.send('Hello World!');
