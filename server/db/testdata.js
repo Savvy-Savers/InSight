@@ -33,58 +33,52 @@ const enterFakeData = (
     description: 'This is a description on the taxes course',
     idBadge: 4,
   }))
-  .then(() => Course.create({
+  .then(() => Concept.create({
     idCourse: 1,
     question: 'What is a budget tool?',
     description: 'We are discussing the concept of budget tools',
   }))
-  .then(() => Course.create({
+  .then(() => Concept.create({
     idCourse: 1,
     question: 'How do you create a budget?',
     description: 'this is not a bad thing to know',
-  }));
-
-  Answer.create({
+  }))
+  .then(() => Answer.create({
     choice: 'you buy everything',
     description: 'No, dont do that!',
     isCorrect: false,
-   // idConcept: 1,
-  });
-
-  Answer.create({
+    idConcept: 1,
+  }))
+  .then(() => Answer.create({
     choice: 'you plan it out',
     description: 'Yes, dont do that!',
     isCorrect: true,
-    //idConcept: 1,
-  });
-
-  Answer.create({
+    idConcept: 1,
+  }))
+  .then(() => Answer.create({
     choice: 'you cry',
     description: 'budgeting isnt that bad!',
     isCorrect: false,
-    //idConcept: 1,
-  });
-
-  Answer.create({
+    idConcept: 1,
+  }))
+  .then(() => Answer.create({
     choice: 'you do nothing',
     description: 'no you have to do something',
     isCorrect: false,
-    //idConcept: 2,
-  });
-
-  Answer.create({
+    idConcept: 2,
+  }))
+  .then(() => Answer.create({
     choice: 'you make it yourself',
     description: 'yes! know your budget',
     isCorrect: true,
-    //idConcept: 2,
-  });
-
-  Answer.create({
+    idConcept: 2,
+  }))
+  .then(() => Answer.create({
     choice: 'you have your cousin do it',
     description: 'maybe you should take charge of your financial life',
     isCorrect: false,
-    //idConcept: 2,
-  });
+    idConcept: 2,
+  }))
 
   User.create({
     firstName: 'Amber',
