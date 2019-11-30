@@ -123,10 +123,12 @@ const getCompletedCourse = (userId) => UserBadge.findAll({
 
   attributes: ['idBadge']
 })
-.then((badgesId) => {
+.then((courses) => {
+  let courseInfo = courses.map((course) => course.dataValues.idBadge)
+  console.log('courses', courseInfo)
   return Course.findAll({
     where: {
-      idBadge: badgesId
+      idBadge: courseInfo
     },
 
     attributes: ['topic', 'description']
