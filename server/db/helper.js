@@ -2,8 +2,35 @@ const {
   Course,
   Concept,
   Answer,
+  UserBadge,
   User,
+  Badge,
 } = require('./index');
+
+const insertUserBadge = (userId, badgeId) => UserBadge.create({
+  idUser: userId,
+  idBadge: badgeId,
+});
+
+const updateUserXp = (userId, badgeId) => {
+  return Badge.findOne({
+    where: {
+      id: badgeId,
+    },
+    attributes: ['experiencePoints'],
+  })
+    .then((xp) => {
+      User.increment({
+        totalExperiencePoints: xp.dataValues.experiencePoints,
+      }, {
+        where: { id: userId },
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
 
 const getCourses = () => Course.findAll({
   attributes: ['id', 'idParent', 'topic'],
@@ -67,9 +94,54 @@ const getCourse = (id) => {
     });
 };
 
+const getUserBadges = (userId) => UserBadge.findAll({
+  where: {
+    idUser: userId
+  },
+
+  attributes: ['idBadge']
+})
+.then((badges) => {
+  let badgeInfo = badges.map((badge) => badge.dataValues.idBadge);
+  
+  return Badge.findAll({
+    where: {
+      id: badgeInfo,
+    },
+    
+    attributes: ['name', 'iconUrl', 'description']
+  });
+});
+
+//function takes in a userId
+//function returns list of courseId
+//course completion is based of acquired badges
+const getCompletedCourse = (userId) => UserBadge.findAll({
+  where: {
+    idUser: userId
+  },
+
+  attributes: ['idBadge']
+})
+.then((badgesId) => {
+  badgesId = badgesId.map((badgeId) => badgeId.dataValues.idBadge)
+  
+  return Course.findAll({
+    where: {
+      idBadge: badgesId
+    },
+
+    attributes: ['id']
+  })
+})
+
+
 module.exports = {
   getCourses,
   getCourse,
   getUser,
+  getUserBadges,
+  updateUserXp,
+  insertUserBadge,
+  getCompletedCourse
 };
-
