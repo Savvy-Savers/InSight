@@ -113,6 +113,25 @@ const getUserBadges = (userId) => UserBadge.findAll({
   });
 });
 
+//function takes in a userID
+//function returns list of course ids
+//course completion based off acquired badges
+const getCompletedCourse = (userId) => UserBadge.findAll({
+  where: {
+    idUser: userId
+  },
+
+  attributes: ['idBadge']
+})
+.then((badgesId) => {
+  return Course.findAll({
+    where: {
+      idBadge: badgesId
+    },
+
+    attributes: ['topic', 'description']
+  })
+})
 
 
 module.exports = {
@@ -122,4 +141,5 @@ module.exports = {
   getUserBadges,
   updateUserXp,
   insertUserBadge,
+  getCompletedCourse
 };
