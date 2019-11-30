@@ -4,7 +4,6 @@ const {
   Answer,
   UserBadge,
   User,
-  UserBadge,
   Badge,
 } = require('./index');
 
