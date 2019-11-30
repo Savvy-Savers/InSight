@@ -19,8 +19,8 @@ router.get('/user/:id/badges', (req, res) => {
   const { id } = req.params;
 
   getUserBadges(id)
-    .then((badge) => {
-      res.send(badge);
+    .then((badges) => {
+      res.send(badges);
     })
     .catch((err) => console.error(err));
 });
