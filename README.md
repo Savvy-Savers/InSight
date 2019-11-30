@@ -49,6 +49,9 @@ pwd = YOURPASSWORD
 * [MariaDB](https://mariadb.org/) - Database Manager
 * [D3](https://d3js.org/) - Used to generate visual data graphs
 
+## Note on the server
+When running the phone emulators with expo, only the ios one through Xcode can connect to localhost without tunneling. Running the android emulator or the expo phone app will require either tunneling or deployment of the server.
+
 ## Team
 
 | <a href="https://github.com/tcharles23" target="_blank">**Titus**</a> | <a href="https://github.com/amberjones" target="_blank">**Amber**</a> |   <a href="https://github.com/btheard3" target="_blank">**Brandon**</a> |<a href="https://github.com/BunnyDunker" target="_blank">**Eliott**</a> |
