@@ -26,6 +26,12 @@ const styles = {
     fontWeight: 'bold',
     margin: 5,
   },
+  des: {
+    color: '#000',
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 5,
+  },
 };
 
 export default class QuizScreen extends React.Component {
@@ -33,17 +39,24 @@ export default class QuizScreen extends React.Component {
     super(props);
     this.state = {
       concepts: props.navigation.state.params.concepts,
+      checked: false,
     };
   }
 
   setDescription(answerDes) {
+    const { checked } = this.state;
+    checked === false ?
     this.setState({
       description: answerDes,
+      checked: true,
+    }) : this.setState({
+      description: '',
+      checked: false 
     });
   }
 
   render() {
-    const { concepts, description } = this.state;
+    const { concepts, description, checked } = this.state;
     return (
     // mapping over the concpets, and getting their questions
       <View style={{ flex: 1 }}>
@@ -64,16 +77,17 @@ export default class QuizScreen extends React.Component {
                     center
                     key={answer.id}
                     title={answer.choice}
-                    checkedIcon='dot-circle-o'
-                    uncheckedIcon='circle-o'
-                    checked={false}
+                    // checkedIcon='dot-circle-o'
+                    // uncheckedIcon='circle-o'
+                    checked={checked}
+                    checkedColor={answer.isCorrect === true ? 'green' : 'red'}
                     onPress={() => this.setDescription(answer.description)}
                   />
                 ))}
               </View>
               {description ? (
                 <View>
-                  <Text>{description}</Text>
+                  <Text style={styles.des}>{description}</Text>
                 </View>
               ) : null}
             </View>
