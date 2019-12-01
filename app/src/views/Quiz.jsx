@@ -27,6 +27,7 @@ const styles = {
     margin: 5,
   },
   des: {
+    textAlign: 'center',
     color: '#000',
     fontSize: 20,
     fontWeight: 'bold',
@@ -39,24 +40,28 @@ export default class QuizScreen extends React.Component {
     super(props);
     this.state = {
       concepts: props.navigation.state.params.concepts,
-      checked: false,
+      checked: {},
+      description: '',
     };
   }
 
-  setDescription(answerDes) {
-    const { checked } = this.state;
-    checked === false ?
+  setDescription(answer) {
+    const checked = this.state[answer.id] || false;
+    console.log(checked);
+    // if a new answer is clicked on, show that description, clicked is true
+    // if the same answer is clicked on, hide its text, change clicked to false
+    checked === false || checked === null ?
     this.setState({
-      description: answerDes,
-      checked: true,
+      description: answer.description,
+      [answer.id]: true,
     }) : this.setState({
       description: '',
-      checked: false 
+      [answer.id]: false
     });
   }
 
   render() {
-    const { concepts, description, checked } = this.state;
+    const { concepts, description } = this.state;
     return (
     // mapping over the concpets, and getting their questions
       <View style={{ flex: 1 }}>
@@ -77,11 +82,11 @@ export default class QuizScreen extends React.Component {
                     center
                     key={answer.id}
                     title={answer.choice}
-                    checkedIcon=''
-                    uncheckedIcon=''
-                    checked={checked}
-                    checkedColor={answer.isCorrect === true ? 'green' : 'red'}
-                    onPress={() => this.setDescription(answer.description)}
+                    checkedIcon='dot-circle-o'
+                    uncheckedIcon='circle-o'
+                    checked={this.state[answer.id] || false}
+                    checkedColor={this.state[answer.id] === true ? 'green' : 'red'}
+                    onPress={() => this.setDescription(answer)}
                   />
                 ))}
               </View>
