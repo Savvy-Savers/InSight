@@ -14,7 +14,8 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
+  question: {
+    textAlign: 'center',
     color: '#000',
     fontSize: 30,
     fontWeight: 'bold',
@@ -75,7 +76,7 @@ export default class QuizScreen extends React.Component {
           there is only one question per concept */}
           {concepts.map((concept) => (
             <View>
-              <Text style={styles.text}>{concept.question}</Text>
+              <Text style={styles.question}>{concept.question}</Text>
               <View>
                 {concept.answers.map((answer) => (
                   <CheckBox
@@ -85,7 +86,7 @@ export default class QuizScreen extends React.Component {
                     checkedIcon='dot-circle-o'
                     uncheckedIcon='circle-o'
                     checked={this.state[answer.id] || false}
-                    checkedColor={this.state[answer.id] === true ? 'green' : 'red'}
+                    checkedColor={answer.isCorrect === true ? 'green' : 'red'}
                     onPress={() => this.setDescription(answer)}
                   />
                 ))}
