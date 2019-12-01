@@ -77,8 +77,8 @@ export default class QuizScreen extends React.Component {
                     center
                     key={answer.id}
                     title={answer.choice}
-                    // checkedIcon='dot-circle-o'
-                    // uncheckedIcon='circle-o'
+                    checkedIcon=''
+                    uncheckedIcon=''
                     checked={checked}
                     checkedColor={answer.isCorrect === true ? 'green' : 'red'}
                     onPress={() => this.setDescription(answer.description)}
