@@ -144,6 +144,7 @@ export default class QuizScreen extends React.Component {
   }
 }
 /*
+ SAMPLE OF CONCEPT OBJECT
       Object {
         "answers": Array [
           Object {
@@ -171,33 +172,5 @@ export default class QuizScreen extends React.Component {
   "description": "We are discussing the concept of budget tools",
   "id": 1,
   "question": "What is a budget tool?",
-}
-Object {
-  "answers": Array [
-    Object {
-      "choice": "you do nothing",
-      "description": "no you have to do something",
-      "id": 4,
-      "idConcept": 2,
-      "isCorrect": false,
-    },
-    Object {
-      "choice": "you make it yourself",
-      "description": "yes! know your budget",
-      "id": 5,
-      "idConcept": 2,
-      "isCorrect": true,
-    },
-    Object {
-      "choice": "you have your cousin do it",
-      "description": "maybe you should take charge of your financial life",
-      "id": 6,
-      "idConcept": 2,
-      "isCorrect": false,
-    },
-  ],
-  "description": "this is not a bad thing to know",
-  "id": 2,
-  "question": "How do you create a budget?",
 }
 */
