@@ -4,86 +4,116 @@ import Swiper from 'react-native-swiper';
 import { List, CheckBox, CheckBoxProps } from 'react-native-elements';
 import { useNavigation } from 'react-navigation-hooks';
 
-function QuizScreen(props) {
-  // Use state hooks to access concept object
-  // All concepts available here
-  const [concepts, setConcepts] = useState(props.navigation.state.params.concepts);
-  // holds the state of the answer choice selected
-  const [isChecked, setChecked] = useState(false);
-  const { id } = props.navigation.state.params;
-  const { navigate } = useNavigation();
+const styles = {
+  wrapper: {
+    backgroundColor: '#fff',
+  },
+  slides: {
+    flex: 4,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    color: '#000',
+    fontSize: 30,
+    fontWeight: 'bold',
+    margin: 5,
+  },
+  answer: {
+    color: '#000',
+    fontSize: 20,
+    fontWeight: 'bold',
+    margin: 5,
+  },
+};
 
-  const styles = {
-    wrapper: {
-      backgroundColor: '#fff',
-    },
-    slides: {
-      flex: 4,
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    text: {
-      color: '#000',
-      fontSize: 30,
-      fontWeight: 'bold',
-      margin: 5,
-    },
-    answer: {
-      color: '#000',
-      fontSize: 20,
-      fontWeight: 'bold',
-      margin: 5,
-    },
-  };
+export default class QuizScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      concepts: props.navigation.state.params.concepts,
+    };
+  }
 
-  return (
+  setDescription(answerDes) {
+    this.setState({
+      description: answerDes,
+    });
+  }
+
+  render() {
+    const { concepts, description } = this.state;
+    return (
     // mapping over the concpets, and getting their questions
-    <View style={{ flex: 1 }}>
-      <Swiper
-        key={concepts.length}
-        style={styles.wrapper}
-        showsButtons
-        loop={false}
-      >
-        {/* map over the concept and displays each associated question
-        there is only one question per concept */}
-        {concepts.map((concept) => (
-          <View>
-            <Text style={styles.text}>{concept.question}</Text>
+      <View style={{ flex: 1 }}>
+        <Swiper
+          key={concepts.length}
+          style={styles.wrapper}
+          showsButtons
+          loop={false}
+        >
+          {/* map over the concept and displays each associated question
+          there is only one question per concept */}
+          {concepts.map((concept) => (
             <View>
-              {concept.answers.map((answer) => (
-                <CheckBox
-                  center
-                  title={answer.choice}
-                  checkedIcon='dot-circle-o'
-                  uncheckedIcon='circle-o'
-                  checked={isChecked}
-                  onPress={() => setChecked(!isChecked)}
-                />
-              ))}
+              <Text style={styles.text}>{concept.question}</Text>
+              <View>
+                {concept.answers.map((answer) => (
+                  <CheckBox
+                    center
+                    key={answer.id}
+                    title={answer.choice}
+                    checkedIcon='dot-circle-o'
+                    uncheckedIcon='circle-o'
+                    checked={false}
+                    onPress={() => this.setDescription(answer.description)}
+                  />
+                ))}
+              </View>
+              {description ? (
+                <View>
+                  <Text>{description}</Text>
+                </View>
+              ) : null}
             </View>
-          </View>
-        ))}
-      </Swiper>
-    </View>
-  );
+          ))}
+        </Swiper>
+      </View>
+    );
+  }
 }
 
-export default QuizScreen;
+  // Use state hooks to access concept object
+  // All concepts available here
+  // const [concepts, setConcepts] = useState(props.navigation.state.params.concepts);
+  // holds the state of the answer choice selected
+  // const { id } = props.navigation.state.params;
+  // const { navigate } = useNavigation();
 
-/*
-Object {
-  "answers": Array [
-    Object {
-      "choice": "you buy everything",
-      "description": "No, dont do that!",
-      "id": 1,
-      "idConcept": 1,
-      "isCorrect": false,
-    },
-    Object {
-      "choice": "you plan it out",
+  // const [isChecked, setChecked] = useState(false);
+  // const [checkboxes, setCheckedBoxes] = useState({});
+
+
+  // const toggleCheckbox = (event) => {
+  //   // updating an object instead of a Map
+  //   setCheckedBoxes({ ...checkboxes, [event.target.title]: event.target.checked });
+  //   console.log("checkedBoxes: ", checkedBoxes);
+
+  // };
+
+  /*
+      Object {
+        "answers": Array [
+          Object {
+            "choice": "you buy everything",
+            "description": "No, dont do that!",
+            "id": 1,
+            "idConcept": 1,
+            "isCorrect": false,
+          },
+          Object {
+            "choice": "you plan it out",
       "description": "Yes, dont do that!",
       "id": 2,
       "idConcept": 1,
