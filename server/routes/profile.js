@@ -1,48 +1,47 @@
 const router = require('express').Router();
-const { getUser, updateUserXp, insertUserBadge, getUserBadges, getCompletedCourse } = require('../db/helper');
+const {
+  getUser,
+  updateUserXp,
+  insertUserBadge,
+  getUserBadges,
+  getCompletedCourse,
+} = require('../db/helper');
 
-router.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
-// route to get user by id
+// Endpoint to get user profile info by id
 router.get('/user/:id', (req, res) => {
   const { id } = req.params;
   getUser(id)
     .then((user) => {
-      res.send(user);
+      res.json(user);
     })
     .catch((err) => console.error(err));
 });
 
+// Endpoint to get user's completed badges by user id
 router.get('/user/:id/badges', (req, res) => {
   const { id } = req.params;
-
   getUserBadges(id)
     .then((badges) => {
-      res.send(badges);
+      res.json(badges);
     })
     .catch((err) => console.error(err));
 });
 
+// Endpoint to get user's completed course ids by user id
 router.get('/user/:id/completed', (req, res) => {
   const { id } = req.params;
-
   getCompletedCourse(id)
     .then((coursesId) => {
-      res.send(coursesId)
+      res.json(coursesId.map((course) => course.id));
     })
     .catch((err) => console.error(err));
-})
+});
 
-router.post('/user/badge', (req, res) => {
-  console.log(req.body);
-  const userId = req.body.id;
-  const userBadge = req.body.badgeId;
-  updateUserXp(userId, userBadge)
-    .then(() => {
-      return insertUserBadge(userId, userBadge);
-    })
+// Endpoint to create user badge connection when they complete a course
+router.post('/user/:id/badge/:badgeId', (req, res) => {
+  const { id, badgeId } = req.params;
+  updateUserXp(id, badgeId)
+    .then(() => insertUserBadge(id, badgeId))
     .then(() => {
       res.sendStatus(201);
     })
