@@ -1,4 +1,4 @@
-
+// Test data to be created when server starts
 const enterFakeData = (
   Course,
   Concept,

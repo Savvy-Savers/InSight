@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { ListItem, Header } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
 function ProfileScreen() {
@@ -22,11 +23,26 @@ function ProfileScreen() {
   return (
     // Basic display to show necessary variables, to be revised
     <View style={{ flex: 1 }}>
-      <Header />
+      <Header // Temporary header with button to eventually open drawer
+        leftComponent={
+          (
+            <TouchableOpacity onPress={() => { /* Open Drawer */ }}>
+              <Icon
+                name="bars"
+                style={{
+                  color: 'white',
+                  padding: 10,
+                  marginLeft: 10,
+                  fontSize: 20,
+                }}
+              />
+            </TouchableOpacity>
+          )
+        }
+      />
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>{`${profile.firstName} ${profile.lastName}`}</Text>
-        <Text>{`${profile.totalExpriencePoints} XP`}</Text>
-        <Text>Acquired Badges!</Text>
+        <Text>{`${profile.totalExperiencePoints} XP`}</Text>
         <Text>{`Goals: ${profile.goal}`}</Text>
       </View>
       <View style={{ flex: 5 }}>

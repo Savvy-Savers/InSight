@@ -1,4 +1,6 @@
 require('dotenv').config();
+
+// Database Models
 const Sequelize = require('sequelize');
 const courseModel = require('./model/course');
 const conceptModel = require('./model/concept');
@@ -25,9 +27,10 @@ const options = {
   logging: false,
 };
 
-
+// Database initialization
 const db = new Sequelize(database, user, pwd, options);
-// models
+
+// Model creation
 const Course = courseModel(db, Sequelize);
 const Concept = conceptModel(db, Sequelize);
 const Answer = answerModel(db, Sequelize);
@@ -38,7 +41,7 @@ const Level = levelModel(db, Sequelize);
 const Badge = badgeModel(db, Sequelize);
 
 
-// create connection to DB
+// Database connection
 db.sync({ force: true })
   .then(() => {
     // console.log('connected to database!');
