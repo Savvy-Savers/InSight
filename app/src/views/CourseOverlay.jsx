@@ -17,7 +17,7 @@ const CourseOverlay = () => {
         isVisible={!visible}
         onBackdropPress={toggleOverlay}
         windowBackgroundColor="rgba(255, 255, 255, .5)"
-        overlayBackgroundColor="red"
+        overlayBackgroundColor="lightblue"
         width="auto"
         height="auto"
       >

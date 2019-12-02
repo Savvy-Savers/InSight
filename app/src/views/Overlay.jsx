@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { Button, Overlay } from 'react-native-elements';
+import Confetti from './Confetti';
 
 const overlay = () => {
   const [visible, setVisible] = useState(false);
@@ -16,6 +17,7 @@ const overlay = () => {
       <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
         <Text>Hello from Overlay!</Text>
       </Overlay>
+      <Confetti />
     </View>
   );
 };
