@@ -6,6 +6,8 @@ module.exports = (sequelize, type) => sequelize.define('userBudget', {
   },
   income: type.INTEGER,
   outcome: type.INTEGER,
+  spent: type.INTEGER,
+  savings: type.INTEGER,
   idUser: {
     type: type.INTEGER,
     references: {
