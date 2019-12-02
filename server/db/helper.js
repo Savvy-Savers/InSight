@@ -5,6 +5,7 @@ const {
   UserBadge,
   User,
   Badge,
+  UserBudget,
 } = require('./index');
 
 /**
@@ -149,6 +150,16 @@ const getCompletedCourse = (userId) => UserBadge.findAll({
     attributes: ['id'],
   }));
 
+/**
+ * Gets the user's saved budget data
+ * @param {integer} userId - The user's ID.
+ */
+const getBudget = (userId) => UserBudget.findOne({
+  where: {
+    idUser: userId,
+  },
+  attributes: ['income', 'outcome', 'spent', 'savings'],
+});
 
 module.exports = {
   getCourses,
@@ -158,4 +169,5 @@ module.exports = {
   updateUserXp,
   insertUserBadge,
   getCompletedCourse,
+  getBudget,
 };
