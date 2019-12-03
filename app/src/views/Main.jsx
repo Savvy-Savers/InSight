@@ -5,7 +5,7 @@ export default class MainScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Hello, this is our main page!</Text>
+                <Text>Welcome to InSight!</Text>
             </View> 
         );
     }
