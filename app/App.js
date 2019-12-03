@@ -29,12 +29,20 @@ const CourseNavigator = createStackNavigator(
       screen: MapScreen,
       navigationOptions: {
         title: 'Map',
+        headerStyle: {
+          backgroundColor: '#2089DC',
+        },
+        headerTintColor: '#fff',
       },
     },
     Course: {
       screen: CourseScreen,
       navigationOptions: ({ navigation }) => ({
         title: `${navigation.state.params.name}`,
+        headerStyle: {
+          backgroundColor: '#2089DC',
+        },
+        headerTintColor: '#fff',
       }),
     },
     Quiz: QuizScreen,

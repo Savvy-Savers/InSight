@@ -1,4 +1,4 @@
-
+// Test data to be created when server starts
 const enterFakeData = (
   Course,
   Concept,
@@ -36,12 +36,12 @@ const enterFakeData = (
     .then(() => Concept.create({
       idCourse: 1,
       question: 'What is a budget tool?',
-      description: 'We are discussing the concept of budget tools',
+      description: 'Tracker of allowance or provision of an amount of money for a purpose',
     }))
     .then(() => Concept.create({
       idCourse: 1,
       question: 'How do you create a budget?',
-      description: 'this is not a bad thing to know',
+      description: 'Determine Income, Calculate Expenses, Set Financial Goals!',
     }))
     .then(() => Answer.create({
       choice: 'you buy everything',
