@@ -1,4 +1,4 @@
-
+// Test data to be created when server starts
 const enterFakeData = (
   Course,
   Concept,
@@ -142,6 +142,13 @@ const enterFakeData = (
     .then(() => UserBadge.create({
       idUser: 4,
       idBadge: 4,
+    }))
+    .then(() => UserBudget.create({
+      income: 90000,
+      outcome: 30000,
+      spent: 0,
+      savings: 25,
+      idUser: 1,
     }));
 };
 
