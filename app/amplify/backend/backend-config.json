@@ -1,0 +1,9 @@
+{
+    "auth": {
+        "insight10179b5ebba4": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": []
+        }
+    }
+}
