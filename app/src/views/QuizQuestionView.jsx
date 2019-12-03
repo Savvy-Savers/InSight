@@ -108,8 +108,8 @@ export default class QuizQuestionView extends React.Component {
               key={answer.id + 1}
               title={answer.choice}
               // if these are not empty strings, the default checkbox appears
-              checkedIcon={answer.isCorrect ? "smileo" : "frowno"}
-              // uncheckedIcon=
+              checkedIcon=""
+              uncheckedIcon=""
               checked={this.state[answer.id] || false}
               // conditionally renders the color of choice container
               containerStyle={this.state[answer.id] ? { backgroundColor: answer.isCorrect ? 'lightgreen' : 'pink' } : null}
