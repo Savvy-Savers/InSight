@@ -66,7 +66,7 @@ const getCourse = (courseId) => {
   let courseData;
   return Course.findOne({
     where: {
-      courseId,
+      id: courseId,
     },
     attributes: {
       exclude: ['createdAt', 'updatedAt'],
