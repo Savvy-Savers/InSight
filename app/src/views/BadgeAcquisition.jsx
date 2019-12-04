@@ -10,8 +10,8 @@ const overlay = (props) => {
   const [visible, setVisible] = useState(false);
   const [badgeAchievement, setBadgeAchievement] = useState(null);
   // const { id } = props.navigation.state.params;
-  const id = 1;
-
+  const { courseBadge } = useState();
+  console.log(courseBadge);
 
   const { navigate } = useNavigation();
 
@@ -33,6 +33,10 @@ const overlay = (props) => {
 
 
   const styles = {
+    parent: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     text: {
       textAlign: 'center',
       color: '#000',
@@ -40,21 +44,20 @@ const overlay = (props) => {
       fontWeight: 'bold',
       margin: 5,
     },
+    badge: {
+      width: 100,
+      height: 100,
+    },
   };
 
 
   return (
     <View>
       <Button title="Finish Quiz!" onPress={toggleOverlay} />
-      <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+      <Overlay isVisible={visible} onBackdropPress={toggleOverlay} style={styles.parent}>
         <Confetti />
-        <Text styles={styles.text}>YOU DID IT! YOU ARE SO MUCH SMARTER NOW!</Text>
-        <Image
-          style={{ width: 50, height: 50 }}
-          source={{ uri: badgeAchievement }}
-        />
         <Button
-          title="Back to Journey Map"
+          title="Continue Your Journey"
           onPress={() => { navigate('Map'); }}
         />
       </Overlay>

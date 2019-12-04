@@ -28,7 +28,6 @@ export default class QuizScreen extends React.Component {
   render() {
     const { concepts } = this.state;
     const lastQuestion = concepts.length - 1;
-    console.log(lastQuestion);
     return (
     // mapping over the concpets, and getting their questions
       <View style={{ flex: 1 }}>

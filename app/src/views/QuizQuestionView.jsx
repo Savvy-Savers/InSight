@@ -43,7 +43,6 @@ const styles = {
 export default class QuizQuestionView extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       concept: props.concept,
       currentConceptId: null,
