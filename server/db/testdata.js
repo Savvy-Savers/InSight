@@ -144,10 +144,11 @@ const enterFakeData = (
       idBadge: 4,
     }))
     .then(() => UserBudget.create({
-      income: 90000,
-      outcome: 30000,
+      income: 60000,
+      incomeModifier: 12,
+      outcome: 2000,
       spent: 0,
-      savings: 25,
+      savings: 750,
       idUser: 1,
     }));
 };
