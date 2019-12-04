@@ -46,6 +46,7 @@ export default class QuizQuestionView extends React.Component {
     this.state = {
       concept: props.concept,
       currentConceptId: null,
+      isSelected: false,
     };
   }
 
@@ -98,8 +99,8 @@ export default class QuizQuestionView extends React.Component {
   }
 
   render() {
-    const { concept, description } = this.state;
-    const { index, lastQuestion } = this.props;
+    const { concept, description, isSelected } = this.state;
+    const { index, lastQuestion, courseBadgeId } = this.props;
     let isLastQuestion = index === lastQuestion; // boolean value
     return (
       <View>
@@ -125,9 +126,10 @@ export default class QuizQuestionView extends React.Component {
             <Text style={styles.des}>{description}</Text>
           </View>
         ) : null}
-        {isLastQuestion ? (
+        {/* Is this the last question and is a choice selected */}
+        {isLastQuestion && isSelected ? (
           <View>
-            <BadgeAcquisition />
+            <BadgeAcquisition courseBadgeId={courseBadgeId} />
           </View>
         ) : null}
       </View>

@@ -10,27 +10,27 @@ const overlay = (props) => {
   const [visible, setVisible] = useState(false);
   const [badgeAchievement, setBadgeAchievement] = useState(null);
   // const { id } = props.navigation.state.params;
-  const { courseBadge } = useState();
-  console.log(courseBadge);
 
   const { navigate } = useNavigation();
+  const badgeId = props.courseBadgeId;
 
 
   const toggleOverlay = () => {
     setVisible(!visible);
   };
 
-  // We need to retrieve the badge image for the couse and display it
+  // We need to retrieve the badge image for the course and display it
   // also assign the user the badge and experince points
   useEffect(() => {
     // send a request for the course badge
     setBadgeAchievement('https://cdn0.iconfinder.com/data/icons/business-startup-10/50/25-512.png');
-    // axios.get(`http://18.206.35.110:8080/course/list/${id}`)
+    // axios.get(`http://18.206.35.110:8080/course/list/${badgeId}`)
     //   .then((badge) => {
     //     setBadgeAchievement(badge);
     //   });
+    // update the user's badge collection
+    //  axios.post(post(`/user/${id}/badge/${badgeId})` <--- FIXME: still need to have userID
   }, []);
-
 
   const styles = {
     parent: {
