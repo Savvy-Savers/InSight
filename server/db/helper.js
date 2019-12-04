@@ -158,7 +158,7 @@ const getBudget = (userId) => UserBudget.findOne({
   where: {
     idUser: userId,
   },
-  attributes: ['income', 'outcome', 'spent', 'savings'],
+  attributes: ['income', 'outcome', 'spent', 'savings', 'incomeModifier'],
 });
 
 module.exports = {
