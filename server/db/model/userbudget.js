@@ -5,6 +5,7 @@ module.exports = (sequelize, type) => sequelize.define('userBudget', {
     autoIncrement: true,
   },
   income: type.INTEGER,
+  incomeModifier: type.INTEGER,
   outcome: type.INTEGER,
   spent: type.INTEGER,
   savings: type.INTEGER,
