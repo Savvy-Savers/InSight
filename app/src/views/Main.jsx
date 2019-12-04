@@ -4,6 +4,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import { Header } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -20,26 +21,28 @@ const styles = StyleSheet.create({
 function MainScreen() {
   return (
     <View style={{ flex: 1 }}>
-      <Header // Temporary header with button to eventually open drawer
-        leftComponent={
-          (
-            <TouchableOpacity onPress={() => { /* Open Drawer */ }}>
-              <Icon
-                name="bars"
-                style={{
-                  color: 'white',
-                  padding: 10,
-                  marginLeft: 10,
-                  fontSize: 20,
-                }}
-              />
-            </TouchableOpacity>
-          )
-        }
-      />
-      <View style={styles.container}>
-        <Text>Hello, this is our main page!</Text>
-      </View>
+      <ImageBackground source={{ uri: './src/assets/images/cascade.png' }} style={{ width: '100%', height: '100%' }}>
+        <Header // Temporary header with button to eventually open drawer
+          leftComponent={
+            (
+              <TouchableOpacity onPress={() => { /* Open Drawer */ }}>
+                <Icon
+                  name="bars"
+                  style={{
+                    color: 'white',
+                    padding: 10,
+                    marginLeft: 10,
+                    fontSize: 20,
+                  }}
+                />
+              </TouchableOpacity>
+            )
+          }
+        />
+        <View style={styles.container}>
+          <Text>Welcome to InSight!</Text>
+        </View>
+      </ImageBackground>
     </View>
   );
 }

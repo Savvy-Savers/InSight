@@ -2,7 +2,6 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
-import Amplify from 'aws-amplify';
 import CourseScreen from './src/views/Course';
 import MapScreen from './src/views/Map';
 import ProfileScreen from './src/views/Profile';
@@ -13,10 +12,7 @@ import PolicyScreen from './src/views/Policy';
 import ResourcesScreen from './src/views/Resources';
 import ToolsScreen from './src/views/Tools';
 import QuizScreen from './src/views/Quiz';
-import AppNavigators from './src/auth/AppNavigators';
-import awsconfig from './aws-exports';
 
-Amplify.configure(awsconfig);
 // This is the entry point for Expo! We cann't move this file - so instead,
 // we are using it to return the rest of our app views.
 export default class App extends React.Component {
@@ -58,7 +54,6 @@ const CourseNavigator = createStackNavigator(
 const AppNavigator = createDrawerNavigator(
   {
     Main: MainScreen,
-    Signin: AppNavigators,
     Profile: ProfileScreen,
     Map: CourseNavigator,
     'Course Tools': ToolsScreen,

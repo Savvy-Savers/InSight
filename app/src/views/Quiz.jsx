@@ -27,7 +27,8 @@ export default class QuizScreen extends React.Component {
 
   render() {
     const { concepts } = this.state;
-
+    const lastQuestion = concepts.length - 1;
+    console.log(lastQuestion);
     return (
     // mapping over the concpets, and getting their questions
       <View style={{ flex: 1 }}>
@@ -39,8 +40,8 @@ export default class QuizScreen extends React.Component {
         >
           {/* map over the concept and displays each associated question
           there is only one question per concept */}
-          {concepts.map((concept) => (
-            <QuizQuestionView concept={concept} key={concept.id} />
+          {concepts.map((concept, index) => (
+            <QuizQuestionView concept={concept} index={index} key={concept.id} lastQuestion={lastQuestion} />
           ))}
         </Swiper>
       </View>

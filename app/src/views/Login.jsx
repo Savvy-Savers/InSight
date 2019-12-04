@@ -4,8 +4,11 @@ import {View, Text, StyleSheet, TextInput, Button} from 'react-native'
 import { Main } from './navigation'
 
 export default class Login extends React.component {
-  state = {
-    username: '', password: '', email: '',
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '', password: '', email: '',
+    };
   }
 
   onChangeText = (key, val) => {
