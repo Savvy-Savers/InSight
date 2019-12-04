@@ -161,6 +161,21 @@ const getBudget = (userId) => UserBudget.findOne({
   attributes: ['income', 'outcome', 'spent', 'savings', 'incomeModifier'],
 });
 
+/**
+ * Sets the user's budget for the first time
+ * @param {integer} userId - The user's ID.
+ * @param {object} budget - Object with the user's budget info available
+ * under the following keys: income, incomeModifier, outcome, and savings.
+ */
+const setBudget = (userId, budget) => UserBudget.create({
+  income: budget.income,
+  incomeModifier: budget.incomeModifier,
+  outcome: budget.outcome,
+  spent: 0,
+  savings: budget.savings,
+  idUser: userId,
+});
+
 module.exports = {
   getCourses,
   getCourse,
@@ -170,4 +185,5 @@ module.exports = {
   insertUserBadge,
   getCompletedCourse,
   getBudget,
+  setBudget,
 };
