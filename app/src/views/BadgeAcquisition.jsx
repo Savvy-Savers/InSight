@@ -24,10 +24,11 @@ const overlay = (props) => {
   // also assign the user the badge and experince points
   useEffect(() => {
     // send a request for the course badge
-    axios.get(`http://18.206.35.110:8080/course/list/${id}`)
-      .then((badge) => {
-        setBadgeAchievement(badge);
-      });
+    setBadgeAchievement('https://cdn0.iconfinder.com/data/icons/business-startup-10/50/25-512.png');
+    // axios.get(`http://18.206.35.110:8080/course/list/${id}`)
+    //   .then((badge) => {
+    //     setBadgeAchievement(badge);
+    //   });
   }, []);
 
 
@@ -50,7 +51,7 @@ const overlay = (props) => {
         <Text styles={styles.text}>YOU DID IT! YOU ARE SO MUCH SMARTER NOW!</Text>
         <Image
           style={{ width: 50, height: 50 }}
-          source={{ uri: badgeAchievement.iconUrl }}
+          source={{ uri: badgeAchievement }}
         />
         <Button
           title="Back to Journey Map"

@@ -15,6 +15,7 @@ function CourseScreen(props) {
     axios.get(`http://18.206.35.110:8080/course/list/${id}`)
       .then((courseData) => {
         setCourse(courseData.data);
+        console.log(courseData.data);
         setConcepts(courseData.data.concepts);
       });
   }, []); // Array necessary to not repeat endlessly
