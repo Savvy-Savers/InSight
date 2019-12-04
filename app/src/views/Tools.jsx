@@ -8,7 +8,7 @@ import {
   Header,
   Input,
   ButtonGroup,
-  Slider,
+  Button,
 } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
@@ -19,18 +19,23 @@ export default class ToolsScreen extends React.Component {
     this.state = {
       income: 0,
       selectedIndex: null,
+      incomeModifier: 0, // Modifier to divide income by to achieve monthly income
       outcome: 0,
       spent: 0,
-      savings: 25,
+      savings: 0,
       firstTime: false, // Field to check if the user has not set up a budget
     };
 
     this.updateIndex = this.updateIndex.bind(this);
+    this.updateText = this.updateText.bind(this);
+    this.submitBudget = this.submitBudget.bind(this);
   }
 
+  // Retrieves the budget attached to the user id
   componentDidMount() {
-    axios.get('http://18.206.35.110:8080/tool/budget/2')
+    axios.get('http://localhost:8080/tool/budget/2')
       .then((budget) => {
+        // if there is no budget data, send the user through first time setup
         if (!budget.data) {
           this.setState({
             firstTime: true,
@@ -46,17 +51,50 @@ export default class ToolsScreen extends React.Component {
       });
   }
 
+  // Update handler for the type of payment multibutton
   updateIndex(selectedIndex) {
     // Takes index from ButtonGroup assigning it to state
     this.setState({ selectedIndex });
+    // Values put in correspond to the income modifier to change the income to monthly value
+    if (selectedIndex === 0) {
+      this.setState({ incomeModifier: 0.25 });
+    } else if (selectedIndex === 1) {
+      this.setState({ incomeModifier: 0.5 });
+    } else if (selectedIndex === 2) {
+      this.setState({ incomeModifier: 1 });
+    } else if (selectedIndex === 3) {
+      this.setState({ incomeModifier: 12 });
+    }
   }
 
+  // update handler for all the text fields for creating a budget
   updateText(element, value) {
     if (element === 'income') {
       this.setState({ income: value });
     } else if (element === 'outcome') {
       this.setState({ outcome: value });
+    } else if (element === 'savings') {
+      this.setState({ savings: value });
     }
+  }
+
+  // Submition for a new budget
+  submitBudget() {
+    const {
+      income,
+      outcome,
+      incomeModifier,
+      savings,
+    } = this.state;
+    axios.post('http://localhost:8080/tool/budget/2', {
+      income,
+      outcome,
+      incomeModifier,
+      savings,
+    })
+      .then(() => {
+        this.setState({ firstTime: false });
+      });
   }
 
   render() {
@@ -67,36 +105,38 @@ export default class ToolsScreen extends React.Component {
       spent,
       savings,
       firstTime,
+      incomeModifier,
     } = this.state;
     const buttons = ['Weekly', 'Biweekly', 'Monthly', 'Yearly'];
 
     // Display for the first time setup for the budget
     const setup = (
       <View>
-        <Input
+        <Input // Input for user income
           label="Income"
           onChangeText={(text) => this.updateText('income', text)}
           placeholder="Gimme ur $"
         />
-        <ButtonGroup
+        <ButtonGroup // Button group to determine what kind of income user has (weekly / monthly etc...)
           onPress={this.updateIndex}
           selectedIndex={selectedIndex}
           buttons={buttons}
           containerStyle={{ height: 40 }}
         />
-        <Input
+        <Input // Input for user outcome
           label="Monthly Expenses"
           onChangeText={(text) => this.updateText('outcome', text)}
-          placeholder="Gimme ur $"
+          placeholder="Rent, electricity, internet"
         />
-        <Slider
-          value={savings}
-          onValueChange={(percent) => this.setState({ savings: percent})}
-          minimumValue={0}
-          maximumValue={100}
-          step={1}
+        <Input // Input for user savings
+          label="Savings"
+          onChangeText={(text) => this.updateText('savings', text)}
+          placeholder={`We recommend 25% of net worth: ${Math.floor(((income / incomeModifier) - outcome) * 0.25)}`}
         />
-        <Text>Percent: {savings}%</Text>
+        <Button // Button to submit all budget data to server
+          title="Submit"
+          onPress={this.submitBudget}
+        />
       </View>
     );
 
