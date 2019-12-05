@@ -113,6 +113,16 @@ const getCourse = (courseId) => {
     });
 };
 
+const getCourseBadge = (badgeId) => Badge.findOne({
+  where: {
+    id: badgeId,
+  },
+  // attributes: ['experiencePoints'],
+})
+  .catch((err) => {
+    console.error(err);
+  });
+
 /**
  * Gets the user's acquired badges.
  * @param {integer} userId - The user's ID.
@@ -184,6 +194,7 @@ module.exports = {
   updateUserXp,
   insertUserBadge,
   getCompletedCourse,
+  getCourseBadge,
   getBudget,
   setBudget,
 };

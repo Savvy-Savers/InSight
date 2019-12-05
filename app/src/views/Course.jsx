@@ -8,6 +8,7 @@ import axios from 'axios';
 function CourseScreen(props) {
   const [course, setCourse] = useState({});
   const [concepts, setConcepts] = useState([]);
+  const [courseBadgeId, setCourseBadgeId] = useState(0);
   const { id } = props.navigation.state.params;
   const { navigate } = useNavigation();
 
@@ -15,6 +16,7 @@ function CourseScreen(props) {
     axios.get(`http://18.206.35.110:8080/course/list/${id}`)
       .then((courseData) => {
         setCourse(courseData.data);
+        setCourseBadgeId(courseData.data.idBadge);
         setConcepts(courseData.data.concepts);
       });
   }, []); // Array necessary to not repeat endlessly
@@ -54,7 +56,7 @@ function CourseScreen(props) {
       <View style={{ marginBottom: 25, alignSelf: 'center', width: '50%' }}>
         <Button
           title="Quiz"
-          onPress={() => { navigate('Quiz', { concepts }); }}
+          onPress={() => { navigate('Quiz', { concepts, courseBadgeId }); }}
         />
       </View>
     </View>
