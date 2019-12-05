@@ -6,7 +6,7 @@ import axios from 'axios';
 import Confetti from './Confetti';
 
 
-const BadgeAcqisition = (props) => {
+const BadgeAcquisition = (props) => {
   const [visible, setVisible] = useState(false);
   const [badgeAchievement, setBadgeAchievement] = useState(null);
   const { navigate } = useNavigation();
@@ -50,4 +50,4 @@ const BadgeAcqisition = (props) => {
   );
 };
 
-export default BadgeAcqisition;
+export default BadgeAcquisition;
