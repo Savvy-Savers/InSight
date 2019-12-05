@@ -70,25 +70,7 @@ const AppNavigator = createDrawerNavigator(
     initialRouteName: 'Login',
   },
 );
-// const SwitchNavigator = createSwitchNavigator({
-//   Login,
-//   Main: MainScreen,
-// });
-// const createRootNavigator = (signedIn = false) => {
-//   return createSwitchNavigator(
-//     {
-//       SignedIn: {
-//         screen: Login,
-//       },
-//       SignedOut: {
-//         screen: MainScreen,
-//       },
-//     },
-//     {
-//       initialRouteName: signedIn ? "SignedIn" : "SignedOut"
-//     },
-//   );
-// };
+
 const AppStack = createStackNavigator({ Home: Login, Other: MainScreen });
 const AuthStack = createStackNavigator({ Home: MainScreen });
 
