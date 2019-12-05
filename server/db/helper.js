@@ -176,6 +176,19 @@ const setBudget = (userId, budget) => UserBudget.create({
   idUser: userId,
 });
 
+/**
+ * Incriment the user's spent field by the amount in spend
+ * @param {integer} userId - The user's ID.
+ * @param {object} spend - The amount the user is spending as a float
+ */
+const spendBudget = (userId, spend) => UserBudget.increment({
+  spent: spend,
+}, {
+  where: {
+    idUser: userId,
+  },
+});
+
 module.exports = {
   getCourses,
   getCourse,
@@ -186,4 +199,5 @@ module.exports = {
   getCompletedCourse,
   getBudget,
   setBudget,
+  spendBudget,
 };
