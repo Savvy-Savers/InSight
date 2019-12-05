@@ -50,10 +50,12 @@ const getCourses = () => Course.findAll({
 /**
  * Gets the user's profile info.
  * @param {integer} userId - The user's ID.
+ * @param {string} userEmail- The users's Email.
  */
-const getUser = (userId) => User.findOne({
+const getUser = (userId, userEmail) => User.findOne({
   where: {
     id: userId,
+    email: userEmail,
   },
   attributes: { exclude: ['createdAt', 'updatedAt'] },
 });
