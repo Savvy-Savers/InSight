@@ -11,6 +11,7 @@ router.get('/budget/:id', (req, res) => {
     .catch((err) => console.error(err));
 });
 
+// Endpoint to create user's budget
 router.post('/budget/:id', (req, res) => {
   const { id } = req.params;
   setBudget(id, req.body)
@@ -20,6 +21,7 @@ router.post('/budget/:id', (req, res) => {
     .catch((err) => console.error(err));
 });
 
+// Endpoint to update user's spent amount in their budget
 router.patch('/budget/:id', (req, res) => {
   const { id } = req.params;
   const { spend } = req.body;
