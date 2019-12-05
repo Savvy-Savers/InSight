@@ -12,22 +12,23 @@ export default class App extends React.Component {
       name: "",
       photoUrl: ""
     }
+    this.result = this.result.bind(this);
   }
   signIn = async () => {
     try {
-      const result = await Google.logInAsync({
+      const { type, accessToken, user} = await Google.logInAsync({
         androidClientId:
           "847385043058-1v26bjo0eahcc7sal4f86s7ed04mtjro.apps.googleusercontent.com",
-        //iosClientId: YOUR_CLIENT_ID_HERE,  <-- if you use iOS
+        iosClientId: '847385043058-lo98oseuebn051god5a24pacgevrubp0.apps.googleusercontent.com',
         scopes: ["profile", "email"]
       })
 
-      if (result.type === "success") {
-        console.log('google user',result);
+      if (type === "success") {
+        console.log('google user',user);
         this.setState({
           signedIn: true,
-          name: result.user.name,
-          photoUrl: result.user.photoUrl
+          name: user.name,
+          photoUrl: user.photoUrl
         })
       } else {
         console.log("cancelled")
@@ -36,6 +37,16 @@ export default class App extends React.Component {
       console.log("error", e)
     }
   }
+  result = async () => {
+    await AuthSession.startAsync({
+    authUrl:
+      `https://accounts.google.com/o/oauth2/v2/auth?` +
+      `&client_id=${googleWebAppId}` +
+      `&redirect_uri=${encodeURIComponent(redirectUrl)}` +
+      `&access_type=offline` +
+      `&scope=profile`,
+  });
+}
   render() {
     return (
       <View style={styles.container}>
@@ -59,6 +70,7 @@ const LoginPage = props => {
 }
 
 const LoggedInPage = props => {
+  console.log(props);
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Welcome:{props.name}</Text>
