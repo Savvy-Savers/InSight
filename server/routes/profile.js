@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const {
   getUser,
-  updateUserXp,
-  insertUserBadge,
   getUserBadges,
   getCompletedCourse,
 } = require('../db/helper');
@@ -37,17 +35,5 @@ router.get('/user/:id/completed', (req, res) => {
     .catch((err) => console.error(err));
 });
 
-// Endpoint to create user badge connection when they complete a course
-router.post('/user/:id/badge/:badgeId', (req, res) => {
-  const { id, badgeId } = req.params;
-  updateUserXp(id, badgeId)
-    .then(() => insertUserBadge(id, badgeId))
-    .then(() => {
-      res.sendStatus(201);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-});
 
 module.exports = router;

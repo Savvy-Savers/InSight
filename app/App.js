@@ -13,7 +13,6 @@ import ResourcesScreen from './src/views/Resources';
 import ToolsScreen from './src/views/Tools';
 import QuizScreen from './src/views/Quiz';
 
-
 // This is the entry point for Expo! We cann't move this file - so instead,
 // we are using it to return the rest of our app views.
 export default class App extends React.Component {
