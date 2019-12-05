@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getBudget, setBudget } = require('../db/helper');
+const { getBudget, setBudget, spendBudget } = require('../db/helper');
 
 // Endpoint to get user's saved budget info by id
 router.get('/budget/:id', (req, res) => {
@@ -13,10 +13,19 @@ router.get('/budget/:id', (req, res) => {
 
 router.post('/budget/:id', (req, res) => {
   const { id } = req.params;
-  console.log(req.body);
   setBudget(id, req.body)
     .then(() => {
       res.sendStatus(201);
+    })
+    .catch((err) => console.error(err));
+});
+
+router.patch('/budget/:id', (req, res) => {
+  const { id } = req.params;
+  const { spend } = req.body;
+  spendBudget(id, spend)
+    .then(() => {
+      res.sendStatus(200);
     })
     .catch((err) => console.error(err));
 });
