@@ -12,6 +12,7 @@ import {
 } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
+import Pie from './Pie';
 
 export default class ToolsScreen extends React.Component {
   constructor(props) {
@@ -24,16 +25,23 @@ export default class ToolsScreen extends React.Component {
       spent: 0,
       savings: 0,
       firstTime: false, // Field to check if the user has not set up a budget
+      spend: 0, // Amount to add to the spent value for this budget period
     };
 
     this.updateIndex = this.updateIndex.bind(this);
     this.updateText = this.updateText.bind(this);
     this.submitBudget = this.submitBudget.bind(this);
+    this.getBudgetData = this.getBudgetData.bind(this);
+    this.submitExpense = this.submitExpense.bind(this);
   }
 
   // Retrieves the budget attached to the user id
   componentDidMount() {
-    axios.get('http://localhost:8080/tool/budget/2')
+    this.getBudgetData();
+  }
+
+  getBudgetData() {
+    axios.get('http://localhost:8080/tool/budget/1')
       .then((budget) => {
         // if there is no budget data, send the user through first time setup
         if (!budget.data) {
@@ -46,6 +54,7 @@ export default class ToolsScreen extends React.Component {
             outcome: budget.data.outcome,
             spent: budget.data.spent,
             savings: budget.data.savings,
+            incomeModifier: budget.data.incomeModifier,
           });
         }
       });
@@ -75,6 +84,8 @@ export default class ToolsScreen extends React.Component {
       this.setState({ outcome: value });
     } else if (element === 'savings') {
       this.setState({ savings: value });
+    } else if (element === 'spend') {
+      this.setState({ spend: value });
     }
   }
 
@@ -86,7 +97,7 @@ export default class ToolsScreen extends React.Component {
       incomeModifier,
       savings,
     } = this.state;
-    axios.post('http://localhost:8080/tool/budget/2', {
+    axios.post('http://localhost:8080/tool/budget/1', {
       income,
       outcome,
       incomeModifier,
@@ -94,6 +105,18 @@ export default class ToolsScreen extends React.Component {
     })
       .then(() => {
         this.setState({ firstTime: false });
+      });
+  }
+
+  submitExpense() {
+    let { spend } = this.state;
+    spend = Math.round(spend * 100) / 100;
+    axios.patch('http://localhost:8080/tool/budget/1', {
+      spend,
+    })
+      .then(() => {
+        this.getBudgetData();
+        this.setState({ spend: 0 });
       });
   }
 
@@ -106,6 +129,7 @@ export default class ToolsScreen extends React.Component {
       savings,
       firstTime,
       incomeModifier,
+      spend,
     } = this.state;
     const buttons = ['Weekly', 'Biweekly', 'Monthly', 'Yearly'];
 
@@ -117,7 +141,7 @@ export default class ToolsScreen extends React.Component {
           onChangeText={(text) => this.updateText('income', text)}
           placeholder="Gimme ur $"
         />
-        <ButtonGroup // Button group to determine what kind of income user has (weekly / monthly etc...)
+        <ButtonGroup // Button group to determine what kind of income user has (weekly/monthly etc)
           onPress={this.updateIndex}
           selectedIndex={selectedIndex}
           buttons={buttons}
@@ -142,11 +166,44 @@ export default class ToolsScreen extends React.Component {
 
     // Display for the budget
     const budget = (
-      <View>
-        <Text>{income}</Text>
-        <Text>{outcome}</Text>
-        <Text>{spent}</Text>
-        <Text>{savings}</Text>
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, alignItems: 'center' }}>
+          <Pie // Pie chart display
+            pieWidth={200}
+            pieHeight={200}
+            colors={['#1f77b4', '#ff7f0e']}
+            width={250}
+            height={250}
+            data={[
+              { number: (((income / incomeModifier) - outcome - savings) / 4) - spent },
+              { number: spent },
+            ]}
+          />
+        </View>
+        <View style={{
+          flex: 2,
+          marginBottom: 25,
+          alignSelf: 'center',
+          width: '50%',
+        }}
+        >
+          <Text>
+            {`Weekly budget: $${(((income / incomeModifier) - outcome - savings) / 4)}`}
+          </Text>
+          <Text>{`Total spent: $${Math.round(spent * 100) / 100}`}</Text>
+          <Input // Input for user income
+            label="Expense"
+            leftIcon={<Icon name="dollar" />}
+            onChangeText={(text) => this.updateText('spend', text)}
+            value={spend.toString()}
+            errorStyle={{ color: 'red' }}
+            // errorMessage="ENTER A VALID ERROR HERE"
+          />
+          <Button // Button to send new expense
+            title="Spend"
+            onPress={this.submitExpense}
+          />
+        </View>
       </View>
     );
 
