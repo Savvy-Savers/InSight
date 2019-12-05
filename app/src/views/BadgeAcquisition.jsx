@@ -40,6 +40,7 @@ const BadgeAcquisition = (props) => {
     <View>
       <Button title="Finish Quiz!" onPress={toggleOverlay} />
       <Overlay isVisible={visible} onBackdropPress={toggleOverlay} style={styles.parent}>
+        {/* NEED TO ADD CONDITIONAL HERE IF THE USER ALREADY HAS THE BADGE */}
         <Confetti badgeAchievement={badgeAchievement} />
         <Button
           title="Continue Your Journey"

@@ -15,7 +15,7 @@ const styles = {
   },
   name: {
     color: '#000',
-    fontSize: 12,
+    fontSize: 18,
     fontWeight: 'bold',
     margin: 5,
   },
@@ -27,7 +27,7 @@ const styles = {
   },
   stats: {
     color: '#000',
-    fontSize: 8,
+    fontSize: 12,
     fontWeight: 'bold',
     margin: 5,
   },
@@ -38,6 +38,13 @@ const styles = {
   },
 };
 class RNConfetti extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      badgeAchievement: props.badgeAchievement,
+    };
+  }
+
   componentDidMount() {
     if (this._confettiView) {
       this._confettiView.startConfetti();
@@ -51,7 +58,7 @@ class RNConfetti extends Component {
   }
 
   render() {
-    const { badgeAchievement } = this.prop;
+    const { badgeAchievement } = this.state;
     return (
       <View style={styles.container}>
         <Confetti ref={(node) => this._confettiView = node} />
