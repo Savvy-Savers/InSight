@@ -23,6 +23,7 @@ const BadgeAcquisition = (props) => {
     // send a request for the course badge
     axios.get(`http://18.206.35.110:8080/course/badge/${badgeId}`)
       .then((badge) => {
+        console.log(badge.data);
         setBadgeAchievement(badge.data);
       });
     // update the user's badge collection
