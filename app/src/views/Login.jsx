@@ -1,6 +1,7 @@
 import React from "react"
 import { StyleSheet, Text, View, Image, Button } from "react-native"
 // import * as Expo from "expo"
+import Main from './Main';
 import * as Google from "expo-google-app-auth";
 
 export default class App extends React.Component {
@@ -22,7 +23,7 @@ export default class App extends React.Component {
       })
 
       if (result.type === "success") {
-        console.log(result.user);
+        console.log('google user',result);
         this.setState({
           signedIn: true,
           name: result.user.name,
@@ -39,7 +40,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         {this.state.signedIn ? (
-          <LoggedInPage name={this.state.name} photoUrl={this.state.photoUrl} />
+          <Main />
         ) : (
             <LoginPage signIn={this.signIn} />
           )}

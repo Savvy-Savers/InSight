@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
   },
 });
 
-function MainScreen() {
+function MainScreen(props) {
+  console.log(props);
   return (
     <View style={{ flex: 1 }}>
       <Header // Temporary header with button to eventually open drawer

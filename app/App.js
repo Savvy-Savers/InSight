@@ -55,7 +55,7 @@ const CourseNavigator = createStackNavigator(
 
 const AppNavigator = createDrawerNavigator(
   {
-    Main: MainScreen,
+    // Main: MainScreen,
     Login,
     Profile: ProfileScreen,
     Map: CourseNavigator,
