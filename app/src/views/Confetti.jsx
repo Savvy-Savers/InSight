@@ -22,6 +22,25 @@ const styles = {
     fontWeight: 'bold',
     margin: 5,
   },
+  name: {
+    textAlign: 'center',
+    color: '#000',
+    fontSize: 12,
+    fontWeight: 'bold',
+    margin: 5,
+  },
+  description:{
+    textAlign: 'center',
+    color: '#000',
+    fontSize: 12,
+    margin: 5,
+  },
+  stats: {
+    color: '#000',
+    fontSize: 8,
+    fontWeight: 'bold',
+    margin: 5,
+  },
   badge: {
     width: 100,
     height: 100,
@@ -42,14 +61,18 @@ class RNConfetti extends Component {
   }
 
   render() {
+    const { badgeAchievement } = this.prop;
     return (
       <View style={styles.container}>
         <Confetti ref={(node) => this._confettiView = node} />
         <Text style={styles.text}>YOU DID IT! YOU ARE SMARTER NOW!</Text>
         <Image
           style={styles.badge}
-          source={{ uri: 'https://cdn0.iconfinder.com/data/icons/business-startup-10/50/25-512.png'}}
+          source={{ uri: badgeAchievement.iconUrl }}
         />
+        <Text style={styles.name}>{`${badgeAchievement.name}`}</Text>
+        <Text style={styles.description}>{`${badgeAchievement.description}`}</Text>
+        <Text style={styles.stats}>{`You've gained ${badgeAchievement.experiencePoints} experience points!`}</Text>
       </View>
     );
   }

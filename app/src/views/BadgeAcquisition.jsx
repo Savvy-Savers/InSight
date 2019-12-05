@@ -23,13 +23,13 @@ const overlay = (props) => {
   // also assign the user the badge and experince points
   useEffect(() => {
     // send a request for the course badge
-    setBadgeAchievement('https://cdn0.iconfinder.com/data/icons/business-startup-10/50/25-512.png');
-    // axios.get(`http://18.206.35.110:8080/course/list/${badgeId}`)
-    //   .then((badge) => {
-    //     setBadgeAchievement(badge);
-    //   });
+    // setBadgeAchievement('https://cdn0.iconfinder.com/data/icons/business-startup-10/50/25-512.png');
+    axios.get(`http://18.206.35.110:8080/course/badge/${badgeId}`)
+      .then((badge) => {
+        setBadgeAchievement(badge.data);
+      });
     // update the user's badge collection
-    //  axios.post(post(`/user/${id}/badge/${badgeId})` <--- FIXME: still need to have userID
+    //  axios.post(`http://18.206.35.110:8080/course/user/${id}/badge/${badgeId})` <--- FIXME: still need to have userID
   }, []);
 
   const styles = {
@@ -55,7 +55,7 @@ const overlay = (props) => {
     <View>
       <Button title="Finish Quiz!" onPress={toggleOverlay} />
       <Overlay isVisible={visible} onBackdropPress={toggleOverlay} style={styles.parent}>
-        <Confetti />
+        <Confetti badgeAchievement={badgeAchievement} />
         <Button
           title="Continue Your Journey"
           onPress={() => { navigate('Map'); }}
