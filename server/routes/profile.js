@@ -5,6 +5,7 @@ const {
   insertUserBadge,
   getUserBadges,
   getCompletedCourse,
+  saveUser,
 } = require('../db/helper');
 
 // Endpoint to get user profile info by id
@@ -49,5 +50,16 @@ router.post('/user/:id/badge/:badgeId', (req, res) => {
       console.error(err);
     });
 });
+
+router.post('/user/', (req, res) => {
+  console.log(req);
+  const { id, email } = req.body;
+  saveUser(id, email)
+    .then(() => {
+      res.send(201);
+    })
+    .catch((err) => console.error(err));
+});
+
 
 module.exports = router;
