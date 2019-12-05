@@ -61,6 +61,17 @@ const getUser = (userId, userEmail) => User.findOne({
 });
 
 /**
+ * Gets the user's profile info.
+ * @param {integer} userId - The user's ID.
+ * @param {string} userEmail- The users's Email.
+ */
+const saveUser = (userId, userEmail) => User.create({
+  idUser: userId,
+  email: userEmail,
+});
+
+
+/**
  * Gets the course id, the course's concepts, and each concepts' answers.
  * @param {integer} courseId - The course's ID.
  */
@@ -188,4 +199,5 @@ module.exports = {
   getCompletedCourse,
   getBudget,
   setBudget,
+  saveUser,
 };
