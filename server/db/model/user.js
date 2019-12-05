@@ -6,6 +6,7 @@ module.exports = (sequelize, type) => sequelize.define('user', {
   },
   firstName: type.STRING,
   lastName: type.STRING,
+  email: type.String,
   totalExperiencePoints: type.INTEGER,
   goal: type.STRING,
 });
