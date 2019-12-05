@@ -1,9 +1,10 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import CourseScreen from './src/views/Course';
 import Login from './src/views/Login';
+// import GoogleLogin from './src/views/GoogleLogin';
 import MapScreen from './src/views/Map';
 import ProfileScreen from './src/views/Profile';
 import MainScreen from './src/views/Main';
@@ -19,7 +20,7 @@ import QuizScreen from './src/views/Quiz';
 // we are using it to return the rest of our app views.
 export default class App extends React.Component {
   render() {
-    return <AppContainer />;
+    return <AppContainer  />;
   }
 }
 
@@ -55,7 +56,7 @@ const CourseNavigator = createStackNavigator(
 
 const AppNavigator = createDrawerNavigator(
   {
-    // Main: MainScreen,
+    Main: MainScreen,
     Login,
     Profile: ProfileScreen,
     Map: CourseNavigator,
@@ -66,8 +67,40 @@ const AppNavigator = createDrawerNavigator(
     Policy: PolicyScreen,
   },
   {
-    initialRouteName: 'Main',
+    initialRouteName: 'Login',
+  },
+);
+// const SwitchNavigator = createSwitchNavigator({
+//   Login,
+//   Main: MainScreen,
+// });
+// const createRootNavigator = (signedIn = false) => {
+//   return createSwitchNavigator(
+//     {
+//       SignedIn: {
+//         screen: Login,
+//       },
+//       SignedOut: {
+//         screen: MainScreen,
+//       },
+//     },
+//     {
+//       initialRouteName: signedIn ? "SignedIn" : "SignedOut"
+//     },
+//   );
+// };
+const AppStack = createStackNavigator({ Home: Login, Other: MainScreen });
+const AuthStack = createStackNavigator({ Home: MainScreen });
+
+const AppLogin = createSwitchNavigator(
+  {
+    AuthLoading: AppStack,
+    Login: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
   },
 );
 
-const AppContainer = createAppContainer(AppNavigator);
+
+const AppContainer = createAppContainer(AppNavigator, AppLogin);
