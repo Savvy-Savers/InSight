@@ -197,7 +197,7 @@ export default class ToolsScreen extends React.Component {
             onChangeText={(text) => this.updateText('spend', text)}
             value={spend.toString()}
             errorStyle={{ color: 'red' }}
-            errorMessage="ENTER A VALID ERROR HERE"
+            // errorMessage="ENTER A VALID ERROR HERE"
           />
           <Button // Button to send new expense
             title="Spend"
