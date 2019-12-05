@@ -1,8 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import Swiper from 'react-native-swiper';
-import { useNavigation } from 'react-navigation-hooks';
 import QuizQuestionView from './QuizQuestionView';
 
 const styles = {
@@ -55,34 +54,3 @@ export default class QuizScreen extends React.Component {
     );
   }
 }
-/*
- SAMPLE OF CONCEPT OBJECT
-      Object {
-        "answers": Array [
-          Object {
-            "choice": "you buy everything",
-            "description": "No, dont do that!",
-            "id": 1,
-            "idConcept": 1,
-            "isCorrect": false,
-          },
-          Object {
-            "choice": "you plan it out",
-      "description": "Yes, dont do that!",
-      "id": 2,
-      "idConcept": 1,
-      "isCorrect": true,
-    },
-    Object {
-      "choice": "you cry",
-      "description": "budgeting isnt that bad!",
-      "id": 3,
-      "idConcept": 1,
-      "isCorrect": false,
-    },
-  ],
-  "description": "We are discussing the concept of budget tools",
-  "id": 1,
-  "question": "What is a budget tool?",
-}
-*/

@@ -19,8 +19,6 @@ function CourseScreen(props) {
         setCourseBadgeId(courseData.data.idBadge);
         setConcepts(courseData.data.concepts);
       });
-
-    console.log(courseBadgeId);
   }, []); // Array necessary to not repeat endlessly
 
   const styles = {

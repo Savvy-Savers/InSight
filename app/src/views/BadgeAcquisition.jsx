@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Image } from 'react-native';
+import { View } from 'react-native';
 import { Button, Overlay } from 'react-native-elements';
 import { useNavigation } from 'react-navigation-hooks';
 import axios from 'axios';
 import Confetti from './Confetti';
 
 
-const overlay = (props) => {
+const BadgeAcqisition = (props) => {
   const [visible, setVisible] = useState(false);
   const [badgeAchievement, setBadgeAchievement] = useState(null);
-  // const { id } = props.navigation.state.params;
-
   const { navigate } = useNavigation();
   const badgeId = props.courseBadgeId;
 
@@ -23,7 +21,6 @@ const overlay = (props) => {
   // also assign the user the badge and experince points
   useEffect(() => {
     // send a request for the course badge
-    // setBadgeAchievement('https://cdn0.iconfinder.com/data/icons/business-startup-10/50/25-512.png');
     axios.get(`http://18.206.35.110:8080/course/badge/${badgeId}`)
       .then((badge) => {
         setBadgeAchievement(badge.data);
@@ -37,19 +34,7 @@ const overlay = (props) => {
       justifyContent: 'center',
       alignItems: 'center',
     },
-    text: {
-      textAlign: 'center',
-      color: '#000',
-      fontSize: 30,
-      fontWeight: 'bold',
-      margin: 5,
-    },
-    badge: {
-      width: 100,
-      height: 100,
-    },
   };
-
 
   return (
     <View>
@@ -65,4 +50,4 @@ const overlay = (props) => {
   );
 };
 
-export default overlay;
+export default BadgeAcqisition;

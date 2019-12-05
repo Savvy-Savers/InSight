@@ -1,8 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import Swiper from 'react-native-swiper';
 import { CheckBox } from 'react-native-elements';
-import { useNavigation } from 'react-navigation-hooks';
 import BadgeAcquisition from './BadgeAcquisition';
 
 const styles = {
@@ -101,7 +99,7 @@ export default class QuizQuestionView extends React.Component {
   render() {
     const { concept, description, isSelected } = this.state;
     const { index, lastQuestion, courseBadgeId } = this.props;
-    let isLastQuestion = index === lastQuestion; // boolean value
+    const isLastQuestion = index === lastQuestion; // boolean value
     return (
       <View>
         <Text style={styles.question}>{concept.question}</Text>
