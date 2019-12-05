@@ -34,6 +34,10 @@ const BadgeAcquisition = (props) => {
       justifyContent: 'center',
       alignItems: 'center',
     },
+    button: {
+      justifyContent: 'flex-end',
+      marginBottom: 36,
+    },
   };
 
   return (
