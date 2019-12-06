@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {
+  AppRegistry,
+  StyleSheet,
   View,
   Text,
   Image,
@@ -15,7 +17,7 @@ const styles = {
   },
   name: {
     color: '#000',
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: 'bold',
     margin: 5,
   },
@@ -27,7 +29,7 @@ const styles = {
   },
   stats: {
     color: '#000',
-    fontSize: 12,
+    fontSize: 8,
     fontWeight: 'bold',
     margin: 5,
   },

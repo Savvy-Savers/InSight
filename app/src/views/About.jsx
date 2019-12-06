@@ -4,7 +4,9 @@ import SvgExample from './MapSVG';
 
 function AboutScreen() {
   return (
-    <SvgExample />
+    <View>
+      <Text>About Screen</Text>
+    </View>
   );
 }
 

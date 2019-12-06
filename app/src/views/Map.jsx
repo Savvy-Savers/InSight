@@ -1,38 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { View, ImageBackground } from 'react-native';
 import { ListItem, Header } from 'react-native-elements';
-import { useNavigation } from 'react-navigation-hooks';
 import axios from 'axios';
-
+import MapSvg from './MapSVG';
 
 function MapScreen() {
   const [courses, setCourses] = useState([]);
-  const { navigate } = useNavigation();
+  const [isLoaded, setLoadStatus] = useState(false);
 
   useEffect(() => {
     axios.get('http://18.206.35.110:8080/course/list')
       .then((allCourses) => {
         setCourses(allCourses.data);
+        setLoadStatus(true);
       });
   }, []); // Array necessary to not repeat endlessly
-
   return (
-    <View>
+    <ImageBackground source={require('../assets/images/cascade.png')}
+      imageStyle={{ resizeMode: 'stretch' }}
+      style={{ width: '100%', height: '100%' }}
+    >
       <View>
-        {
-          courses.map((course) => (
-            <ListItem
-              key={course.topic}
-              title={course.topic}
-              leftAvatar={{ source: { uri: 'https://i.chzbgr.com/full/8762786048/hDA3B4D87/' } }}
-              bottomDivider
-              chevron
-              onPress={() => { navigate('Course', { id: course.id, name: course.topic }); }}
-            />
-          ))
-        }
+        {isLoaded ? (
+          <MapSvg courses={courses} />
+        ) : null}
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 
