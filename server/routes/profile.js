@@ -58,9 +58,9 @@ router.post('/user/', (req, res) => {
     givenName,
     familyName,
     totalExperiencePoints,
-    googleId,
-  } = req.body;
-  saveUser(email, givenName, familyName, totalExperiencePoints, googleId)
+    id,
+  } = req.body.user;
+  saveUser(email, givenName, familyName, totalExperiencePoints, id)
     .then(() => {
       res.send(201);
     })
