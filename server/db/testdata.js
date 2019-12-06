@@ -24,13 +24,13 @@ const enterFakeData = (
     .then(() => Course.create({
       idParent: 2,
       topic: 'Budgeting 103',
-      description: 'This is a advanced course on budgeting',
+      description: 'This is an advanced course on budgeting',
       idBadge: 3,
     }))
     .then(() => Course.create({
       idParent: null,
       topic: 'Taxes 101',
-      description: 'This is a description on the taxes course',
+      description: 'This is a description of the taxes course',
       idBadge: 4,
     }))
     .then(() => Course.create({
