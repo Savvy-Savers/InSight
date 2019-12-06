@@ -8,6 +8,7 @@ const answerModel = require('./model/answer');
 const userModel = require('./model/user');
 const userBadgeModel = require('./model/userbadge');
 const userBudgetModel = require('./model/userbudget');
+const userLoanModel = require('./model/userloan');
 const badgeModel = require('./model/badge');
 const levelModel = require('./model/level');
 
@@ -37,6 +38,7 @@ const Answer = answerModel(db, Sequelize);
 const User = userModel(db, Sequelize);
 const UserBadge = userBadgeModel(db, Sequelize);
 const UserBudget = userBudgetModel(db, Sequelize);
+const UserLoan = userLoanModel(db, Sequelize);
 const Level = levelModel(db, Sequelize);
 const Badge = badgeModel(db, Sequelize);
 
@@ -53,6 +55,7 @@ db.sync({ force: true })
       User,
       UserBadge,
       UserBudget,
+      UserLoan,
       Badge,
       Level);
   })
@@ -67,6 +70,7 @@ module.exports = {
   User,
   UserBadge,
   UserBudget,
+  UserLoan,
   Badge,
   Level,
 };
