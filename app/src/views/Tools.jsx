@@ -19,29 +19,30 @@ export default class ToolsScreen extends React.Component {
     super(props);
     this.state = {
       income: 0,
-      selectedIndex: null,
+      selectedIndex: null, // Selected index of the button group for income type
       incomeModifier: 0, // Modifier to divide income by to achieve monthly income
       outcome: 0,
       spent: 0,
       savings: 0,
       firstTime: false, // Field to check if the user has not set up a budget
+      update: false, // Field to check if the user is updating their budget
       spend: 0, // Amount to add to the spent value for this budget period
     };
 
+    this.getBudgetData = this.getBudgetData.bind(this);
     this.updateIndex = this.updateIndex.bind(this);
     this.updateText = this.updateText.bind(this);
     this.submitBudget = this.submitBudget.bind(this);
-    this.getBudgetData = this.getBudgetData.bind(this);
     this.submitExpense = this.submitExpense.bind(this);
   }
 
-  // Retrieves the budget attached to the user id
   componentDidMount() {
     this.getBudgetData();
   }
 
+  // Retrieves the budget attached to the user id
   getBudgetData() {
-    axios.get('http://localhost:8080/tool/budget/1')
+    axios.get('http://localhost:8080/tool/budget/1') // FIXME: change user id for auth
       .then((budget) => {
         // if there is no budget data, send the user through first time setup
         if (!budget.data) {
@@ -56,11 +57,22 @@ export default class ToolsScreen extends React.Component {
             savings: budget.data.savings,
             incomeModifier: budget.data.incomeModifier,
           });
+
+          // To automatically set the index of the Button group for selecting the income type
+          if (budget.data.incomeModifier === 0.25) {
+            this.setState({ selectedIndex: 0 });
+          } else if (budget.data.incomeModifier === 0.5) {
+            this.setState({ selectedIndex: 1 });
+          } else if (budget.data.incomeModifier === 1) {
+            this.setState({ selectedIndex: 2 });
+          } else if (budget.data.incomeModifier === 12) {
+            this.setState({ selectedIndex: 3 });
+          }
         }
       });
   }
 
-  // Update handler for the type of payment multibutton
+  // Update handler for the type of payment button group
   updateIndex(selectedIndex) {
     // Takes index from ButtonGroup assigning it to state
     this.setState({ selectedIndex });
@@ -89,29 +101,47 @@ export default class ToolsScreen extends React.Component {
     }
   }
 
-  // Submition for a new budget
+  // Submition for a new budget or an updated budget
   submitBudget() {
+    // State values
     const {
       income,
       outcome,
       incomeModifier,
       savings,
+      firstTime,
+      update,
     } = this.state;
-    axios.post('http://localhost:8080/tool/budget/1', {
-      income,
-      outcome,
-      incomeModifier,
-      savings,
-    })
-      .then(() => {
-        this.setState({ firstTime: false });
-      });
+
+    // Determine if the submition is for first time setup or update
+    if (firstTime) { // Submit a new budget
+      axios.post('http://localhost:8080/tool/budget/1', { // FIXME: change user id for auth
+        income,
+        outcome,
+        incomeModifier,
+        savings,
+      })
+        .then(() => {
+          this.setState({ firstTime: false });
+        });
+    } else if (update) { // Update a budget
+      axios.patch('http://localhost:8080/tool/budget/1', { // FIXME: change user id for auth
+        income,
+        outcome,
+        incomeModifier,
+        savings,
+      })
+        .then(() => {
+          this.setState({ update: false });
+        });
+    }
   }
 
+  // Submit an expense to the budget
   submitExpense() {
     let { spend } = this.state;
-    spend = Math.round(spend * 100) / 100;
-    axios.patch('http://localhost:8080/tool/budget/1', {
+    spend = Math.round(spend * 100) / 100; // To round the value to 2 decimal places
+    axios.patch('http://localhost:8080/tool/budget/spend/1', { // FIXME: change user id for auth
       spend,
     })
       .then(() => {
@@ -121,6 +151,7 @@ export default class ToolsScreen extends React.Component {
   }
 
   render() {
+    // State values
     const {
       income,
       selectedIndex,
@@ -130,8 +161,15 @@ export default class ToolsScreen extends React.Component {
       firstTime,
       incomeModifier,
       spend,
+      update,
     } = this.state;
     const buttons = ['Weekly', 'Biweekly', 'Monthly', 'Yearly'];
+
+    // Budget Math
+    const monthly = income / incomeModifier;
+    const disposableIncome = monthly - (outcome + savings);
+    const weeklyDisposable = disposableIncome / 4;
+    const leftover = weeklyDisposable - spent;
 
     // Display for the first time setup for the budget
     const setup = (
@@ -139,6 +177,7 @@ export default class ToolsScreen extends React.Component {
         <Input // Input for user income
           label="Income"
           onChangeText={(text) => this.updateText('income', text)}
+          value={income === 0 ? null : income.toString()}
           placeholder="Gimme ur $"
         />
         <ButtonGroup // Button group to determine what kind of income user has (weekly/monthly etc)
@@ -150,11 +189,13 @@ export default class ToolsScreen extends React.Component {
         <Input // Input for user outcome
           label="Monthly Expenses"
           onChangeText={(text) => this.updateText('outcome', text)}
+          value={outcome === 0 ? null : outcome.toString()}
           placeholder="Rent, electricity, internet"
         />
         <Input // Input for user savings
           label="Savings"
           onChangeText={(text) => this.updateText('savings', text)}
+          value={savings === 0 ? null : savings.toString()}
           placeholder={`We recommend 25% of net worth: ${Math.floor(((income / incomeModifier) - outcome) * 0.25)}`}
         />
         <Button // Button to submit all budget data to server
@@ -175,20 +216,19 @@ export default class ToolsScreen extends React.Component {
             width={250}
             height={250}
             data={[
-              { number: (((income / incomeModifier) - outcome - savings) / 4) - spent },
+              { number: leftover - spent },
               { number: spent },
             ]}
           />
         </View>
         <View style={{
           flex: 2,
-          marginBottom: 25,
           alignSelf: 'center',
           width: '50%',
         }}
         >
           <Text>
-            {`Weekly budget: $${(((income / incomeModifier) - outcome - savings) / 4)}`}
+            {`Weekly budget: $${Math.round(weeklyDisposable * 100) / 100}`}
           </Text>
           <Text>{`Total spent: $${Math.round(spent * 100) / 100}`}</Text>
           <Input // Input for user income
@@ -202,6 +242,13 @@ export default class ToolsScreen extends React.Component {
           <Button // Button to send new expense
             title="Spend"
             onPress={this.submitExpense}
+          />
+          <Button // Button to send new expense
+            style={{
+              marginTop: 10,
+            }}
+            title="Update Budget"
+            onPress={() => this.setState({ update: true })}
           />
         </View>
       </View>
@@ -226,7 +273,7 @@ export default class ToolsScreen extends React.Component {
             )
           }
         />
-        {firstTime ? setup : budget}
+        {firstTime || update ? setup : budget}
       </View>
     );
   }
