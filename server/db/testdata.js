@@ -80,28 +80,32 @@ const enterFakeData = (
       idConcept: 2,
     }))
     .then(() => User.create({
-      firstName: 'Amber',
-      lastName: 'Jones',
+      givenName: 'Amber',
+      familyName: 'Jones',
       totalExperiencePoints: 50,
       goal: 'to become a dog mother',
+      id: 1,
     }))
     .then(() => User.create({
-      firstName: 'Titus',
-      lastName: 'Charles',
+      givenName: 'Titus',
+      familyName: 'Charles',
       totalExperiencePoints: 102,
       goal: 'to get a job',
+      id: 2,
     }))
     .then(() => User.create({
-      firstName: 'Brandon',
-      lastName: 'T',
+      givenName: 'Brandon',
+      familyName: 'T',
       totalExperiencePoints: 300,
       goal: 'go to Thailand',
+      id: 3,
     }))
     .then(() => User.create({
-      firstName: 'Eliott',
-      lastName: 'Frilet',
+      givenName: 'Eliott',
+      familyName: 'Frilet',
       totalExperiencePoints: 202,
       goal: 'own all the wallpapers',
+      id: 4,
     }))
     .then(() => Badge.create({
       name: 'Budgetling',
