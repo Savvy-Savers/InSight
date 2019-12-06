@@ -67,7 +67,7 @@ const getUser = (googleId) => User.findOne({
  * @param {string} givenName- The users's first name.
  * @param {string} familyName- The users's last name.
  * @param {integer} totalExperiencePoints- The users's total experience.
- * @param {integer} googleId-The user's googleId
+ * @param {integer} id-The user's googleId
  */
 
 const saveUser = (
@@ -75,9 +75,9 @@ const saveUser = (
   givenName,
   familyName,
   totalExperiencePoints,
-  googleId,
+  id,
 ) => User.create({
-  googleId,
+  googleId: id,
   email,
   totalExperiencePoints,
   givenName,
