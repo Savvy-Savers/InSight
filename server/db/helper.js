@@ -51,13 +51,13 @@ const getCourses = () => Course.findAll({
  * Gets the user's profile info.
  * @param {integer} userId - The user's ID.
  * @param {string} userEmail- The users's Email.
+ * @param {string} googleId- The users's google id
  */
-const getUser = (userId, userEmail) => User.findOne({
+const getUser = (googleId) => User.findOne({
   where: {
-    id: userId,
-    email: userEmail,
+    googleId,
   },
-  attributes: { exclude: ['createdAt', 'updatedAt'] },
+  attributes: { exclude: ['createdAt', 'updatedAt', 'email', 'id'] },
 });
 
 /**
@@ -77,7 +77,7 @@ const saveUser = (
   totalExperiencePoints,
   googleId,
 ) => User.create({
-  id: googleId,
+  googleId,
   email,
   totalExperiencePoints,
   givenName,
