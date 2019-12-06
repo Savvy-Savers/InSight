@@ -64,10 +64,24 @@ const getUser = (userId, userEmail) => User.findOne({
  * Gets the user's profile info.
  * @param {integer} userId - The user's ID.
  * @param {string} userEmail- The users's Email.
+ * @param {string} givenName- The users's first name.
+ * @param {string} familyName- The users's last name.
+ * @param {integer} totalExperiencePoints- The users's total experience.
+ * @param {integer} googleId-The user's googleId
  */
-const saveUser = (userId, userEmail) => User.create({
-  idUser: userId,
-  email: userEmail,
+
+const saveUser = (
+  email,
+  givenName,
+  familyName,
+  totalExperiencePoints,
+  googleId,
+) => User.create({
+  id: googleId,
+  email,
+  totalExperiencePoints,
+  givenName,
+  familyName,
 });
 
 
