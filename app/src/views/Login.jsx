@@ -48,16 +48,6 @@ export default class App extends React.Component {
     }
   }
 
-//   result = async () => {
-//     await AuthSession.startAsync({
-//     authUrl:
-//       `https://accounts.google.com/o/oauth2/v2/auth?` +
-//       `&client_id=${googleWebAppId}` +
-//       `&redirect_uri=${encodeURIComponent(redirectUrl)}` +
-//       `&access_type=offline` +
-//       `&scope=profile`,
-//   });
-// }
   render() {
     return (
       <View style={styles.container}>
@@ -75,7 +65,15 @@ const LoginPage = props => {
   return (
     <View>
       <Text style={styles.header}>Sign In With Google</Text>
-      <Button title="Sign in with Google" onPress={() => props.signIn()} />
+      <Button title="Sign in with Google" 
+        containerStyle={{
+          marginLeft: 5,
+          marginRight: 5,
+          marginTop: 10,
+          borderRadius: 10, // adds the rounded corners
+          backgroundColor: '#fff'
+        }}
+      onPress={() => props.signIn()} />
     </View>
   )
 }
@@ -84,8 +82,10 @@ const LoggedInPage = props => {
   console.log(props);
   return (
     <View style={styles.container}>
+      <Text style={styles.header}>Insight</Text>
       <Text style={styles.header}>Welcome:{props.name}</Text>
       <Image style={styles.image} source={{ uri: props.photoUrl }} />
+      <Text style={styles.header}>Swipe left to start your journey to financial freedom</Text>
     </View>
   )
 }
