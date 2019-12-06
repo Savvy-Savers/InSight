@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, Button } from "react-native"
 // import * as Expo from "expo"
 import Main from './Main';
 import * as Google from "expo-google-app-auth";
+import axios from 'axios';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export default class App extends React.Component {
       name: "",
       photoUrl: ""
     }
-    this.result = this.result.bind(this);
+    // this.result = this.result.bind(this);
   }
   signIn = async () => {
     try {
@@ -22,14 +23,23 @@ export default class App extends React.Component {
         iosClientId: '847385043058-lo98oseuebn051god5a24pacgevrubp0.apps.googleusercontent.com',
         scopes: ["profile", "email"]
       })
-
+    
       if (type === "success") {
         console.log('google user',user);
         this.setState({
           signedIn: true,
           name: user.name,
-          photoUrl: user.photoUrl
+           photoUrl: user.photoUrl
         })
+        return axios.post('http://localhost:8080/profile/user/', {
+           user,
+          })
+            .then(function (response) {
+            //  return axios.get({})
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
       } else {
         console.log("cancelled")
       }
@@ -37,21 +47,22 @@ export default class App extends React.Component {
       console.log("error", e)
     }
   }
-  result = async () => {
-    await AuthSession.startAsync({
-    authUrl:
-      `https://accounts.google.com/o/oauth2/v2/auth?` +
-      `&client_id=${googleWebAppId}` +
-      `&redirect_uri=${encodeURIComponent(redirectUrl)}` +
-      `&access_type=offline` +
-      `&scope=profile`,
-  });
-}
+
+//   result = async () => {
+//     await AuthSession.startAsync({
+//     authUrl:
+//       `https://accounts.google.com/o/oauth2/v2/auth?` +
+//       `&client_id=${googleWebAppId}` +
+//       `&redirect_uri=${encodeURIComponent(redirectUrl)}` +
+//       `&access_type=offline` +
+//       `&scope=profile`,
+//   });
+// }
   render() {
     return (
       <View style={styles.container}>
         {this.state.signedIn ? (
-          <Main />
+          <LoggedInPage name={this.state.name} photoUrl={this.state.photoUrl}/>
         ) : (
             <LoginPage signIn={this.signIn} />
           )}
