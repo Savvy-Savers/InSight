@@ -53,8 +53,14 @@ router.post('/user/:id/badge/:badgeId', (req, res) => {
 
 router.post('/user/', (req, res) => {
   console.log(req);
-  const { id, email } = req.body;
-  saveUser(id, email)
+  const {
+    email,
+    givenName,
+    familyName,
+    totalExperiencePoints,
+    googleId,
+  } = req.body;
+  saveUser(email, givenName, familyName, totalExperiencePoints, googleId)
     .then(() => {
       res.send(201);
     })
