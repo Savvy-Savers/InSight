@@ -13,7 +13,6 @@ export default class App extends React.Component {
       name: "",
       photoUrl: ""
     }
-    // this.result = this.result.bind(this);
   }
   signIn = async () => {
     try {
@@ -35,7 +34,7 @@ export default class App extends React.Component {
            user,
           })
             .then(function (response) {
-            //  return axios.get({})
+              // get the user from the database 
             })
             .catch(function (error) {
               console.log(error);
