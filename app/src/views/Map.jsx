@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
-import { ListItem, Header } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 import { useNavigation } from 'react-navigation-hooks';
 import axios from 'axios';
 
