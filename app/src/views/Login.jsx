@@ -1,6 +1,10 @@
 import React from "react"
+<<<<<<< HEAD
 import { StyleSheet, Text, View, Image, Button, AsyncStorage } from "react-native"
 import Main from './Main';
+=======
+import { StyleSheet, Text, View, Image, Button } from "react-native";
+>>>>>>> 36df86669931fe25e159ed0b18bd31cd8e59cf17
 import * as Google from "expo-google-app-auth";
 import axios from 'axios';
 import {andriodId, iphoneId } from 'react-native-dotenv';
