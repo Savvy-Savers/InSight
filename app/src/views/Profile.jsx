@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, AsyncStorage } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import axios from 'axios';
 import NavBar from './NavBar';
@@ -10,10 +10,11 @@ function ProfileScreen(props) {
   const [badges, setBadges] = useState([]);
 
   useEffect(() => {
-    axios.get('http://18.206.35.110:8080/profile/user/1') // FIXME: modify user id# for authentication
+    AsyncStorage.getItem('@token') // Retrieve token stored from login
+      .then((token) => axios.get(`http://localhost:8080/profile/user/${token}`))
       .then((profileData) => {
         setProfile(profileData.data);
-        return axios.get('http://18.206.35.110:8080/profile/user/1/badges');
+        return axios.get(`http://localhost:8080/profile/user/${profileData.data.id}/badges`);
       })
       .then((badgesData) => {
         setBadges(badgesData.data);
@@ -25,7 +26,7 @@ function ProfileScreen(props) {
     <View style={{ flex: 1 }}>
       <NavBar navigation={props.navigation} />
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>{`${profile.firstName} ${profile.lastName}`}</Text>
+        <Text>{`${profile.givenName} ${profile.familyName}`}</Text>
         <Text>{`${profile.totalExperiencePoints} XP`}</Text>
         <Text>{`Goals: ${profile.goal}`}</Text>
       </View>
