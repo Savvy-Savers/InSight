@@ -86,7 +86,7 @@ const LoggedInPage = props => {
       <Text style={styles.header}>Insight</Text>
       <Text style={styles.header}>Welcome:{props.name}</Text>
       <Image style={styles.image} source={{ uri: props.photoUrl }} />
-      <Text style={styles.header}>Swipe left to start your journey to financial freedom</Text>
+      <Text style={styles.header}>Swipe right to start your journey to financial freedom</Text>
     </View>
   )
 }
