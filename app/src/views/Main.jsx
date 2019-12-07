@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function MainScreen(props) {
+function MainScreen() {
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground source={{ uri: './src/assets/images/cascade.png' }} style={{ width: '100%', height: '100%' }}>

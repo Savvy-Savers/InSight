@@ -1,11 +1,12 @@
 import React from "react"
 import { StyleSheet, Text, View, Image, Button } from "react-native"
-// import * as Expo from "expo"
 import Main from './Main';
 import * as Google from "expo-google-app-auth";
 import axios from 'axios';
+import {andriodId, iphoneId } from 'react-native-dotenv';
 
-export default class App extends React.Component {
+
+export default class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -17,14 +18,13 @@ export default class App extends React.Component {
   signIn = async () => {
     try {
       const { type, accessToken, user} = await Google.logInAsync({
-        androidClientId:
-          "847385043058-1v26bjo0eahcc7sal4f86s7ed04mtjro.apps.googleusercontent.com",
-        iosClientId: '847385043058-lo98oseuebn051god5a24pacgevrubp0.apps.googleusercontent.com',
+        androidClientId: andriodId,
+        iosClientId: iphoneId,
         scopes: ["profile", "email"]
       })
     
       if (type === "success") {
-        console.log('google user',user);
+        // console.log('google user',user);
         this.setState({
           signedIn: true,
           name: user.name,
@@ -34,6 +34,8 @@ export default class App extends React.Component {
            user,
           })
             .then(function (response) {
+              console.log(response.data.googleId);
+
               // get the user from the database 
             })
             .catch(function (error) {

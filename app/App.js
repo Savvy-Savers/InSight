@@ -4,7 +4,6 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import CourseScreen from './src/views/Course';
 import Login from './src/views/Login';
-// import GoogleLogin from './src/views/GoogleLogin';
 import MapScreen from './src/views/Map';
 import ProfileScreen from './src/views/Profile';
 import MainScreen from './src/views/Main';
@@ -19,7 +18,7 @@ import QuizScreen from './src/views/Quiz';
 // we are using it to return the rest of our app views.
 export default class App extends React.Component {
   render() {
-    return <AppContainer  />;
+    return <AppContainer />;
   }
 }
 
