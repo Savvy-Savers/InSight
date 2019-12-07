@@ -6,10 +6,11 @@ import {
 import { Header } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+// Header for app
 function NavBar(props) {
   return (
     <View>
-      <Header // Temporary header with button to eventually open drawer
+      <Header
         leftComponent={
           (
             <TouchableOpacity onPress={() => props.navigation.toggleDrawer()}>
