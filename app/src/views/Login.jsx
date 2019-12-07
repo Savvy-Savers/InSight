@@ -4,6 +4,7 @@ import Main from './Main';
 import * as Google from "expo-google-app-auth";
 import axios from 'axios';
 import {andriodId, iphoneId } from 'react-native-dotenv';
+import NavBar from './NavBar';
 
 
 export default class Login extends React.Component {
@@ -51,9 +52,9 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={{flex: 1}}>
         {this.state.signedIn ? (
-          <LoggedInPage name={this.state.name} photoUrl={this.state.photoUrl}/>
+          <LoggedInPage name={this.state.name} photoUrl={this.state.photoUrl} navigation={this.props.navigation} />
         ) : (
             <LoginPage signIn={this.signIn} />
           )}
@@ -64,7 +65,7 @@ export default class Login extends React.Component {
 
 const LoginPage = props => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.header}>Sign In With Google</Text>
       <Button title="Sign in with Google" 
         containerStyle={{
@@ -82,11 +83,14 @@ const LoginPage = props => {
 const LoggedInPage = props => {
   console.log(props);
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Insight</Text>
-      <Text style={styles.header}>Welcome:{props.name}</Text>
-      <Image style={styles.image} source={{ uri: props.photoUrl }} />
-      <Text style={styles.header}>Swipe right to start your journey to financial freedom</Text>
+    <View style={{flex: 1}}>
+      <NavBar navigation={props.navigation} />
+      <View style={styles.container}>
+        <Text style={styles.header}>Insight</Text>
+        <Text style={styles.header}>Welcome:{props.name}</Text>
+        <Image style={styles.image} source={{ uri: props.photoUrl }} />
+        <Text style={styles.header}>Swipe right to start your journey to financial freedom</Text>
+      </View>
     </View>
   )
 }
