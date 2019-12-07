@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import PropTypes from 'prop-types';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 const styles = StyleSheet.create({
 header: {
@@ -45,7 +44,7 @@ export default class LoanInput extends React.Component {
       response: '',
       completed: false
     })
-  }
+  };
 
   calculate() {
     getMonths((yrs) => {
@@ -78,5 +77,55 @@ export default class LoanInput extends React.Component {
         return `At a rate of ${rate}% with ${months} months of payments & a principal of ${p}, your payment will be $${this.total()} per month!`
       });
     });
+  };
+
+  loan() {
+    new MonthlyPayment(
+      this.state.rate,
+      this.state.principal,
+      this.state.years
+    );
+    
+    this.setState({
+      response: loan.message(),
+      completed: true
+    });
+  }; 
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Header />
+        {
+          this.state.completed ?
+          <View
+          style={styles.result}
+          >
+  <Text style={{fontSize: 18, color: 'white'}}>{this.state.response}</Text>
+          </View>
+          : null
+        }
+        <TextInput 
+          keyboardType= 'numeric'
+          placeholder='Principal'
+          style={styles.inputs}
+          value={this.state.principal}
+          onChangeText={(text) => this.setState({principal: text})}
+          />
+          <TextInput
+            keyboardType= 'numeric'
+            placeholder='Years'
+            style={styles.inputs}
+            value={this.state.years}
+            onChangeText={(text) => this.setState({years: text})}
+            />
+            <Button
+              onPress={this.reset}
+              style={styles.button}
+              title='Reset'
+              accessibilityLabel="Learn more about this!"
+              />
+      </View>
+    )
   }
 }
