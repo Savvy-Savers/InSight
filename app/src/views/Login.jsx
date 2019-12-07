@@ -28,10 +28,10 @@ export default class Login extends React.Component {
         this.setState({
           signedIn: true,
           name: user.name,
-           photoUrl: user.photoUrl
+          photoUrl: user.photoUrl
         })
         return axios.post('http://localhost:8080/profile/user/', {
-           user,
+          user,
           })
             .then(function (response) {
               console.log(response.data.googleId);
