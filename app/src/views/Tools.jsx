@@ -2,10 +2,8 @@ import React from 'react';
 import {
   Text,
   View,
-  TouchableOpacity,
 } from 'react-native';
 import {
-  Header,
   Input,
   ButtonGroup,
   Button,
@@ -13,6 +11,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import Pie from './Pie';
+import NavBar from './NavBar';
 
 export default class ToolsScreen extends React.Component {
   constructor(props) {
@@ -256,23 +255,7 @@ export default class ToolsScreen extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <Header // Temporary header with button to eventually open drawer
-          leftComponent={
-            (
-              <TouchableOpacity onPress={() => { /* Open Drawer */ }}>
-                <Icon
-                  name="bars"
-                  style={{
-                    color: 'white',
-                    padding: 10,
-                    marginLeft: 10,
-                    fontSize: 20,
-                  }}
-                />
-              </TouchableOpacity>
-            )
-          }
-        />
+        <NavBar navigation={this.props.navigation} />
         {firstTime || update ? setup : budget}
       </View>
     );
