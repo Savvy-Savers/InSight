@@ -26,6 +26,7 @@ export default class Login extends React.Component {
     
       if (type === "success") {
         // console.log('google user',user);
+        console.log('token', accessToken);
         this.setState({
           signedIn: true,
           name: user.name,
