@@ -4,11 +4,10 @@ module.exports = (sequelize, type) => sequelize.define('userLoan', {
     primaryKey: true,
     autoIncrement: true,
   },
-
-  loan: type.INTEGER,
+  loan: type.STRING,
   loanBalance: type.INTEGER,
-  monthlyPayment: type.INTEGER,
-  loanInterest: type.INTEGER,
+  monthlyPayment: type.FLOAT,
+  loanInterest: type.FLOAT,
   idUser: {
     type: type.INTEGER,
     references: {
