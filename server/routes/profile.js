@@ -49,9 +49,6 @@ router.post('/user', (req, res) => {
       //  console.log(user.dataValues);
       res.send(user.dataValues);
     })
-    .then(() => {
-      // res.sendStatus(201);
-    })
     .catch((err) => console.error(err));
 });
 
