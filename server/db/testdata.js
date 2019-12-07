@@ -6,6 +6,7 @@ const enterFakeData = (
   User,
   UserBadge,
   UserBudget,
+  UserLoan,
   Badge,
   Level,
 ) => {
@@ -233,7 +234,14 @@ const enterFakeData = (
       spent: 0,
       savings: 750,
       idUser: 1,
-    }));
+    }))
+    .then(() => UserLoan.create({
+      loan: 'Sallie Mae',
+      loanBalance: 30000,
+      monthlyPayment: 100,
+      loanInterest: 6.8,
+      idUser: 3
+    }))
 };
 
 module.exports = { enterFakeData };
