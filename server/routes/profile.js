@@ -3,6 +3,7 @@ const {
   getUser,
   getUserBadges,
   getCompletedCourse,
+  saveUser,
 } = require('../db/helper');
 
 // Endpoint to get user profile info by id
@@ -31,6 +32,22 @@ router.get('/user/:id/completed', (req, res) => {
   getCompletedCourse(id)
     .then((coursesId) => {
       res.json(coursesId.map((course) => course.id));
+    })
+    .catch((err) => console.error(err));
+});
+
+
+router.post('/user', (req, res) => {
+  const {
+    email,
+    givenName,
+    familyName,
+    id,
+  } = req.body.user;
+  saveUser(email, givenName, familyName, id)
+    .then((user) => {
+      //  console.log(user.dataValues);
+      res.send(user.dataValues);
     })
     .catch((err) => console.error(err));
 });

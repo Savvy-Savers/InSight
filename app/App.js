@@ -1,8 +1,9 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import CourseScreen from './src/views/Course';
+import Login from './src/views/Login';
 import MapScreen from './src/views/Map';
 import ProfileScreen from './src/views/Profile';
 import MainScreen from './src/views/Main';
@@ -53,7 +54,7 @@ const CourseNavigator = createStackNavigator(
 
 const AppNavigator = createDrawerNavigator(
   {
-    Main: MainScreen,
+    Main: Login,
     Profile: ProfileScreen,
     Map: CourseNavigator,
     'Course Tools': ToolsScreen,
@@ -67,4 +68,18 @@ const AppNavigator = createDrawerNavigator(
   },
 );
 
-const AppContainer = createAppContainer(AppNavigator);
+const AppStack = createStackNavigator({ Home: Login, Other: MainScreen });
+const AuthStack = createStackNavigator({ Home: MainScreen });
+
+const AppLogin = createSwitchNavigator(
+  {
+    AuthLoading: AppStack,
+    Login: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+  },
+);
+
+
+const AppContainer = createAppContainer(AppNavigator, AppLogin);
