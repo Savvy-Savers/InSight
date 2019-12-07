@@ -49,14 +49,35 @@ const getCourses = () => Course.findAll({
 
 /**
  * Gets the user's profile info.
- * @param {integer} userId - The user's ID.
+ * @param {string} googleId- The users's google id
  */
-const getUser = (userId) => User.findOne({
+const getUser = (googleId) => User.findOne({
   where: {
-    id: userId,
+    googleId,
   },
-  attributes: { exclude: ['createdAt', 'updatedAt'] },
+  attributes: { exclude: ['createdAt', 'updatedAt', 'email', 'id'] },
 });
+
+/**
+ * Saves the user's profile info.
+ * @param {string} email- The users's Email.
+ * @param {string} givenName- The users's first name.
+ * @param {string} familyName- The users's last name.
+ * @param {integer} id-The user's google id
+ */
+
+const saveUser = (
+  email,
+  givenName,
+  familyName,
+  id,
+) => User.create({
+  googleId: id,
+  email,
+  givenName,
+  familyName,
+});
+
 
 /**
  * Gets the course id, the course's concepts, and each concepts' answers.
@@ -227,6 +248,7 @@ module.exports = {
   getCourseBadge,
   getBudget,
   setBudget,
+  saveUser,
   spendBudget,
   updateBudget,
 };
