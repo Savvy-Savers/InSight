@@ -1,6 +1,5 @@
 import React from "react"
-import { StyleSheet, Text, View, Image, Button } from "react-native"
-import Main from './Main';
+import { StyleSheet, Text, View, Image, Button } from "react-native";
 import * as Google from "expo-google-app-auth";
 import axios from 'axios';
 import {andriodId, iphoneId } from 'react-native-dotenv';
@@ -25,19 +24,18 @@ export default class Login extends React.Component {
       })
     
       if (type === "success") {
-        // console.log('google user',user);
-        console.log('token', accessToken);
+        console.log('google user',user);
         this.setState({
           signedIn: true,
           name: user.name,
           photoUrl: user.photoUrl
         })
-        return axios.post('http://localhost:8080/profile/user/', {
+        return axios.post('http://localhost:8080/profile/user', {
           user,
+          accessToken,
           })
-            .then(function (response) {
-              console.log(response.data.googleId);
-
+            .then(function (userInfo) {
+              console.log('user data from the database', userInfo.data);
               // get the user from the database 
             })
             .catch(function (error) {

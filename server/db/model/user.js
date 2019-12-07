@@ -8,6 +8,10 @@ module.exports = (sequelize, type) => sequelize.define('user', {
   familyName: type.STRING,
   email: type.STRING,
   googleId: type.STRING,
-  totalExperiencePoints: type.INTEGER,
+  totalExperiencePoints: {
+    type: type.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
   goal: type.STRING,
 });
