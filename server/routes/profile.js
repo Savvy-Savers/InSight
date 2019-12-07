@@ -37,18 +37,20 @@ router.get('/user/:id/completed', (req, res) => {
 });
 
 
-router.post('/user/', (req, res) => {
-  console.log(req);
+router.post('/user', (req, res) => {
   const {
     email,
     givenName,
     familyName,
-    totalExperiencePoints,
     id,
   } = req.body.user;
-  saveUser(email, givenName, familyName, totalExperiencePoints, id)
+  saveUser(email, givenName, familyName, id)
+    .then((user) => {
+      //  console.log(user.dataValues);
+      res.send(user.dataValues);
+    })
     .then(() => {
-      res.send(201);
+      // res.sendStatus(201);
     })
     .catch((err) => console.error(err));
 });

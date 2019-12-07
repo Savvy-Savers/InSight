@@ -49,8 +49,6 @@ const getCourses = () => Course.findAll({
 
 /**
  * Gets the user's profile info.
- * @param {integer} userId - The user's ID.
- * @param {string} userEmail- The users's Email.
  * @param {string} googleId- The users's google id
  */
 const getUser = (googleId) => User.findOne({
@@ -61,25 +59,21 @@ const getUser = (googleId) => User.findOne({
 });
 
 /**
- * Gets the user's profile info.
- * @param {integer} userId - The user's ID.
- * @param {string} userEmail- The users's Email.
+ * Saves the user's profile info.
+ * @param {string} email- The users's Email.
  * @param {string} givenName- The users's first name.
  * @param {string} familyName- The users's last name.
- * @param {integer} totalExperiencePoints- The users's total experience.
- * @param {integer} id-The user's googleId
+ * @param {integer} id-The user's google id
  */
 
 const saveUser = (
   email,
   givenName,
   familyName,
-  totalExperiencePoints,
   id,
 ) => User.create({
   googleId: id,
   email,
-  totalExperiencePoints,
   givenName,
   familyName,
 });
