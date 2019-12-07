@@ -1,28 +1,41 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-restricted-properties */
+import React, { Component } from 'react';
+import {
+  StyleSheet, Text, View, Button, TextInput,
+} from 'react-native';
 
 const styles = StyleSheet.create({
-header: {
-  height: 50,
-  width: 250,
-  backgroundColor: "#FED627",
-  justifyContent: 'center',
-  position: 'absolute',
-  top: 20,
-}
+  button: {
+    backgroundColor: 'orange',
+    height: 10,
+    width: 30,
+    color: 'white',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#067EBD',
+    alignItems: 'center',
+    justifyContent: 'center',
+    bottom: 50,
+  },
+  inputs: {
+    width: 300,
+    alignSelf: 'center',
+    height: 40,
+    margin: 10,
+    padding: 5,
+    backgroundColor: 'lightblue',
+  },
+  results: {
+    width: 300,
+    alignSelf: 'center',
+    height: 70,
+    margin: 10,
+  },
 });
 
-const Header = () => {
-  return (
-    <View style={styles.header}>
-      <Text style={{fontSize: 20, alignSelf: 'center'}}
-        Student Loan Calculator
-      ></Text>
-    </View>
-  )
-}
-
-export default class LoanInput extends React.Component {
+export default class LoanInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,10 +43,15 @@ export default class LoanInput extends React.Component {
       principal: 0,
       years: 0,
       response: '',
-      completed: false
-    }
+      completed: false,
+    };
+
     this.calculate = this.calculate.bind(this);
     this.reset = this.reset.bind(this);
+    // this.getMonths = this.getMonths.bind(this);
+    // this.convertRate = this.convertRate.bind(this);
+    // this.MonthlyPayment = this.MonthlyPayment.bind(this);
+    this.loan = this.loan.bind(this);
   }
 
   reset() {
@@ -42,90 +60,89 @@ export default class LoanInput extends React.Component {
       principal: null,
       years: null,
       response: '',
-      completed: false
-    })
-  };
+      completed: false,
+    });
+  }
 
   calculate() {
-    getMonths((yrs) => {
-      return yrs * 12;
-    });
+    const getMonths = ((yrs) => yrs * 12);
 
-    convertRate((rate) => {
-      return Number(rate);
-    });
+    const convertRate = ((rate) => Number(rate));
 
-    MonthlyPayment((r, p, yrs) => {
-      months = getMonths(yrs);
-      rate = convertRate(r);
+    let MonthlyPayment = ((r, p, yrs) => {
+      const months = getMonths(yrs);
+      const rate = convertRate(r);
 
-      this.values = (() => {
-        return {
-          months: months, 
-          rate: rate, 
-          principal: p
-        }
-      });
+      this.values = (() => ({
+        months,
+        rate,
+        principal: p,
+      }));
 
       this.total = (() => {
-        firstTop = rate * Math.pow((1 + rate), months);
-        secondBottom = Math.pow(1 + rate, months) - 1;
+        const firstTop = rate * Math.pow((1 + rate), months);
+        const secondBottom = Math.pow(1 + rate, months) - 1;
         return Math.round(p * (firstTop / secondBottom));
       });
 
-      this.message = (() => {
-        return `At a rate of ${rate}% with ${months} months of payments & a principal of ${p}, your payment will be $${this.total()} per month!`
-      });
+      this.message = (() => `At a rate of ${rate}% with ${months} months of payments & a principal of ${p}, your payment will be $${this.total()} per month!`);
     });
-  };
+  }
 
   loan() {
     new MonthlyPayment(
       this.state.rate,
       this.state.principal,
-      this.state.years
+      this.state.years,
     );
-    
+
     this.setState({
       response: loan.message(),
-      completed: true
+      completed: true,
     });
-  }; 
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <Header />
         {
-          this.state.completed ?
-          <View
-          style={styles.result}
-          >
-  <Text style={{fontSize: 18, color: 'white'}}>{this.state.response}</Text>
-          </View>
-          : null
+          this.state.completed
+            ? (
+              <View
+                style={styles.result}
+              >
+                <Text style={{ fontSize: 18, color: 'white' }}>{this.state.response}</Text>
+                            </View>
+            )
+            : null
         }
-        <TextInput 
-          keyboardType= 'numeric'
-          placeholder='Principal'
+        <TextInput
+          keyboardType="numeric"
+          placeholder="Principal"
           style={styles.inputs}
           value={this.state.principal}
-          onChangeText={(text) => this.setState({principal: text})}
-          />
-          <TextInput
-            keyboardType= 'numeric'
-            placeholder='Years'
-            style={styles.inputs}
-            value={this.state.years}
-            onChangeText={(text) => this.setState({years: text})}
-            />
-            <Button
-              onPress={this.reset}
-              style={styles.button}
-              title='Reset'
-              accessibilityLabel="Learn more about this!"
-              />
+          onChangeText={(text) => this.setState({ principal: text })}
+        />
+        <TextInput
+          keyboardType="numeric"
+          placeholder="Years"
+          style={styles.inputs}
+          value={this.state.years}
+          onChangeText={(text) => this.setState({ years: text })}
+        />
+        <Button
+          onPress={this.calculate}
+          style={styles.button}
+          title="Calculate"
+          accessibilityLabel="Learn more about this!"
+        />
+        <Button
+          onPress={this.reset}
+          style={styles.button}
+          title="Reset"
+          accessibilityLabel="Learn more about this!"
+        />
       </View>
-    )
+    );
   }
 }
