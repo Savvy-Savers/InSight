@@ -71,11 +71,13 @@ const saveUser = (
   givenName,
   familyName,
   id,
+  photoUrl,
 ) => User.create({
   googleId: id,
   email,
   givenName,
   familyName,
+  photoUrl,
 });
 
 

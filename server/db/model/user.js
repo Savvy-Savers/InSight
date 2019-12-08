@@ -14,4 +14,5 @@ module.exports = (sequelize, type) => sequelize.define('user', {
     defaultValue: 0,
   },
   goal: type.STRING,
+  photoUrl: type.STRING,
 });

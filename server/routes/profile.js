@@ -43,8 +43,9 @@ router.post('/user', (req, res) => {
     givenName,
     familyName,
     id,
+    photoUrl,
   } = req.body.user;
-  saveUser(email, givenName, familyName, id)
+  saveUser(email, givenName, familyName, id, photoUrl)
     .then((user) => {
       //  console.log(user.dataValues);
       res.send(user.dataValues);
