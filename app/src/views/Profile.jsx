@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     width: 150,
     height: 150,
-    borderColor: "rgba(0,0,0,0.2)",
+    borderColor: 'rgba(0,0,0,0.2)',
     borderWidth: 3,
     borderRadius: 150,
   },
@@ -37,6 +37,7 @@ function ProfileScreen(props) {
       <NavBar navigation={props.navigation} />
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Image style={styles.image} source={{ uri: profile.photoUrl }} />
+        <Text>{`${profile.firstName} ${profile.lastName}`}</Text>
         <Text>{`${profile.totalExperiencePoints} XP`}</Text>
         <Text>{`Goals: ${profile.goal}`}</Text>
       </View>
