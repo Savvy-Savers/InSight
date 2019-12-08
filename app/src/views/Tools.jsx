@@ -28,7 +28,7 @@ export default class ToolsScreen extends React.Component {
       update: false, // Field to check if the user is updating their budget
       spend: 0, // Amount to add to the spent value for this budget period
       token: '', // User token
-      id: '', // User's id
+      id: 0, // User's id
     };
 
     this.getBudgetData = this.getBudgetData.bind(this);
