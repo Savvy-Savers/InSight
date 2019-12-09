@@ -49,13 +49,32 @@ const getCourses = () => Course.findAll({
 
 /**
  * Gets the user's profile info.
- * @param {string} googleId- The users's google id
+ * @param {string} accessToken - The access token created by authentication
  */
-const getUser = (googleId) => User.findOne({
+const getUser = (accessToken) => User.findOne({
+  where: {
+    accessToken,
+  },
+  attributes: { exclude: ['createdAt', 'updatedAt', 'googleId', 'accessToken'] },
+});
+
+/**
+ * Gets the user's profile info.
+ * @param {string} googleId - The users's google id
+ */
+const getUserById = (googleId) => User.findOne({
   where: {
     googleId,
   },
-  attributes: { exclude: ['createdAt', 'updatedAt', 'email', 'id'] },
+  attributes: ['accessToken'],
+});
+
+const updateToken = (googleId, accessToken) => User.update({
+  accessToken,
+}, {
+  where: {
+    googleId,
+  },
 });
 
 /**
@@ -67,17 +86,19 @@ const getUser = (googleId) => User.findOne({
  */
 
 const saveUser = (
-  email,
   givenName,
   familyName,
   id,
-  photoUrl,
+  profileImg,
+  accessToken,
+  master
 ) => User.create({
   googleId: id,
-  email,
   givenName,
   familyName,
+  profileImg,
   photoUrl,
+  accessToken,
 });
 
 
@@ -243,6 +264,8 @@ module.exports = {
   getCourses,
   getCourse,
   getUser,
+  getUserById,
+  updateToken,
   getUserBadges,
   updateUserXp,
   insertUserBadge,
