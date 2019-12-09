@@ -89,14 +89,12 @@ const saveUser = (
   givenName,
   familyName,
   id,
-  profileImg,
   accessToken,
-  master
+  photoUrl,
 ) => User.create({
   googleId: id,
   givenName,
   familyName,
-  profileImg,
   photoUrl,
   accessToken,
 });
