@@ -43,6 +43,11 @@ router.post('/user', (req, res) => {
   const {
     givenName,
     familyName,
+    profileImg,
+    id,
+    photoUrl,
+  } = req.body.user;
+  saveUser(email, givenName, familyName, id, photoUrl)
     id, // Google Id
   } = req.body.user;
   const { accessToken } = req.body;
