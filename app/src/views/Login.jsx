@@ -1,5 +1,5 @@
 import React from "react"
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import { StyleSheet, Text, View, Image, Button, AsyncStorage } from "react-native"
 import * as Google from "expo-google-app-auth";
 import axios from 'axios';
 import {andriodId, iphoneId } from 'react-native-dotenv';
@@ -24,23 +24,24 @@ export default class Login extends React.Component {
       })
     
       if (type === "success") {
-        console.log('google user',user);
+        storeData = async () => {
+          try {
+            await AsyncStorage.setItem('@token', accessToken) // Stores the data across the app
+          } catch (e) {
+            // saving error
+          }
+        }
+        storeData();
+
         this.setState({
           signedIn: true,
           name: user.name,
-           photoUrl: user.photoUrl
+          photoUrl: user.photoUrl
         })
-        return axios.post('http://localhost:8080/profile/user', {
-           user,
-           accessToken,
-          })
-            .then(function (userInfo) {
-              console.log('user data from the database', userInfo.data);
-              // get the user from the database 
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
+        return axios.post('http://localhost:8080/profile/user/', {
+          user,
+          accessToken,
+        })
       } else {
         console.log("cancelled")
       }
@@ -80,7 +81,6 @@ const LoginPage = props => {
 }
 
 const LoggedInPage = props => {
-  console.log(props);
   return (
     <View style={{flex: 1}}>
       <NavBar navigation={props.navigation} />
