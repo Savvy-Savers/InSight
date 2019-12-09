@@ -203,6 +203,19 @@ const getCompletedCourse = (userId) => UserBadge.findAll({
   }));
 
 /**
+ * Check to see if user has achieved this badge already
+ * @param {integer} userId - The user's ID.
+ * @param {integer} badgeId - The badge ID associaed with the course
+ */
+const getCompletedCourseStatus = (userId, badgeId) => UserBadge.findOne({
+  where: {
+    idUser: userId,
+    idBadge: badgeId,
+  },
+  attributes: ['idBadge'],
+}).catch(() => false);
+
+/**
  * Gets the user's saved budget data
  * @param {integer} userId - The user's ID.
  */
@@ -268,6 +281,7 @@ module.exports = {
   updateUserXp,
   insertUserBadge,
   getCompletedCourse,
+  getCompletedCourseStatus,
   getCourseBadge,
   getBudget,
   setBudget,
