@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, Button, Text, TextInput, View } from 'react-native';
-import Header from './Header'
 
 const styles = StyleSheet.create({
   button: {
@@ -32,6 +31,26 @@ const styles = StyleSheet.create({
   }
 });
 
+const styles = StyleSheet.create({
+  header: {
+    height: 100,
+    width: 500,
+    backgroundColor: 'lightblue',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 60
+  }
+});
+
+const Header = () => {
+  return(
+    <View style={styles.header}>
+      <Text style={{fontSize: 15, alignSelf: 'center'}}
+        Loan Calculator
+        ></Text>
+    </View>
+  )
+}
 
 
 export default class Loan extends Component {
