@@ -1,8 +1,9 @@
-const router = require('express').Router();
+cconst router = require('express').Router();
 const {
   getCourse,
   getCourses,
   getCourseBadge,
+  getCompletedCourseStatus,
   updateUserXp,
   insertUserBadge,
 } = require('../db/helper');
@@ -27,6 +28,17 @@ router.get('/list', (req, res) => {
     })
     .catch((err) => {
       console.error(err);
+    });
+});
+
+// retrieve status of a single course
+router.get('/status/:id/:badgeId', (req, res) => {
+  const { id, badgeId } = req.params;
+  getCompletedCourseStatus(id, badgeId)
+    .then((response) => {
+      if (response) {
+        res.json(true);
+      } else res.json(false);
     });
 });
 
