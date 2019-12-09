@@ -106,13 +106,13 @@ export default class ToolsScreen extends React.Component {
   // update handler for all the text fields for creating a budget
   updateText(element, value) {
     if (element === 'income') {
-      this.setState({ income: value });
+      this.setState({ income: Number(value) });
     } else if (element === 'outcome') {
-      this.setState({ outcome: value });
+      this.setState({ outcome: Number(value) });
     } else if (element === 'savings') {
-      this.setState({ savings: value });
+      this.setState({ savings: Number(value) });
     } else if (element === 'spend') {
-      this.setState({ spend: value });
+      this.setState({ spend: Number(value) });
     }
   }
 
@@ -180,6 +180,7 @@ export default class ToolsScreen extends React.Component {
       spend,
       update,
     } = this.state;
+    const { navigation } = this.props;
     const buttons = ['Weekly', 'Biweekly', 'Monthly', 'Yearly'];
 
     // Budget Math
@@ -273,7 +274,7 @@ export default class ToolsScreen extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <NavBar navigation={this.props.navigation} />
+        <NavBar navigation={navigation} />
         {firstTime || update ? setup : budget}
       </View>
     );
