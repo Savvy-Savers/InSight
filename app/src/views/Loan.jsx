@@ -28,10 +28,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: 70,
     margin: 10
-  }
-});
-
-const styles = StyleSheet.create({
+  },
   header: {
     height: 100,
     width: 500,
