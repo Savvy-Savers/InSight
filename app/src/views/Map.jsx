@@ -21,12 +21,9 @@ function MapScreen() {
         axios.get(`http://${deployment}:8080/profile/user/${profileData.data.id}/completed`);
       })
       .then((completedCourses) => {
-        if (completedCourses.data.length) {
-          setCompletedCourses(completedCourses.data);
-        }
-      })
-      .then(() => {
-        axios.get(`http://${deployment}:8080/course/list`);
+        // an array of courseIds or an empty array for a new user
+        setCompletedCourses(completedCourses || []);
+        return axios.get(`http://${deployment}:8080/course/list`);
       })
       .then((allCourses) => {
         setCourses(allCourses.data);
