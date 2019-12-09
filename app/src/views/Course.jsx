@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
 import { useNavigation } from 'react-navigation-hooks';
 import axios from 'axios';
+import { deployment } from 'react-native-dotenv';
 
 function CourseScreen(props) {
   const [course, setCourse] = useState({});
@@ -13,7 +14,7 @@ function CourseScreen(props) {
   const { navigate } = useNavigation();
 
   useEffect(() => {
-    axios.get(`http://18.206.35.110:8080/course/list/${id}`)
+    axios.get(`http://${deployment}:8080/course/list/${id}`)
       .then((courseData) => {
         setCourse(courseData.data);
         setCourseBadgeId(courseData.data.idBadge);
