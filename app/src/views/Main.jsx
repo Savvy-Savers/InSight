@@ -5,14 +5,7 @@ import {
   View,
   ImageBackground,
 } from 'react-native';
-<<<<<<< HEAD
-import { Header } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import * as Font from 'expo-font';
-import cascadeBackground from '../assets/images/cascade.png';
-=======
 import NavBar from './NavBar';
->>>>>>> 09f64012ff92231a9bf53ccae948a27bb0a10aff
 
 const styles = StyleSheet.create({
   container: {

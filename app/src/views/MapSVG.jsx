@@ -8,10 +8,19 @@ import { View, StyleSheet, ImageBackground } from 'react-native';
 import Svg, { Circle, Rect, SvgUri } from 'react-native-svg';
 
 function MapSvg(props) {
-  const { courses } = props;
+  const { courses, coursesCompleted } = props;
   const [x, setX] = useState(10);
   const [y, setY] = useState(10);
   const { navigate } = useNavigation();
+
+  courses.forEach((course) => console.log(course.id));
+  console.log (coursesCompleted);
+
+  // if the users has completed the course, we want to X over it
+  // need to check if the course id is in the coursed Completed Array;
+
+  // check if each course is completed
+  // if cousesCompleted.contains(course[0].id)
 
   return (
     <View>
@@ -21,11 +30,12 @@ function MapSvg(props) {
           cx="20"
           cy="20"
           r="8"
-          fill="pink"
+          fill={coursesCompleted.contains(courses[0].id) ? 'pink' : 'blue'}
           title={courses[0].topic}
           key={courses[0].topic}
           onPress={() => { navigate('Course', { id: courses[0].id, name: courses[0].topic }); }}
         />
+        {/* {cousesCompleted.contains(course[0].id) ? } */}
         <Circle
           cx="30"
           cy="80"
