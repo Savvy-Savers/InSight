@@ -10,6 +10,7 @@ import {
   Button,
 } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { deployment } from 'react-native-dotenv';
 import axios from 'axios';
 import Pie from './Pie';
 import NavBar from './NavBar';
@@ -51,11 +52,11 @@ export default class ToolsScreen extends React.Component {
   // Retrieves the budget attached to the user id
   getBudgetData() {
     const { token } = this.state;
-    axios.get(`http://localhost:8080/profile/user/${token}`) // Retrieve user info from token
+    axios.get(`http://${deployment}:8080/profile/user/${token}`) // Retrieve user info from token
       .then((profileData) => {
         this.setState({ id: profileData.data.id });
         const { id } = this.state;
-        return axios.get(`http://localhost:8080/tool/budget/${id}`); // Retrieve budget info from user id
+        return axios.get(`http://${deployment}:8080/tool/budget/${id}`); // Retrieve budget info from user id
       })
       .then((budget) => {
         // if there is no budget data, send the user through first time setup
@@ -130,7 +131,7 @@ export default class ToolsScreen extends React.Component {
 
     // Determine if the submition is for first time setup or update
     if (firstTime) { // Submit a new budget
-      axios.post(`http://localhost:8080/tool/budget/${id}`, {
+      axios.post(`http://${deployment}:8080/tool/budget/${id}`, {
         income,
         outcome,
         incomeModifier,
@@ -140,7 +141,7 @@ export default class ToolsScreen extends React.Component {
           this.setState({ firstTime: false });
         });
     } else if (update) { // Update a budget
-      axios.patch(`http://localhost:8080/tool/budget/${id}`, {
+      axios.patch(`http://${deployment}:8080/tool/budget/${id}`, {
         income,
         outcome,
         incomeModifier,
@@ -157,7 +158,7 @@ export default class ToolsScreen extends React.Component {
     const { id } = this.state;
     let { spend } = this.state;
     spend = Math.round(spend * 100) / 100; // To round the value to 2 decimal places
-    axios.patch(`http://localhost:8080/tool/budget/spend/${id}`, {
+    axios.patch(`http://${deployment}:8080/tool/budget/spend/${id}`, {
       spend,
     })
       .then(() => {

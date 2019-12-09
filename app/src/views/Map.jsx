@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { useNavigation } from 'react-navigation-hooks';
+import { deployment } from 'react-native-dotenv';
 import axios from 'axios';
 
 
@@ -10,7 +11,7 @@ function MapScreen() {
   const { navigate } = useNavigation();
 
   useEffect(() => {
-    axios.get('http://18.206.35.110:8080/course/list')
+    axios.get(`http://${deployment}:8080/course/list`)
       .then((allCourses) => {
         setCourses(allCourses.data);
       });
