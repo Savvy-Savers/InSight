@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import { Button, Overlay } from 'react-native-elements';
 import { useNavigation } from 'react-navigation-hooks';
+import { deployment } from 'react-native-dotenv';
 import axios from 'axios';
 import Confetti from './Confetti';
 
@@ -21,7 +22,7 @@ const BadgeAcquisition = (props) => {
   // also assign the user the badge and experince points
   useEffect(() => {
     // send a request for the course badge
-    axios.get(`http://18.206.35.110:8080/course/badge/${badgeId}`)
+    axios.get(`http://${deployment}:8080/course/badge/${badgeId}`)
       .then((badge) => {
         setBadgeAchievement(badge.data);
       });
