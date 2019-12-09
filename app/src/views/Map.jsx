@@ -9,7 +9,6 @@ function MapScreen() {
   const [courses, setCourses] = useState([]);
   const [coursesCompleted, setCompletedCourses] = useState([]);
   const [isLoaded, setLoadStatus] = useState(false);
-  const [profile, setProfile] = useState({});
   const [badges, setBadges] = useState([]);
 
 
@@ -21,14 +20,13 @@ function MapScreen() {
       })
       .then(() => AsyncStorage.getItem('@token')) // Retrieve token stored from login
       .then((token) => axios.get(`http://localhost:8080/profile/user/${token}`))
-      .then((profileData) => {
-        setProfile(profileData.data);
-        return axios.get(`http://18.206.35.110:8080/profile/user/${profileData.data.id}/completed`);
+      .then((profileData) => { 
+        axios.get(`http://18.206.35.110:8080/profile/user/${profileData.data.id}/completed`);
       })
       .then((completedCourses) => {
         setCompletedCourses(completedCourses);
+        setLoadStatus(true);
       });
-    setLoadStatus(true);
   }, []); // Array necessary to not repeat endlessly
 
   return (

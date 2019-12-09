@@ -4,13 +4,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import axios from 'axios';
-import { View, StyleSheet, ImageBackground } from 'react-native';
+import { View } from 'react-native';
 import Svg, { Circle, Rect, SvgUri } from 'react-native-svg';
 
 function MapSvg(props) {
-  const { courses, coursesCompleted } = props;
-  const [x, setX] = useState(10);
-  const [y, setY] = useState(10);
+  const { courses, coursesCompleted, profile } = props;
   const { navigate } = useNavigation();
 
   courses.forEach((course) => console.log(course.id));
@@ -30,7 +28,7 @@ function MapSvg(props) {
           cx="20"
           cy="20"
           r="8"
-          fill={coursesCompleted.contains(courses[0].id) ? 'pink' : 'blue'}
+          fill={coursesCompleted.includes(courses[0].id) ? 'pink' : 'blue'}
           title={courses[0].topic}
           key={courses[0].topic}
           onPress={() => { navigate('Course', { id: courses[0].id, name: courses[0].topic }); }}

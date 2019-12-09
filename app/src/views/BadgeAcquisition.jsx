@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 import { Button, Overlay } from 'react-native-elements';
 import { useNavigation } from 'react-navigation-hooks';
 import axios from 'axios';
@@ -21,22 +21,20 @@ const BadgeAcquisition = (props) => {
   // also assign the user the badge and experince points
   useEffect(() => {
     // send a request for the course badge
-    axios.get(`http://18.206.35.110:8080/course/badge/${badgeId}`)
-      .then((badge) => {
-        setBadgeAchievement(badge.data);
+    axios.get(`http://localhost:8080/course/badge/${badgeId}`)
+      .then((badge) => { setBadgeAchievement(badge.data); })
+      .then(() => { AsyncStorage.getItem('@token'); }) // Retrieve token stored from login
+      .then((token) => axios.get(`http://localhost:8080/profile/user/${token}`))
+      .then((profileData) => {
+        // update the user's badge collection
+        axios.post(`http://localhost:8080/course/user/${profileData.data.id}/badge/${badgeId}`);
       });
-    // update the user's badge collection
-    //  axios.post(`http://18.206.35.110:8080/course/user/${id}/badge/${badgeId})` <--- FIXME: still need to have userID
   }, []);
 
   const styles = {
     parent: {
       justifyContent: 'center',
       alignItems: 'center',
-    },
-    button: {
-      justifyContent: 'flex-end',
-      marginBottom: 36,
     },
   };
 
