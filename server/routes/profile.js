@@ -33,7 +33,10 @@ router.get('/user/:id/completed', (req, res) => {
   const { id } = req.params;
   getCompletedCourse(id)
     .then((coursesId) => {
-      res.json(coursesId.map((course) => course.id));
+      // if the users is new, they will not have completed courses, so this accounts for that
+      if (coursesId) {
+        res.json(coursesId.map((course) => course.id));
+      } else res.json([]);
     })
     .catch((err) => console.error(err));
 });

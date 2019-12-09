@@ -15,19 +15,24 @@ function MapScreen() {
 
   // compare all courses to completed courses
   useEffect(() => {
-    axios.get(`http://${deployment}:8080/course/list`)
-      .then((allCourses) => {
-        setCourses(allCourses.data);
-      })
-      .then(() => AsyncStorage.getItem('@token')) // Retrieve token stored from login
-      .then((token) => axios.get(`http://localhost:8080/profile/user/${token}`))
-      .then((profileData) => { 
-        axios.get(`http://18.206.35.110:8080/profile/user/${profileData.data.id}/completed`);
+    AsyncStorage.getItem('@token')// Retrieve token stored from login
+      .then((token) => axios.get(`http://${deployment}:8080/profile/user/${token}`))
+      .then((profileData) => {
+        axios.get(`http://${deployment}:8080/profile/user/${profileData.data.id}/completed`);
       })
       .then((completedCourses) => {
-        setCompletedCourses(completedCourses);
+        if (completedCourses.data.length) {
+          setCompletedCourses(completedCourses.data);
+        }
+      })
+      .then(() => {
+        axios.get(`http://${deployment}:8080/course/list`);
+      })
+      .then((allCourses) => {
+        setCourses(allCourses.data);
         setLoadStatus(true);
-      });
+      })
+      .catch((err) => console.log(err));
   }, []); // Array necessary to not repeat endlessly
 
   return (

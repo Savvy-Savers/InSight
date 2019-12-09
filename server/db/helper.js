@@ -200,7 +200,8 @@ const getCompletedCourse = (userId) => UserBadge.findAll({
       idBadge: badgesId.map((badgeId) => badgeId.dataValues.idBadge),
     },
     attributes: ['id'],
-  }));
+  }))
+  .catch(() => []);
 
 /**
  * Check to see if user has achieved this badge already
