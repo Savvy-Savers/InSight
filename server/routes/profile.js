@@ -1,14 +1,17 @@
 const router = require('express').Router();
 const {
   getUser,
+  getUserById,
+  updateToken,
   getUserBadges,
   getCompletedCourse,
+  saveUser,
 } = require('../db/helper');
 
-// Endpoint to get user profile info by id
-router.get('/user/:id', (req, res) => {
-  const { id } = req.params;
-  getUser(id)
+// Endpoint to get user profile info by token
+router.get('/user/:token', (req, res) => {
+  const { token } = req.params;
+  getUser(token)
     .then((user) => {
       res.json(user);
     })
@@ -31,6 +34,32 @@ router.get('/user/:id/completed', (req, res) => {
   getCompletedCourse(id)
     .then((coursesId) => {
       res.json(coursesId.map((course) => course.id));
+    })
+    .catch((err) => console.error(err));
+});
+
+
+router.post('/user', (req, res) => {
+  const {
+    givenName,
+    familyName,
+    profileImg,
+    id,
+    photoUrl,
+  } = req.body.user;
+  saveUser(email, givenName, familyName, id, photoUrl)
+    id, // Google Id
+  } = req.body.user;
+  const { accessToken } = req.body;
+  getUserById(id)
+    .then((user) => {
+      if (user) {
+        return updateToken(id, accessToken);
+      }
+      return saveUser(givenName, familyName, id, accessToken);
+    })
+    .then(() => {
+      res.sendStatus(201);
     })
     .catch((err) => console.error(err));
 });

@@ -4,8 +4,15 @@ module.exports = (sequelize, type) => sequelize.define('user', {
     primaryKey: true,
     autoIncrement: true,
   },
-  firstName: type.STRING,
-  lastName: type.STRING,
-  totalExperiencePoints: type.INTEGER,
+  givenName: type.STRING,
+  familyName: type.STRING,
+  accessToken: type.STRING,
+  googleId: type.STRING,
+  totalExperiencePoints: {
+    type: type.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
   goal: type.STRING,
+  photoUrl: type.STRING,
 });

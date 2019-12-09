@@ -1,19 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import { ListItem, Header } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Text, View, Image, StyleSheet } from 'react-native';
+import { Text, View, AsyncStorage } from 'react-native';
+import { ListItem } from 'react-native-elements';
 import axios from 'axios';
+import NavBar from './NavBar';
 
-function ProfileScreen() {
+const styles = StyleSheet.create({
+  image: {
+    marginTop: 15,
+    width: 150,
+    height: 150,
+    borderColor: 'rgba(0,0,0,0.2)',
+    borderWidth: 3,
+    borderRadius: 150,
+  },
+});
+
+function ProfileScreen(props) {
   // Profile info
   const [profile, setProfile] = useState({});
   const [badges, setBadges] = useState([]);
 
   useEffect(() => {
-    axios.get('http://18.206.35.110:8080/profile/user/1') // FIXME: modify user id# for authentication
+    AsyncStorage.getItem('@token') // Retrieve token stored from login
+      .then((token) => axios.get(`http://localhost:8080/profile/user/${token}`))
       .then((profileData) => {
         setProfile(profileData.data);
-        return axios.get('http://18.206.35.110:8080/profile/user/1/badges');
+        return axios.get(`http://localhost:8080/profile/user/${profileData.data.id}/badges`);
       })
       .then((badgesData) => {
         setBadges(badgesData.data);
@@ -23,25 +36,12 @@ function ProfileScreen() {
   return (
     // Basic display to show necessary variables, to be revised
     <View style={{ flex: 1 }}>
-      <Header // Temporary header with button to eventually open drawer
-        leftComponent={
-          (
-            <TouchableOpacity onPress={() => { /* Open Drawer */ }}>
-              <Icon
-                name="bars"
-                style={{
-                  color: 'white',
-                  padding: 10,
-                  marginLeft: 10,
-                  fontSize: 20,
-                }}
-              />
-            </TouchableOpacity>
-          )
-        }
-      />
+      <NavBar navigation={props.navigation} />
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        profileImg
+        <Image style={styles.image} source={{ uri: profile.photoUrl }} />
         <Text>{`${profile.firstName} ${profile.lastName}`}</Text>
+        <Text>{`${profile.givenName} ${profile.familyName}`}</Text>
         <Text>{`${profile.totalExperiencePoints} XP`}</Text>
         <Text>{`Goals: ${profile.goal}`}</Text>
       </View>

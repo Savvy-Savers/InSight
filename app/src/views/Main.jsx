@@ -3,13 +3,16 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   ImageBackground,
 } from 'react-native';
+<<<<<<< HEAD
 import { Header } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as Font from 'expo-font';
 import cascadeBackground from '../assets/images/cascade.png';
+=======
+import NavBar from './NavBar';
+>>>>>>> 09f64012ff92231a9bf53ccae948a27bb0a10aff
 
 const styles = StyleSheet.create({
   container: {
@@ -27,33 +30,16 @@ const styles = StyleSheet.create({
   },
 });
 
-function MainScreen() {
-  const [fontLoaded, setFontLoad] = useState(true);
+function MainScreen(props) {
   return (
-    <ImageBackground source={require('../assets/images/cascade.png')} style={{ width: '100%', height: '100%' }}>
-      <Header // Temporary header with button to eventually open drawer
-        leftComponent={
-          (
-            <TouchableOpacity onPress={() => { /* Open Drawer */ }}>
-              <Icon
-                name="bars"
-                style={{
-                  color: 'white',
-                  padding: 10,
-                  marginLeft: 10,
-                  fontSize: 20,
-                }}
-              />
-            </TouchableOpacity>
-          )
-        }
-      />
-      <View style={styles.container}>
-        {fontLoaded ? (
-          <Text style={styles.logoText}>Welcome to InSight!</Text>
-        ) : null}
-      </View>
-    </ImageBackground>
+    <View style={{ flex: 1 }}>
+      <ImageBackground source={{ uri: './src/assets/images/cascade.png' }} style={{ width: '100%', height: '100%' }}>
+        <NavBar navigation={props.navigation} />
+        <View style={styles.container}>
+          <Text>Welcome to InSight!</Text>
+        </View>
+      </ImageBackground>
+    </View>
   );
 }
 
