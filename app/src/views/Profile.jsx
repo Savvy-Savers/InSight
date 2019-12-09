@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
-import { Text, View, AsyncStorage } from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  AsyncStorage,
+} from 'react-native';
 import { ListItem } from 'react-native-elements';
 import axios from 'axios';
 import NavBar from './NavBar';
@@ -38,7 +43,6 @@ function ProfileScreen(props) {
     <View style={{ flex: 1 }}>
       <NavBar navigation={props.navigation} />
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        profileImg
         <Image style={styles.image} source={{ uri: profile.photoUrl }} />
         <Text>{`${profile.firstName} ${profile.lastName}`}</Text>
         <Text>{`${profile.givenName} ${profile.familyName}`}</Text>
