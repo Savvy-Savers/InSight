@@ -1,4 +1,4 @@
-const router = require('express').Router();
+cconst router = require('express').Router();
 const {
   getCourse,
   getCourses,
