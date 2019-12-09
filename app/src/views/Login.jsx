@@ -2,7 +2,7 @@ import React from "react"
 import { StyleSheet, Text, View, Image, Button, AsyncStorage } from "react-native"
 import * as Google from "expo-google-app-auth";
 import axios from 'axios';
-import {andriodId, iphoneId } from 'react-native-dotenv';
+import {andriodId, iphoneId, deployment } from 'react-native-dotenv';
 import NavBar from './NavBar';
 
 
@@ -38,7 +38,7 @@ export default class Login extends React.Component {
           name: user.name,
           photoUrl: user.photoUrl
         })
-        return axios.post('http://localhost:8080/profile/user/', {
+        return axios.post(`http://${deployment}:8080/profile/user/`, {
           user,
           accessToken,
         })

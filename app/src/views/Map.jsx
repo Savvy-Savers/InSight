@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, ImageBackground, AsyncStorage } from 'react-native';
 import { ListItem, Header } from 'react-native-elements';
 import { useNavigation } from 'react-navigation-hooks';
+import { deployment } from 'react-native-dotenv';
 import axios from 'axios';
 import MapSvg from './MapSVG';
 
@@ -14,7 +15,7 @@ function MapScreen() {
 
   // compare all courses to completed courses
   useEffect(() => {
-    axios.get('http://18.206.35.110:8080/course/list')
+    axios.get(`http://${deployment}:8080/course/list`)
       .then((allCourses) => {
         setCourses(allCourses.data);
       })
