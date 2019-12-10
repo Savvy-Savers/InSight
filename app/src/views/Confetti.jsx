@@ -33,6 +33,13 @@ const styles = {
     fontWeight: 'bold',
     margin: 5,
   },
+  body: {
+    color: '#000',
+    fontSize: 14,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    margin: 5,
+  },
   stats: {
     color: '#000',
     fontSize: 12,
@@ -72,14 +79,11 @@ class RNConfetti extends Component {
     const { badgeAchievement, courseStatus} = this.props;
     return (
       <View style={styles.container}>
-        <Confetti ref={(node) => this._confettiView = node} />
         {courseStatus === true ? (
-          <View>
-            <Text style={styles.stats}> You have already gained this badge!</Text>
-            <Text style={styles.stats}> Check it out in your profile.</Text>
-          </View>
+          <Text style={styles.body}> You have already gained this badge! Check it out in your profile.</Text>
         ) : (
           <View>
+            <Confetti ref={(node) => this._confettiView = node} />
             <Text style={styles.description}>{`${badgeAchievement.description}`}</Text>
             <Image
               style={styles.badge}
