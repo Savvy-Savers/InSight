@@ -31,8 +31,8 @@ const BadgeAcquisition = (props) => {
         setProfile(profileData.data);
         return axios.get(`http://${deployment}:8080/course/status/${profileData.data.id}/${badgeId}`)
           .then((status) => {
-            setCourseStatus(status);
-            if (!status) {
+            setCourseStatus(status.data);
+            if (status.data === false) {
               return axios.post(`http://${deployment}:8080/course/user/${profileData.data.id}/badge/${badgeId}`);
             }
             return axios.get(`http://${deployment}:8080/course/badge/${badgeId}`);
@@ -56,7 +56,6 @@ const BadgeAcquisition = (props) => {
       <Button title="Finish Quiz!" onPress={toggleOverlay} />
       {isLoaded ? (
         <Overlay isVisible={visible} onBackdropPress={toggleOverlay} style={styles.parent}>
-          {/* NEED TO ADD CONDITIONAL HERE IF THE USER ALREADY HAS THE BADGE */}
           <Confetti badgeAchievement={badgeAchievement} courseStatus={courseStatus} />
           <Button
             title="Continue Your Journey"
