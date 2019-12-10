@@ -47,7 +47,7 @@ function ProfileScreen(props) {
         <Image style={styles.image} source={{ uri: profile.photoUrl }} />
         <Text>{`${profile.givenName} ${profile.familyName}`}</Text>
         <Text>{`${profile.totalExperiencePoints} XP`}</Text>
-        <Text>{`Goals: ${profile.goal}`}</Text>
+        {/* <Text>{`Goals: ${profile.goal}`}</Text> */}
       </View>
       <View style={{ flex: 5, margin: 5 }}>
         <Text>Your Achievements! </Text>
