@@ -233,7 +233,7 @@ const enterFakeData = (
       spent: 0,
       savings: 750,
       idUser: 1,
-    }));
+    }))
 };
 
 module.exports = { enterFakeData };
