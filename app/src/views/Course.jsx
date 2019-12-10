@@ -27,10 +27,12 @@ function CourseScreen(props) {
       backgroundColor: '#fff',
     },
     slides: {
-      flex: 4,
+      flex: 3,
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
+      margin: 20,
+
     },
     text: {
       color: '#000',

@@ -62,7 +62,7 @@ class RNConfetti extends Component {
   }
 
   render() {
-    const { navigate } = useNavigation();
+    const { nav } = this.props;
     const { badgeAchievement, courseStatus} = this.props;
     return (
       <View style={styles.container}>
@@ -78,7 +78,8 @@ class RNConfetti extends Component {
         ) : <Text style={styles.stats}>{`You've gained ${badgeAchievement.experiencePoints} experience points!`}</Text> }
         <Button
           title="Continue Your Journey"
-          onPress={() => { navigate('Map'); }}
+          // passing in the function prop to navigate back to map
+          onPress={() => nav()}
         />
       </View>
     );
