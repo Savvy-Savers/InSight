@@ -43,14 +43,14 @@ function ProfileScreen(props) {
     // Basic display to show necessary variables, to be revised
     <View style={{ flex: 1 }}>
       <NavBar navigation={props.navigation} />
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ alignItems: 'center', justifyContent: 'center', margin: 5 }}>
         <Image style={styles.image} source={{ uri: profile.photoUrl }} />
         <Text>{`${profile.givenName} ${profile.familyName}`}</Text>
         <Text>{`${profile.totalExperiencePoints} XP`}</Text>
         <Text>{`Goals: ${profile.goal}`}</Text>
       </View>
-      <View style={{ flex: 5 }}>
-        <Text>Badges go Here!</Text>
+      <View style={{ flex: 5, margin: 5 }}>
+        <Text>Your Achievements! </Text>
         { // Map to display the badges
           badges.map((badge) => (
             <ListItem

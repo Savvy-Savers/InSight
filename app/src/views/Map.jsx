@@ -18,14 +18,14 @@ function MapScreen() {
     AsyncStorage.getItem('@token')// Retrieve token stored from login
       .then((token) => axios.get(`http://${deployment}:8080/profile/user/${token}`))
       .then((profileData) => {
-        axios.get(`http://${deployment}:8080/profile/user/${profileData.data.id}/completed`);
+        axios.get(`http://${deployment}:8080/profile/user/${profileData.data.id}/completed`)
+          .then((completedCourses) => {
+          // an array of courseIds or an empty array for a new user
+            setCompletedCourses(completedCourses.data);
+          });
       })
-      .then((completedCourses) => {
-        // an array of courseIds or an empty array for a new user
-        setCompletedCourses(completedCourses.data);
-        return axios.get(`http://${deployment}:8080/course/list`);
-      })
-      .then((allCourses) => {
+      .then(async () => {
+        const allCourses = await axios.get(`http://${deployment}:8080/course/list`);
         setCourses(allCourses.data);
         setLoadStatus(true);
       })
