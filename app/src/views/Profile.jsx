@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Text,
   View,
@@ -6,6 +6,7 @@ import {
   StyleSheet,
   AsyncStorage,
 } from 'react-native';
+import { withNavigationFocus } from 'react-navigation';
 import { ListItem } from 'react-native-elements';
 import { deployment } from 'react-native-dotenv';
 import axios from 'axios';
@@ -22,49 +23,73 @@ const styles = StyleSheet.create({
   },
 });
 
-function ProfileScreen(props) {
-  // Profile info
-  const [profile, setProfile] = useState({});
-  const [badges, setBadges] = useState([]);
+class ProfileScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      profile: {},
+      badges: [],
+    };
 
-  useEffect(() => {
+    this.getData = this.getData.bind(this);
+  }
+
+  componentDidMount() {
+    this.getData();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isFocused } = this.props;
+    if (prevProps.isFocused !== isFocused) {
+      this.getData();
+    }
+  }
+
+  getData() {
     AsyncStorage.getItem('@token') // Retrieve token stored from login
       .then((token) => axios.get(`http://${deployment}:8080/profile/user/${token}`))
       .then((profileData) => {
-        setProfile(profileData.data);
+        this.setState({
+          profile: profileData.data,
+        });
         return axios.get(`http://${deployment}:8080/profile/user/${profileData.data.id}/badges`);
       })
       .then((badgesData) => {
-        setBadges(badgesData.data);
+        this.setState({
+          badges: badgesData.data,
+        });
       });
-  }, []); // Array necessary to not repeat endlessly
+  }
 
-  return (
-    // Basic display to show necessary variables, to be revised
-    <View style={{ flex: 1 }}>
-      <NavBar navigation={props.navigation} />
-      <View style={{ alignItems: 'center', justifyContent: 'center', margin: 5 }}>
-        <Image style={styles.image} source={{ uri: profile.photoUrl }} />
-        <Text>{`${profile.givenName} ${profile.familyName}`}</Text>
-        <Text>{`${profile.totalExperiencePoints} XP`}</Text>
-        {/* <Text>{`Goals: ${profile.goal}`}</Text> */}
+  render() {
+    const { profile, badges } = this.state;
+    return (
+      // Basic display to show necessary variables, to be revised
+      <View style={{ flex: 1 }}>
+        <NavBar navigation={this.props.navigation} />
+        <View style={{ alignItems: 'center', justifyContent: 'center', margin: 5 }}>
+          <Image style={styles.image} source={{ uri: profile.photoUrl }} />
+          <Text>{`${profile.givenName} ${profile.familyName}`}</Text>
+          <Text>{`${profile.totalExperiencePoints} XP`}</Text>
+          {/* <Text>{`Goals: ${profile.goal}`}</Text> */}
+        </View>
+        <View style={{ flex: 5, margin: 5 }}>
+          <Text>Your Achievements! </Text>
+          { // Map to display the badges
+            badges.map((badge) => (
+              <ListItem
+                key={badge.name}
+                title={badge.name}
+                leftAvatar={{ source: { uri: badge.iconUrl } }}
+                bottomDivider
+                subtitle={badge.description}
+              />
+            ))
+          }
+        </View>
       </View>
-      <View style={{ flex: 5, margin: 5 }}>
-        <Text>Your Achievements! </Text>
-        { // Map to display the badges
-          badges.map((badge) => (
-            <ListItem
-              key={badge.name}
-              title={badge.name}
-              leftAvatar={{ source: { uri: badge.iconUrl } }}
-              bottomDivider
-              subtitle={badge.description}
-            />
-          ))
-        }
-      </View>
-    </View>
-  );
+    );
+  }
 }
 
-export default ProfileScreen;
+export default withNavigationFocus(ProfileScreen);
