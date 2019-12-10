@@ -37,11 +37,14 @@ const BadgeAcquisition = (props) => {
             if (status.data === false) {
               return axios.post(`http://${deployment}:8080/course/user/${profileData.data.id}/badge/${badgeId}`);
             }
-            return axios.get(`http://${deployment}:8080/course/badge/${badgeId}`);
+            return;
           })
-          .then((badge) => {
-            setBadgeAchievement(badge.data || {});
-            setLoadStatus(true);
+          .then(async () => {
+            await axios.get(`http://${deployment}:8080/course/badge/${badgeId}`)
+              .then((badge) => {
+                setBadgeAchievement(badge.data || {});
+                setLoadStatus(true);
+              });
           });
       });
   }, []);
