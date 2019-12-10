@@ -17,6 +17,7 @@ import PolicyScreen from './src/views/Policy';
 import ResourcesScreen from './src/views/Resources';
 import ToolsScreen from './src/views/Tools';
 import QuizScreen from './src/views/Quiz';
+import Loan from './src/views/Loan';
 
 // This is the entry point for Expo! We cann't move this file - so instead,
 // we are using it to return the rest of our app views.
@@ -75,6 +76,7 @@ const AppNavigator = createDrawerNavigator(
     Profile: ProfileScreen,
     Map: CourseNavigator,
     'Course Tools': ToolsScreen,
+    Loan,
     About: AboutScreen,
     Settings: SettingScreen,
     Resources: ResourcesScreen,

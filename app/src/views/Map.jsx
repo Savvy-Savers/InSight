@@ -1,38 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { View, ImageBackground, AsyncStorage } from 'react-native';
+import { ListItem, Header } from 'react-native-elements';
 import { useNavigation } from 'react-navigation-hooks';
+import { deployment } from 'react-native-dotenv';
 import axios from 'axios';
-
+import MapSvg from './MapSVG';
 
 function MapScreen() {
   const [courses, setCourses] = useState([]);
-  const { navigate } = useNavigation();
+  const [coursesCompleted, setCompletedCourses] = useState([]);
+  const [isLoaded, setLoadStatus] = useState(false);
+  const [badges, setBadges] = useState([]);
 
+
+  // compare all courses to completed courses
   useEffect(() => {
-    axios.get('http://18.206.35.110:8080/course/list')
-      .then((allCourses) => {
+    AsyncStorage.getItem('@token')// Retrieve token stored from login
+      .then((token) => axios.get(`http://${deployment}:8080/profile/user/${token}`))
+      .then((profileData) => {
+        axios.get(`http://${deployment}:8080/profile/user/${profileData.data.id}/completed`)
+          .then((completedCourses) => {
+          // an array of courseIds or an empty array for a new user
+            setCompletedCourses(completedCourses.data);
+          });
+      })
+      .then(async () => {
+        const allCourses = await axios.get(`http://${deployment}:8080/course/list`);
         setCourses(allCourses.data);
-      });
+        setLoadStatus(true);
+      })
+      .catch((err) => console.log(err));
   }, []); // Array necessary to not repeat endlessly
 
   return (
-    <View>
+    <ImageBackground source={require('../assets/images/journey.png')}
+      imageStyle={{ resizeMode: 'stretch' }}
+      style={{ width: '100%', height: '100%' }}
+    >
       <View>
-        {
-          courses.map((course) => (
-            <ListItem
-              key={course.topic}
-              title={course.topic}
-              leftAvatar={{ source: { uri: 'https://i.chzbgr.com/full/8762786048/hDA3B4D87/' } }}
-              bottomDivider
-              chevron
-              onPress={() => { navigate('Course', { id: course.id, name: course.topic }); }}
-            />
-          ))
-        }
+        {isLoaded ? (
+          <MapSvg courses={courses} coursesCompleted={coursesCompleted} />
+        ) : null}
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 

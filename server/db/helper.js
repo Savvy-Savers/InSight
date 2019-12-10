@@ -50,13 +50,32 @@ const getCourses = () => Course.findAll({
 
 /**
  * Gets the user's profile info.
- * @param {string} googleId- The users's google id
+ * @param {string} accessToken - The access token created by authentication
  */
-const getUser = (googleId) => User.findOne({
+const getUser = (accessToken) => User.findOne({
+  where: {
+    accessToken,
+  },
+  attributes: { exclude: ['createdAt', 'updatedAt', 'googleId', 'accessToken'] },
+});
+
+/**
+ * Gets the user's profile info.
+ * @param {string} googleId - The users's google id
+ */
+const getUserById = (googleId) => User.findOne({
   where: {
     googleId,
   },
-  attributes: { exclude: ['createdAt', 'updatedAt', 'email', 'id'] },
+  attributes: ['accessToken'],
+});
+
+const updateToken = (googleId, accessToken) => User.update({
+  accessToken,
+}, {
+  where: {
+    googleId,
+  },
 });
 
 /**
@@ -68,15 +87,17 @@ const getUser = (googleId) => User.findOne({
  */
 
 const saveUser = (
-  email,
   givenName,
   familyName,
   id,
+  accessToken,
+  photoUrl,
 ) => User.create({
   googleId: id,
-  email,
   givenName,
   familyName,
+  photoUrl,
+  accessToken,
 });
 
 
@@ -180,7 +201,21 @@ const getCompletedCourse = (userId) => UserBadge.findAll({
       idBadge: badgesId.map((badgeId) => badgeId.dataValues.idBadge),
     },
     attributes: ['id'],
-  }));
+  }))
+  .catch(() => []);
+
+/**
+ * Check to see if user has achieved this badge already
+ * @param {integer} userId - The user's ID.
+ * @param {integer} badgeId - The badge ID associaed with the course
+ */
+const getCompletedCourseStatus = (userId, badgeId) => UserBadge.findOne({
+  where: {
+    idUser: userId,
+    idBadge: badgeId,
+  },
+  attributes: ['idBadge'],
+}).catch(() => false);
 
 /**
  * Gets the user's saved budget data
@@ -270,10 +305,13 @@ module.exports = {
   getCourses,
   getCourse,
   getUser,
+  getUserById,
+  updateToken,
   getUserBadges,
   updateUserXp,
   insertUserBadge,
   getCompletedCourse,
+  getCompletedCourseStatus,
   getCourseBadge,
   getBudget,
   setBudget,

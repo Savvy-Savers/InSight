@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const {
   getUser,
+  getUserById,
+  updateToken,
   getUserBadges,
   getCompletedCourse,
   saveUser,
@@ -8,10 +10,10 @@ const {
   getUserXp,
 } = require('../db/helper');
 
-// Endpoint to get user profile info by id
-router.get('/user/:id', (req, res) => {
-  const { id } = req.params;
-  getUser(id)
+// Endpoint to get user profile info by token
+router.get('/user/:token', (req, res) => {
+  const { token } = req.params;
+  getUser(token)
     .then((user) => {
       res.json(user);
     })
@@ -33,7 +35,10 @@ router.get('/user/:id/completed', (req, res) => {
   const { id } = req.params;
   getCompletedCourse(id)
     .then((coursesId) => {
-      res.json(coursesId.map((course) => course.id));
+      // if the users is new, they will not have completed courses, so this accounts for that
+      if (coursesId) {
+        res.json(coursesId.map((course) => course.id));
+      } else res.json([]);
     })
     .catch((err) => console.error(err));
 });
@@ -41,15 +46,21 @@ router.get('/user/:id/completed', (req, res) => {
 
 router.post('/user', (req, res) => {
   const {
-    email,
     givenName,
     familyName,
     id,
+    photoUrl,
   } = req.body.user;
-  saveUser(email, givenName, familyName, id)
+  const { accessToken } = req.body;
+  getUserById(id)
     .then((user) => {
-      //  console.log(user.dataValues);
-      res.send(user.dataValues);
+      if (user) {
+        return updateToken(id, accessToken);
+      }
+      return saveUser(givenName, familyName, id, accessToken, photoUrl);
+    })
+    .then(() => {
+      res.sendStatus(201);
     })
     .catch((err) => console.error(err));
 });
