@@ -69,7 +69,7 @@ class RNConfetti extends Component {
           source={{ uri: badgeAchievement.iconUrl }}
         />
         <Text style={styles.name}>{`${badgeAchievement.name}`}</Text>
-        {courseStatus === false ? (
+        {courseStatus === true ? (
           <Text style={styles.stats}> You have already gained this badge! </Text>
         ) : <Text style={styles.stats}>{`You've gained ${badgeAchievement.experiencePoints} experience points!`}</Text> }
       </View>
