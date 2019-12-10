@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {
+  AppRegistry,
+  StyleSheet,
   View,
   Text,
   Image,
@@ -15,7 +17,7 @@ const styles = {
   },
   name: {
     color: '#000',
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: 'bold',
     margin: 5,
   },
@@ -27,7 +29,7 @@ const styles = {
   },
   stats: {
     color: '#000',
-    fontSize: 12,
+    fontSize: 8,
     fontWeight: 'bold',
     margin: 5,
   },
@@ -41,7 +43,6 @@ class RNConfetti extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      badgeAchievement: props.badgeAchievement,
     };
   }
 
@@ -58,7 +59,7 @@ class RNConfetti extends Component {
   }
 
   render() {
-    const { badgeAchievement } = this.state;
+    const { badgeAchievement, courseStatus} = this.props;
     return (
       <View style={styles.container}>
         <Confetti ref={(node) => this._confettiView = node} />
@@ -68,7 +69,9 @@ class RNConfetti extends Component {
           source={{ uri: badgeAchievement.iconUrl }}
         />
         <Text style={styles.name}>{`${badgeAchievement.name}`}</Text>
-        <Text style={styles.stats}>{`You've gained ${badgeAchievement.experiencePoints} experience points!`}</Text>
+        {courseStatus === true ? (
+          <Text style={styles.stats}> You have already gained this badge! </Text>
+        ) : <Text style={styles.stats}>{`You've gained ${badgeAchievement.experiencePoints} experience points!`}</Text> }
       </View>
     );
   }

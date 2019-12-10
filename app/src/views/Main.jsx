@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,9 +10,16 @@ import NavBar from './NavBar';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  logoText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    // fontFamily: 'LobsterTwo-Bold',
+    fontSize: 56,
+    marginTop: 10,
   },
 });
 
