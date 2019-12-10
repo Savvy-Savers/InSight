@@ -279,14 +279,10 @@ const getXpLevel = (userXp) => Level.findAll({
   },
 })
   .then((levels) => {
-    // console.log(userXp, 'userxpppp');
-    console.log('levelss', levels);
     return levels.filter((level) => {
       if (userXp.totalExperiencePoints >= level.experiencePointsThreshold) {
-        console.log(level);
         return level;
       }
-      // return 'sorry get your experience points up!';
     });
   })
   .catch((err) => {
