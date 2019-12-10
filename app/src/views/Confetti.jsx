@@ -43,7 +43,6 @@ class RNConfetti extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      badgeAchievement: props.badgeAchievement,
     };
   }
 
@@ -60,7 +59,7 @@ class RNConfetti extends Component {
   }
 
   render() {
-    const { badgeAchievement } = this.state;
+    const { badgeAchievement, courseStatus} = this.props;
     return (
       <View style={styles.container}>
         <Confetti ref={(node) => this._confettiView = node} />
@@ -70,7 +69,9 @@ class RNConfetti extends Component {
           source={{ uri: badgeAchievement.iconUrl }}
         />
         <Text style={styles.name}>{`${badgeAchievement.name}`}</Text>
-        <Text style={styles.stats}>{`You've gained ${badgeAchievement.experiencePoints} experience points!`}</Text>
+        {courseStatus === false ? (
+          <Text style={styles.stats}> You have already gained this badge! </Text>
+        ) : <Text style={styles.stats}>{`You've gained ${badgeAchievement.experiencePoints} experience points!`}</Text> }
       </View>
     );
   }

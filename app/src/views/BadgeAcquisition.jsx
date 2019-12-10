@@ -11,7 +11,9 @@ const BadgeAcquisition = (props) => {
   const [visible, setVisible] = useState(false);
   const [badgeAchievement, setBadgeAchievement] = useState(null);
   const [courseStatus, setCourseStatus] = useState(null);
+  const [profile, setProfile] = useState(null);
   const { navigate } = useNavigation();
+  const [isLoaded, setLoadStatus] = useState(false);
   const badgeId = props.courseBadgeId;
 
 
@@ -22,20 +24,23 @@ const BadgeAcquisition = (props) => {
   // We need to retrieve the badge image for the course and display it
   // also assign the user the badge and experince points
   useEffect(() => {
-    // send a request for the course badge
-    axios.get(`http://${deployment}:8080/course/badge/${badgeId}`)
-      .then((badge) => { setBadgeAchievement(badge.data); })
-      .then(() => { AsyncStorage.getItem('@token'); }) // Retrieve token stored from login
+    AsyncStorage.getItem('@token')
       .then((token) => axios.get(`http://${deployment}:8080/profile/user/${token}`))
+      // check the status of the badge acquisition for the user
       .then((profileData) => {
-        // check the status of the badge acquisition for the user
-        axios.get(`http://${deployment}:8080/course/status/${profileData.data.id}/${badgeId}`);
-      }).then((status) => {
-        setCourseStatus(status.data);
-        if (status === false) {
-        // update the user's badge collection
-          axios.post(`http://${deployment}:8080/course/user/${profileData.data.id}/badge/${badgeId}`);
-        }
+        setProfile(profileData.data);
+        return axios.get(`http://${deployment}:8080/course/status/${profileData.data.id}/${badgeId}`)
+          .then((status) => {
+            setCourseStatus(status);
+            if (!status) {
+              return axios.post(`http://${deployment}:8080/course/user/${profileData.data.id}/badge/${badgeId}`);
+            }
+            return axios.get(`http://${deployment}:8080/course/badge/${badgeId}`);
+          })
+          .then((badge) => {
+            setBadgeAchievement(badge.data || {});
+            setLoadStatus(true);
+          });
       });
   }, []);
 
@@ -49,14 +54,16 @@ const BadgeAcquisition = (props) => {
   return (
     <View>
       <Button title="Finish Quiz!" onPress={toggleOverlay} />
-      <Overlay isVisible={visible} onBackdropPress={toggleOverlay} style={styles.parent}>
-        {/* NEED TO ADD CONDITIONAL HERE IF THE USER ALREADY HAS THE BADGE */}
-        <Confetti badgeAchievement={badgeAchievement} courseStatus={courseStatus} />
-        <Button
-          title="Continue Your Journey"
-          onPress={() => { navigate('Map'); }}
-        />
-      </Overlay>
+      {isLoaded ? (
+        <Overlay isVisible={visible} onBackdropPress={toggleOverlay} style={styles.parent}>
+          {/* NEED TO ADD CONDITIONAL HERE IF THE USER ALREADY HAS THE BADGE */}
+          <Confetti badgeAchievement={badgeAchievement} courseStatus={courseStatus} />
+          <Button
+            title="Continue Your Journey"
+            onPress={() => { navigate('Map'); }}
+          />
+        </Overlay>
+      ) : null}
     </View>
   );
 };
