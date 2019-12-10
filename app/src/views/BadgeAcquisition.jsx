@@ -21,6 +21,8 @@ const BadgeAcquisition = (props) => {
     setVisible(!visible);
   };
 
+  const nav = () => navigate('Map');
+
   // We need to retrieve the badge image for the course and display it
   // also assign the user the badge and experince points
   useEffect(() => {
@@ -56,7 +58,7 @@ const BadgeAcquisition = (props) => {
       <Button title="Finish Quiz!" onPress={toggleOverlay} />
       {isLoaded ? (
         <Overlay isVisible={visible} onBackdropPress={toggleOverlay} style={styles.parent}>
-          <Confetti badgeAchievement={badgeAchievement} courseStatus={courseStatus} />
+          <Confetti badgeAchievement={badgeAchievement} courseStatus={courseStatus} nav={nav} />
         </Overlay>
       ) : null}
     </View>
