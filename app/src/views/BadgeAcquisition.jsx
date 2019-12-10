@@ -57,10 +57,6 @@ const BadgeAcquisition = (props) => {
       {isLoaded ? (
         <Overlay isVisible={visible} onBackdropPress={toggleOverlay} style={styles.parent}>
           <Confetti badgeAchievement={badgeAchievement} courseStatus={courseStatus} />
-          <Button
-            title="Continue Your Journey"
-            onPress={() => { navigate('Map'); }}
-          />
         </Overlay>
       ) : null}
     </View>

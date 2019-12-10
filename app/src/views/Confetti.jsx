@@ -5,7 +5,10 @@ import {
   View,
   Text,
   Image,
+  Button,
 } from 'react-native';
+import { useNavigation } from 'react-navigation-hooks';
+
 
 import Confetti from 'react-native-confetti';
 
@@ -59,6 +62,7 @@ class RNConfetti extends Component {
   }
 
   render() {
+    const { navigate } = useNavigation();
     const { badgeAchievement, courseStatus} = this.props;
     return (
       <View style={styles.container}>
@@ -72,6 +76,10 @@ class RNConfetti extends Component {
         {courseStatus === true ? (
           <Text style={styles.stats}> You have already gained this badge! </Text>
         ) : <Text style={styles.stats}>{`You've gained ${badgeAchievement.experiencePoints} experience points!`}</Text> }
+        <Button
+          title="Continue Your Journey"
+          onPress={() => { navigate('Map'); }}
+        />
       </View>
     );
   }

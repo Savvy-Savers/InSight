@@ -22,7 +22,7 @@ function MapScreen() {
       })
       .then((completedCourses) => {
         // an array of courseIds or an empty array for a new user
-        setCompletedCourses(completedCourses || []);
+        setCompletedCourses(completedCourses.data);
         return axios.get(`http://${deployment}:8080/course/list`);
       })
       .then((allCourses) => {
@@ -33,7 +33,7 @@ function MapScreen() {
   }, []); // Array necessary to not repeat endlessly
 
   return (
-    <ImageBackground source={require('../assets/images/cascade.png')}
+    <ImageBackground source={require('../assets/images/journey.png')}
       imageStyle={{ resizeMode: 'stretch' }}
       style={{ width: '100%', height: '100%' }}
     >
