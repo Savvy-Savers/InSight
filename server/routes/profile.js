@@ -73,8 +73,8 @@ router.get('/user/:id/level', (req, res) => {
       return getXpLevel(userXp);
     })
     .then((level) => {
-      console.log(level);
-      res.send(level);
+      const currentLevel = level.pop();
+      res.send(currentLevel);
     })
     .catch((err) => console.error(err));
 });
