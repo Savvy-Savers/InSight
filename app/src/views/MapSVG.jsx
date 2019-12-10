@@ -10,7 +10,7 @@ import Svg, { Circle, Rect, SvgUri } from 'react-native-svg';
 function MapSvg(props) {
   const { courses, coursesCompleted, profile } = props;
   const { navigate } = useNavigation();
-  console.log(props);
+
 
   // if the users has completed the course, we want to X over it
   // need to check if the course id is in the coursed Completed Array;
