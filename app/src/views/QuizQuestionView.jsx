@@ -9,9 +9,12 @@ const styles = {
   },
   slides: {
     flex: 4,
+    textAlign: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 5,
+
   },
   question: {
     textAlign: 'center',
