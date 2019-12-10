@@ -126,7 +126,7 @@ export default class Loan extends Component {
         keyboardType = 'numeric'
         placeholder = 'Interest Rate'
         style={styles.inputs}
-        value={this.state.rate}
+        value={`${this.state.rate}`}
         onChangeText={(text) => this.setState({rate: text})}
         />
         <TextInput
@@ -139,7 +139,7 @@ export default class Loan extends Component {
         keyboardType = 'numeric'
         placeholder = 'Years'
         style={styles.inputs}
-        value={this.state.years}
+        value={`${this.state.years}`}
         onChangeText={(text) => this.setState({years: text})}
         />
         <Button
