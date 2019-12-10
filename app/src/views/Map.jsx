@@ -18,14 +18,14 @@ function MapScreen() {
     AsyncStorage.getItem('@token')// Retrieve token stored from login
       .then((token) => axios.get(`http://${deployment}:8080/profile/user/${token}`))
       .then((profileData) => {
-        axios.get(`http://${deployment}:8080/profile/user/${profileData.data.id}/completed`);
+        axios.get(`http://${deployment}:8080/profile/user/${profileData.data.id}/completed`)
+          .then((completedCourses) => {
+          // an array of courseIds or an empty array for a new user
+            setCompletedCourses(completedCourses.data);
+          });
       })
-      .then((completedCourses) => {
-        // an array of courseIds or an empty array for a new user
-        setCompletedCourses(completedCourses || []);
-        return axios.get(`http://${deployment}:8080/course/list`);
-      })
-      .then((allCourses) => {
+      .then(async () => {
+        const allCourses = await axios.get(`http://${deployment}:8080/course/list`);
         setCourses(allCourses.data);
         setLoadStatus(true);
       })
@@ -33,7 +33,7 @@ function MapScreen() {
   }, []); // Array necessary to not repeat endlessly
 
   return (
-    <ImageBackground source={require('../assets/images/cascade.png')}
+    <ImageBackground source={require('../assets/images/journey.png')}
       imageStyle={{ resizeMode: 'stretch' }}
       style={{ width: '100%', height: '100%' }}
     >

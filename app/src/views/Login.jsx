@@ -66,7 +66,7 @@ export default class Login extends React.Component {
 const LoginPage = props => {
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Sign In With Google</Text>
+      <Text style={styles.signIn}>Welcome to InSight! </Text>
       <Button title="Sign in with Google" 
         containerStyle={{
           marginLeft: 5,
@@ -86,9 +86,9 @@ const LoggedInPage = props => {
       <NavBar navigation={props.navigation} />
       <View style={styles.container}>
         <Text style={styles.header}>Insight</Text>
-        <Text style={styles.header}>Welcome:{props.name}</Text>
+        <Text style={styles.welcome}>Welcome {props.name}!</Text>
         <Image style={styles.image} source={{ uri: props.photoUrl }} />
-        <Text style={styles.header}>Swipe right to start your journey to financial freedom</Text>
+        <Text style={styles.body}>Swipe right to start your journey to financial enlightenment!</Text>
       </View>
     </View>
   )
@@ -99,10 +99,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center"
-  },
-  header: {
-    fontSize: 25
+    justifyContent: "center",
+    margin: 15, 
   },
   image: {
     marginTop: 15,
@@ -111,5 +109,28 @@ const styles = StyleSheet.create({
     borderColor: "rgba(0,0,0,0.2)",
     borderWidth: 3,
     borderRadius: 150
-  }
+  },
+  header: {
+    fontWeight: 'bold',
+    // fontFamily: 'LobsterTwo-Bold',
+    fontSize: 56,
+    marginTop: 10,
+  },
+  signIn: {
+    fontWeight: 'bold',
+    // fontFamily: 'LobsterTwo-Bold',
+    fontSize: 30,
+    margin:20
+  },
+  welcome: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginTop: 10,
+  },
+  body: {
+    fontSize: 16,
+    marginTop: 10,
+    margin: 30,
+    textAlign: "center",
+  },
 })
