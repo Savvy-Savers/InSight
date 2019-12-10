@@ -30,7 +30,7 @@ const enterFakeData = (
     .then(() => Course.create({
       idParent: null,
       topic: 'Taxes 101',
-      description: 'This is a description of the taxes course',
+      description: 'Taxes are compulsory financial charge or some other type of levy imposed upon a taxpayer by a governmental organization in order to fund various public expenditures. ',
       idBadge: 4,
     }))
     .then(() => Course.create({
@@ -77,6 +77,21 @@ const enterFakeData = (
       idCourse: 2,
       question: 'What is the 50 20 30 budget rule?',
       description: 'Suggestion that you spend 50% of your after-tax income on needs, 30% on wants, and 20% to savings.',
+    }))
+    .then(() => Concept.create({
+      idCourse: 3,
+      question: 'What are taxes?',
+      description: 'They are everywhere',
+    }))
+    .then(() => Concept.create({
+      idCourse: 4,
+      question: 'What is true gibberish',
+      description: 'It is time',
+    }))
+    .then(() => Concept.create({
+      idCourse: 5,
+      question: 'What are rainy day funds good for?',
+      description: 'Emergines!',
     }))
     .then(() => Answer.create({
       choice: 'you buy everything',
@@ -131,6 +146,48 @@ const enterFakeData = (
       description: 'Whoo you are pretty frugal! Not a bad thing, yet this isn\'t the saying',
       isCorrect: false,
       idConcept: 3,
+    }))
+    .then(() => Answer.create({
+      choice: 'spend 50% on saving, 30% on needs, and 20% to wants',
+      description: 'Whoo you are pretty frugal! Not a bad thing, yet this isn\'t the saying',
+      isCorrect: false,
+      idConcept: 4,
+    }))
+    .then(() => Answer.create({
+      choice: 'They are fees for living',
+      description: 'The first federal income tax was imposed in the 1860s ',
+      isCorrect: false,
+      idConcept: 5,
+    }))
+    .then(() => Answer.create({
+      choice: 'Taxes are Voluntary in the US ',
+      description: 'The government compels taxation through an implicit or explicit threat of force. ',
+      isCorrect: true,
+      idConcept: 5,
+    }))
+    .then(() => Answer.create({
+      choice: 'Taxes are a longheld institutional governmental fee to pay the rich ',
+      description: 'Early taxes were used to support ruling classes, raise armies and build defenses. Modern taxes are more distributed',
+      isCorrect: false,
+      idConcept: 5,
+    }))
+    .then(() => Answer.create({
+      choice: 'This is gibberish, we need test data',
+      description: 'I am sorry, no time to play ',
+      isCorrect: false,
+      idConcept: 6,
+    }))
+    .then(() => Answer.create({
+      choice: 'More gibberish ',
+      description: 'Maybe ask aunt Sally',
+      isCorrect: false,
+      idConcept: 6,
+    }))
+    .then(() => Answer.create({
+      choice: 'True gibberish',
+      description: 'this is true gib',
+      isCorrect: true,
+      idConcept: 6,
     }))
     .then(() => User.create({
       givenName: 'Amber',
