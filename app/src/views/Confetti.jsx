@@ -79,17 +79,19 @@ class RNConfetti extends Component {
     const { badgeAchievement, courseStatus} = this.props;
     return (
       <View style={styles.container}>
-        <Confetti ref={(node) => this._confettiView = node} />
-        <Text style={styles.description}>{`${badgeAchievement.description}`}</Text>
-        <Image
-          style={styles.badge}
-          source={{ uri: badgeAchievement.iconUrl }}
-        />
-        <Text style={styles.name}>{`${badgeAchievement.name}`}</Text>
         {courseStatus === true ? (
           <Text style={styles.body}> You have already gained this badge! Check it out in your profile.</Text>
         ) : (
-          <Text style={styles.stats}>{`You've gained ${badgeAchievement.experiencePoints} experience points!`}</Text>
+          <View>
+            <Confetti ref={(node) => this._confettiView = node} />
+            <Text style={styles.description}>{`${badgeAchievement.description}`}</Text>
+            <Image
+              style={styles.badge}
+              source={{ uri: badgeAchievement.iconUrl }}
+            />
+            <Text style={styles.name}>{`${badgeAchievement.name}`}</Text>
+            <Text style={styles.stats}>{`You've gained ${badgeAchievement.experiencePoints} experience points!`}</Text>
+          </View>
         )}
         <Button
           style={styles.button}
