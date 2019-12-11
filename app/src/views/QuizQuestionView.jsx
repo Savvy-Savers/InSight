@@ -2,6 +2,8 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import BadgeAcquisition from './BadgeAcquisition';
+import BadgeAcquisition1 from './BadgeAcquisition1';
+
 
 const styles = {
   wrapper: {
@@ -130,7 +132,9 @@ export default class QuizQuestionView extends React.Component {
         {/* Is this the last question and is a choice selected */}
         {isLastQuestion && isSelected ? (
           <View>
-            <BadgeAcquisition courseBadgeId={courseBadgeId} />
+            <BadgeAcquisition1 courseBadgeId={courseBadgeId} />
+
+            {/* <BadgeAcquisition courseBadgeId={courseBadgeId} /> */}
           </View>
         ) : null}
       </View>

@@ -24,6 +24,7 @@ export default class Login extends React.Component {
       })
     
       if (type === "success") {
+        //  STORE THE USER TOKEN
         storeData = async () => {
           try {
             await AsyncStorage.setItem('@token', accessToken) // Stores the data across the app
@@ -33,14 +34,30 @@ export default class Login extends React.Component {
         }
         storeData();
 
+        //  SET THE STATE  TO USER DATA
         this.setState({
           signedIn: true,
           name: user.name,
           photoUrl: user.photoUrl
         })
+        // ADD THE USER TO THE DATABASE
         return axios.post(`http://${deployment}:8080/profile/user/`, {
           user,
           accessToken,
+        })
+        .then(async() => {
+          await AsyncStorage.getItem('@token')
+            .then((token) => axios.get(`http://${deployment}:8080/profile/user/${token}`))
+            .then((profileData) => {
+              storeData = async () => {
+                try {
+                  await AsyncStorage.setItem('@userId', profileData.data.id) // Stores the data across the app
+                } catch (e) {
+                  // saving error
+                }
+              }
+              storeData();
+            })
         })
       } else {
         console.log("cancelled")
