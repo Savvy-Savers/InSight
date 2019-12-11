@@ -296,6 +296,14 @@ const getUserXp = (userId) => User.findOne({
   attributes: ['totalExperiencePoints'],
 });
 
+const getNextLevel = (prevLevel) => Level.findOne({
+  where: {
+    id: prevLevel + 1,
+  },
+  attributes: {
+    exclude: ['createdAt', 'updatedAt'],
+  },
+});
 
 module.exports = {
   getCourses,
@@ -316,4 +324,5 @@ module.exports = {
   updateBudget,
   getXpLevel,
   getUserXp,
+  getNextLevel,
 };
