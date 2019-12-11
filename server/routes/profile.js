@@ -6,6 +6,8 @@ const {
   getUserBadges,
   getCompletedCourse,
   saveUser,
+  getXpLevel,
+  getUserXp,
 } = require('../db/helper');
 
 // Endpoint to get user profile info by token
@@ -59,6 +61,20 @@ router.post('/user', (req, res) => {
     })
     .then(() => {
       res.sendStatus(201);
+    })
+    .catch((err) => console.error(err));
+});
+
+// Endpoint to get user's experience level
+router.get('/user/:id/level', (req, res) => {
+  const { id } = req.params;
+  getUserXp(id)
+    .then((userXp) => {
+      return getXpLevel(userXp);
+    })
+    .then((level) => {
+      const currentLevel = level.pop();
+      res.send(currentLevel);
     })
     .catch((err) => console.error(err));
 });
