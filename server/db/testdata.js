@@ -380,22 +380,43 @@ const enterFakeData = (
     .then(() => {
       Level.create({
         id: 1,
-        name: 'budget101',
-        experiencePointsThreshold: 100,
+        name: 'Level 1',
+        experiencePointsThreshold: 0,
       });
     })
     .then(() => {
       Level.create({
         id: 2,
-        name: 'budget102',
-        experiencePointsThreshold: 200,
+        name: 'Level 2',
+        experiencePointsThreshold: 150,
       });
     })
     .then(() => {
       Level.create({
         id: 3,
-        name: 'budget103',
-        experiencePointsThreshold: 300,
+        name: 'Level 3',
+        experiencePointsThreshold: 350,
+      });
+    })
+    .then(() => {
+      Level.create({
+        id: 4,
+        name: 'Level 4',
+        experiencePointsThreshold: 600,
+      });
+    })
+    .then(() => {
+      Level.create({
+        id: 5,
+        name: 'Level 5',
+        experiencePointsThreshold: 900,
+      });
+    })
+    .then(() => {
+      Level.create({
+        id: 6,
+        name: 'Level 6',
+        experiencePointsThreshold: 1250,
       });
     });
 };
