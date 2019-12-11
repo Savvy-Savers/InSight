@@ -257,6 +257,24 @@ const enterFakeData = (
       isCorrect: true,
       idConcept: 8,
     }))
+    .then(() => Answer.create({
+      choice: 'A penalty fee for paying your loan off early ',
+      description: 'Nope',
+      isCorrect: false,
+      idConcept: 9,
+    }))
+    .then(() => Answer.create({
+      choice: 'A fee from the store what you bought came from',
+      description: 'Not really the right answer here',
+      isCorrect: false,
+      idConcept: 9,
+    }))
+    .then(() => Answer.create({
+      choice: 'A fee to cover the cost of processing the loan.',
+      description: 'Origination fees typically range from 1 to 6% of the loan amount',
+      isCorrect: true,
+      idConcept: 9,
+    }))
     .then(() => User.create({
       givenName: 'Amber',
       familyName: 'Jones',
