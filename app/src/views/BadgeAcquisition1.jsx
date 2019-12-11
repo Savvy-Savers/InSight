@@ -77,7 +77,9 @@ const BadgeAcquisition1 = (props) => {
               <Text style={styles.name}>{`${badgeAchievement.name}`}</Text>
               <Text style={styles.stats}>{`You've gained ${badgeAchievement.experiencePoints} experience points!`}</Text>
             </View>
-          ) : null}
+          ) : (
+            <Text style={styles.stats}>{`You've already gained this ${badgeAchievement.name}! Check it out in your profile. `}</Text>
+          )}
           <Button title="Continue Journey " onPress={() => { navigate('Map'); }} />
         </View>
       </Modal>
