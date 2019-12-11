@@ -8,6 +8,7 @@ const {
   saveUser,
   getXpLevel,
   getUserXp,
+  getNextLevel,
 } = require('../db/helper');
 
 // Endpoint to get user profile info by token
@@ -68,13 +69,18 @@ router.post('/user', (req, res) => {
 // Endpoint to get user's experience level
 router.get('/user/:id/level', (req, res) => {
   const { id } = req.params;
+  const levelData = {};
   getUserXp(id)
     .then((userXp) => {
       return getXpLevel(userXp);
     })
     .then((level) => {
-      const currentLevel = level.pop();
-      res.send(currentLevel);
+      levelData.currentLevel = level.pop();
+      return getNextLevel(levelData.currentLevel.dataValues.id);
+    })
+    .then((nextLevel) => {
+      levelData.nextLevel = nextLevel;
+      res.send(levelData);
     })
     .catch((err) => console.error(err));
 });
