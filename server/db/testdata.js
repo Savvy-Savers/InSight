@@ -377,6 +377,27 @@ const enterFakeData = (
       savings: 750,
       idUser: 1,
     }))
+    .then(() => {
+      Level.create({
+        id: 1,
+        name: 'budget101',
+        experiencePointsThreshold: 100,
+      });
+    })
+    .then(() => {
+      Level.create({
+        id: 2,
+        name: 'budget102',
+        experiencePointsThreshold: 200,
+      });
+    })
+    .then(() => {
+      Level.create({
+        id: 3,
+        name: 'budget103',
+        experiencePointsThreshold: 300,
+      });
+    });
 };
 
 module.exports = { enterFakeData };

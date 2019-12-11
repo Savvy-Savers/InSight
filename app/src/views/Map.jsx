@@ -1,49 +1,70 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, ImageBackground, AsyncStorage } from 'react-native';
-import { ListItem, Header } from 'react-native-elements';
-import { useNavigation } from 'react-navigation-hooks';
 import { deployment } from 'react-native-dotenv';
+import { withNavigationFocus } from 'react-navigation';
 import axios from 'axios';
 import MapSvg from './MapSVG';
 
-function MapScreen() {
-  const [courses, setCourses] = useState([]);
-  const [coursesCompleted, setCompletedCourses] = useState([]);
-  const [isLoaded, setLoadStatus] = useState(false);
-  const [badges, setBadges] = useState([]);
+class MapScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      courses: [],
+      coursesCompleted: [],
+      isLoaded: false,
+    };
+    this.getData = this.getData.bind(this);
+  }
 
+  componentDidMount() {
+    this.getData();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isFocused } = this.props;
+    if (prevProps.isFocused !== isFocused) {
+      this.getData();
+    }
+  }
 
   // compare all courses to completed courses
-  useEffect(() => {
+  getData() {
     AsyncStorage.getItem('@token')// Retrieve token stored from login
       .then((token) => axios.get(`http://${deployment}:8080/profile/user/${token}`))
       .then((profileData) => {
         axios.get(`http://${deployment}:8080/profile/user/${profileData.data.id}/completed`)
           .then((completedCourses) => {
-          // an array of courseIds or an empty array for a new user
-            setCompletedCourses(completedCourses.data);
+            // an array of courseIds or an empty array for a new user
+            this.setState({
+              coursesCompleted: completedCourses.data,
+            })
           });
       })
       .then(async () => {
         const allCourses = await axios.get(`http://${deployment}:8080/course/list`);
-        setCourses(allCourses.data);
-        setLoadStatus(true);
+        this.setState({
+          courses: allCourses.data,
+          isLoaded: true,
+        });
       })
       .catch((err) => console.log(err));
-  }, []); // Array necessary to not repeat endlessly
+  }
 
-  return (
-    <ImageBackground source={require('../assets/images/journey.png')}
-      imageStyle={{ resizeMode: 'stretch' }}
-      style={{ width: '100%', height: '100%' }}
-    >
-      <View>
-        {isLoaded ? (
-          <MapSvg courses={courses} coursesCompleted={coursesCompleted} />
-        ) : null}
-      </View>
-    </ImageBackground>
-  );
+  render() {
+    const { courses, coursesCompleted, isLoaded } = this.state;
+    return (
+      <ImageBackground source={require('../assets/images/journey.png')}
+        imageStyle={{ resizeMode: 'stretch' }}
+        style={{ width: '100%', height: '100%' }}
+      >
+        <View>
+          {isLoaded ? (
+            <MapSvg courses={courses} coursesCompleted={coursesCompleted} />
+          ) : null}
+        </View>
+      </ImageBackground>
+    );
+  }
 }
 
-export default MapScreen;
+export default withNavigationFocus(MapScreen);
