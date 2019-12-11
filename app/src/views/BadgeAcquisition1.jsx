@@ -16,8 +16,9 @@ const BadgeAcquisition1 = (props) => {
   const { navigate } = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
   const { courseBadgeId } = props;
-  const [badgeAchievement, setBadgeAchievement] = useState(null);
+  const [badgeAchievement, setBadgeAchievement] = useState({});
   const [userId, setUserId] = useState(null);
+  const [userProfile, setProfile] = useState();
   const [courseStatus, setCourseStatus] = useState(null);
   const [isLoaded, setLoadStatus] = useState(false);
 
@@ -32,35 +33,38 @@ const BadgeAcquisition1 = (props) => {
     setModalVisible(!isModalVisible);
   };
 
+  // const postBadge = () => {
+  //   if (courseStatus === false) {
+  //     // add the badge to the user table in database.
+  //     return axios.post(`http://${deployment}:8080/course/user/${userId}/badge/${courseBadgeId}`);
+  //   }
+  //   return null;
+  // };
+
   useEffect(() => {
+    let profileData = {};
     // get the badge data
-    axios.get(`http://${deployment}:8080/course/badge/${courseBadgeId}`)
-      .then((badge) => {
-        setBadgeAchievement(badge.data || {});
-      });
-    // then get the user status
-    AsyncStorage.getItem('@userId')
-      .then((Id) => {
-        setUserId(Id);
-        return axios.get(`http://${deployment}:8080/course/status/${Id}/${courseBadgeId}`);
+    AsyncStorage.getItem('@token')
+      .then(async (token) => {
+        profileData = await axios.get(`http://${deployment}:8080/profile/user/${token}`);
+        setUserId(profileData.data.id);
+        return axios.get(`http://${deployment}:8080/course/status/${profileData.data.id}/${courseBadgeId}`);
       })
-      .then((status) => {
+      .then(async (status) => {
         setCourseStatus(status.data);
+        const badge = await axios.get(`http://${deployment}:8080/course/badge/${courseBadgeId}`);
+        setBadgeAchievement(badge.data || {});
         if (status.data === false) {
-          // add the badge to the user table in database.
-          return axios.post(`http://${deployment}:8080/course/user/${userId}/badge/${courseBadgeId}`);
+          return axios.post(`http://${deployment}:8080/course/user/${profileData.data.id}/badge/${courseBadgeId}`);
         }
+        setLoadStatus(true);
         return null;
       });
-    setLoadStatus(true);
   }, []);
 
-  if (!isLoaded) {
-    return null;
-  }
   return (
     <View style={{ flex: 1 }}>
-      <Button title="Finish Quiz! " onPress={toggleModal} />
+      <Button title="Finish Quiz! " onPress={() => { toggleModal(); }} />
       <Modal isVisible={isModalVisible}>
         <View style={{ flex: 1 }}>
           {courseStatus === false ? (
