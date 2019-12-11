@@ -68,8 +68,8 @@ export default class Loan extends Component {
   reset() {
     this.setState({
       rate: '',
-      principal: null,
-      years: null,
+      principal: '',
+      years: 0,
       response: '',
       completed: false
     })
@@ -96,7 +96,7 @@ export default class Loan extends Component {
         return Math.round(p * (top / bottom));
       }
       this.message = function() {
-        return `At an interest rate of ${rate}% with ${months} monthly payments & a principal of $${p}, your loan installments will be $${this.total()} per month!`
+        return `At an interest rate of ${rate}% with ${months} monthly payments & a principal of $${p}, your total installment repayments will be $${this.total()}!`
       }
     }
 
