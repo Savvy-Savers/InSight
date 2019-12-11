@@ -10,7 +10,6 @@ module.exports = (sequelize, type) => sequelize.define('user', {
   googleId: type.STRING,
   totalExperiencePoints: {
     type: type.INTEGER,
-    allowNull: false,
     defaultValue: 0,
   },
   goal: type.STRING,

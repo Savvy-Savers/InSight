@@ -6,6 +6,7 @@ const {
   User,
   Badge,
   UserBudget,
+  Level,
 } = require('./index');
 
 /**
@@ -260,7 +261,7 @@ const updateBudget = (userId, budget) => UserBudget.update({
 });
 
 /**
- * Incriment the user's spent field by the amount in spend
+ * Increment the user's spent field by the amount in spend
  * @param {integer} userId - The user's ID.
  * @param {object} spend - The amount the user is spending as a float
  */
@@ -271,6 +272,30 @@ const spendBudget = (userId, spend) => UserBudget.increment({
     idUser: userId,
   },
 });
+
+const getXpLevel = (userXp) => Level.findAll({
+  attributes: {
+    exclude: ['createdAt', 'updatedAt'],
+  },
+})
+  .then((levels) => {
+    return levels.filter((level) => {
+      if (userXp.totalExperiencePoints >= level.experiencePointsThreshold) {
+        return level;
+      }
+    });
+  })
+  .catch((err) => {
+    console.error(err, 'errrr');
+  });
+
+const getUserXp = (userId) => User.findOne({
+  where: {
+    id: userId,
+  },
+  attributes: ['totalExperiencePoints'],
+});
+
 
 module.exports = {
   getCourses,
@@ -289,4 +314,6 @@ module.exports = {
   saveUser,
   spendBudget,
   updateBudget,
+  getXpLevel,
+  getUserXp,
 };
