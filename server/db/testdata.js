@@ -80,18 +80,38 @@ const enterFakeData = (
     }))
     .then(() => Concept.create({
       idCourse: 3,
+      question: 'Andanced budgeting info here',
+      description: 'We are talking about the big stuff',
+    }))
+    .then(() => Concept.create({
+      idCourse: 4,
       question: 'What are taxes?',
       description: 'They are everywhere',
     }))
     .then(() => Concept.create({
-      idCourse: 4,
-      question: 'What is true gibberish',
+      idCourse: 5,
+      question: 'What is true gibberish on andvanced taxes',
       description: 'It is time',
     }))
     .then(() => Concept.create({
-      idCourse: 5,
+      idCourse: 6,
       question: 'What are rainy day funds good for?',
-      description: 'Emergines!',
+      description: 'It is a smart thing to have some money stashed away if you can.',
+    }))
+    .then(() => Concept.create({
+      idCourse: 7,
+      question: 'Investing? What are some ways to do that?',
+      description: 'Lets figoure out some ways to invest',
+    }))
+    .then(() => Concept.create({
+      idCourse: 8,
+      question: 'Are loans free money?',
+      description: 'why would you think that?',
+    }))
+    .then(() => Concept.create({
+      idCourse: 9,
+      question: 'What are Origination fees?',
+      description: 'Discussing origininating fees',
     }))
     .then(() => Answer.create({
       choice: 'you buy everything',
@@ -148,8 +168,20 @@ const enterFakeData = (
       idConcept: 3,
     }))
     .then(() => Answer.create({
-      choice: 'spend 50% on saving, 30% on needs, and 20% to wants',
+      choice: 'This is true',
+      description: 'Truth!',
+      isCorrect: true,
+      idConcept: 4,
+    }))
+    .then(() => Answer.create({
+      choice: 'This is more falsely',
       description: 'Whoo you are pretty frugal! Not a bad thing, yet this isn\'t the saying',
+      isCorrect: false,
+      idConcept: 4,
+    }))
+    .then(() => Answer.create({
+      choice: 'This is more false',
+      description: 'Yep, wrong',
       isCorrect: false,
       idConcept: 4,
     }))
@@ -185,9 +217,45 @@ const enterFakeData = (
     }))
     .then(() => Answer.create({
       choice: 'True gibberish',
-      description: 'this is true gib',
+      description: 'Surprises! Pet needs an emergency vet visit!',
       isCorrect: true,
       idConcept: 6,
+    }))
+    .then(() => Answer.create({
+      choice: 'Invest by buying hoards of beanie babies to sell on eBay in 30 years',
+      description: 'This didnt work out well for grandma',
+      isCorrect: false,
+      idConcept: 7,
+    }))
+    .then(() => Answer.create({
+      choice: 'Start off buying the most expensive diamond you can',
+      description: 'Whatever!',
+      isCorrect: false,
+      idConcept: 7,
+    }))
+    .then(() => Answer.create({
+      choice: 'Start off small or large, but not more than you\'re debt',
+      description: 'YaY! you know how it invest smartly',
+      isCorrect: true,
+      idConcept: 7,
+    }))
+    .then(() => Answer.create({
+      choice: 'Yes',
+      description: 'Are you paying attention?',
+      isCorrect: false,
+      idConcept: 8,
+    }))
+    .then(() => Answer.create({
+      choice: 'If you put them off long enough, they will be',
+      description: 'Not really the right answer here',
+      isCorrect: false,
+      idConcept: 8,
+    }))
+    .then(() => Answer.create({
+      choice: 'No',
+      description: 'Correct, loans are not free monies',
+      isCorrect: true,
+      idConcept: 8,
     }))
     .then(() => User.create({
       givenName: 'Amber',
