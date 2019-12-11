@@ -45,7 +45,7 @@ const BadgeAcquisition = (props) => {
           });
       });
   }, []);
-
+  
   const styles = {
     parent: {
       justifyContent: 'center',

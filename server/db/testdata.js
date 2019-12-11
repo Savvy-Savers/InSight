@@ -30,7 +30,7 @@ const enterFakeData = (
     .then(() => Course.create({
       idParent: null,
       topic: 'Taxes 101',
-      description: 'This is a description of the taxes course',
+      description: 'Taxes are compulsory financial charge or some other type of levy imposed upon a taxpayer by a governmental organization in order to fund various public expenditures. ',
       idBadge: 4,
     }))
     .then(() => Course.create({
@@ -77,6 +77,41 @@ const enterFakeData = (
       idCourse: 2,
       question: 'What is the 50 20 30 budget rule?',
       description: 'Suggestion that you spend 50% of your after-tax income on needs, 30% on wants, and 20% to savings.',
+    }))
+    .then(() => Concept.create({
+      idCourse: 3,
+      question: 'Andanced budgeting info here',
+      description: 'We are talking about the big stuff',
+    }))
+    .then(() => Concept.create({
+      idCourse: 4,
+      question: 'What are taxes?',
+      description: 'They are everywhere',
+    }))
+    .then(() => Concept.create({
+      idCourse: 5,
+      question: 'What is true gibberish on andvanced taxes',
+      description: 'It is time',
+    }))
+    .then(() => Concept.create({
+      idCourse: 6,
+      question: 'What are rainy day funds good for?',
+      description: 'It is a smart thing to have some money stashed away if you can.',
+    }))
+    .then(() => Concept.create({
+      idCourse: 7,
+      question: 'Investing? What are some ways to do that?',
+      description: 'Lets figoure out some ways to invest',
+    }))
+    .then(() => Concept.create({
+      idCourse: 8,
+      question: 'Are loans free money?',
+      description: 'why would you think that?',
+    }))
+    .then(() => Concept.create({
+      idCourse: 9,
+      question: 'What are Origination fees?',
+      description: 'Discussing origininating fees',
     }))
     .then(() => Answer.create({
       choice: 'you buy everything',
@@ -131,6 +166,114 @@ const enterFakeData = (
       description: 'Whoo you are pretty frugal! Not a bad thing, yet this isn\'t the saying',
       isCorrect: false,
       idConcept: 3,
+    }))
+    .then(() => Answer.create({
+      choice: 'This is true',
+      description: 'Truth!',
+      isCorrect: true,
+      idConcept: 4,
+    }))
+    .then(() => Answer.create({
+      choice: 'This is more falsely',
+      description: 'Whoo you are pretty frugal! Not a bad thing, yet this isn\'t the saying',
+      isCorrect: false,
+      idConcept: 4,
+    }))
+    .then(() => Answer.create({
+      choice: 'This is more false',
+      description: 'Yep, wrong',
+      isCorrect: false,
+      idConcept: 4,
+    }))
+    .then(() => Answer.create({
+      choice: 'They are fees for living',
+      description: 'The first federal income tax was imposed in the 1860s ',
+      isCorrect: false,
+      idConcept: 5,
+    }))
+    .then(() => Answer.create({
+      choice: 'Taxes are Voluntary in the US ',
+      description: 'The government compels taxation through an implicit or explicit threat of force. ',
+      isCorrect: true,
+      idConcept: 5,
+    }))
+    .then(() => Answer.create({
+      choice: 'Taxes are a longheld institutional governmental fee to pay the rich ',
+      description: 'Early taxes were used to support ruling classes, raise armies and build defenses. Modern taxes are more distributed',
+      isCorrect: false,
+      idConcept: 5,
+    }))
+    .then(() => Answer.create({
+      choice: 'This is gibberish, we need test data',
+      description: 'I am sorry, no time to play ',
+      isCorrect: false,
+      idConcept: 6,
+    }))
+    .then(() => Answer.create({
+      choice: 'More gibberish ',
+      description: 'Maybe ask aunt Sally',
+      isCorrect: false,
+      idConcept: 6,
+    }))
+    .then(() => Answer.create({
+      choice: 'True gibberish',
+      description: 'Surprises! Pet needs an emergency vet visit!',
+      isCorrect: true,
+      idConcept: 6,
+    }))
+    .then(() => Answer.create({
+      choice: 'Invest by buying hoards of beanie babies to sell on eBay in 30 years',
+      description: 'This didnt work out well for grandma',
+      isCorrect: false,
+      idConcept: 7,
+    }))
+    .then(() => Answer.create({
+      choice: 'Start off buying the most expensive diamond you can',
+      description: 'Whatever!',
+      isCorrect: false,
+      idConcept: 7,
+    }))
+    .then(() => Answer.create({
+      choice: 'Start off small or large, but not more than you\'re debt',
+      description: 'YaY! you know how it invest smartly',
+      isCorrect: true,
+      idConcept: 7,
+    }))
+    .then(() => Answer.create({
+      choice: 'Yes',
+      description: 'Are you paying attention?',
+      isCorrect: false,
+      idConcept: 8,
+    }))
+    .then(() => Answer.create({
+      choice: 'If you put them off long enough, they will be',
+      description: 'Not really the right answer here',
+      isCorrect: false,
+      idConcept: 8,
+    }))
+    .then(() => Answer.create({
+      choice: 'No',
+      description: 'Correct, loans are not free monies',
+      isCorrect: true,
+      idConcept: 8,
+    }))
+    .then(() => Answer.create({
+      choice: 'A penalty fee for paying your loan off early ',
+      description: 'Nope',
+      isCorrect: false,
+      idConcept: 9,
+    }))
+    .then(() => Answer.create({
+      choice: 'A fee from the store what you bought came from',
+      description: 'Not really the right answer here',
+      isCorrect: false,
+      idConcept: 9,
+    }))
+    .then(() => Answer.create({
+      choice: 'A fee to cover the cost of processing the loan.',
+      description: 'Origination fees typically range from 1 to 6% of the loan amount',
+      isCorrect: true,
+      idConcept: 9,
     }))
     .then(() => User.create({
       givenName: 'Amber',
