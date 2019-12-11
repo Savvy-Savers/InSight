@@ -66,32 +66,32 @@ const enterFakeData = (
     .then(() => Concept.create({
       idCourse: 1,
       question: 'What is a budget tool?',
-      description: 'Tracker of allowance or provision of an amount of money for a purpose',
+      description: 'A bugeting tool is a tracker of allowance or provision of an amount of money for a purpose.',
     }))
     .then(() => Concept.create({
       idCourse: 1,
       question: 'How do you create a budget?',
-      description: 'Determine Income, Calculate Expenses, Set Financial Goals!',
+      description: 'The key to creating a good budget is to determine income, calculate expenses, and set financial goals!',
     }))
     .then(() => Concept.create({
       idCourse: 2,
       question: 'What is the 50 20 30 budget rule?',
-      description: 'Suggestion that you spend 50% of your after-tax income on needs, 30% on wants, and 20% to savings.',
+      description: 'The 50 20 30 budget rule is a suggestion that you spend 50% of your after-tax income on needs, 30% on wants, and 20% to savings.',
     }))
     .then(() => Concept.create({
       idCourse: 3,
       question: 'Andanced budgeting info here',
-      description: 'We are talking about the big stuff',
+      description: 'We are talking about the big stuff now',
     }))
     .then(() => Concept.create({
       idCourse: 4,
       question: 'What are taxes?',
-      description: 'They are everywhere',
+      description: 'Taxes are collected by governments used for the betterment of the economy and all living in it. ',
     }))
     .then(() => Concept.create({
       idCourse: 5,
-      question: 'What is true gibberish on andvanced taxes',
-      description: 'It is time',
+      question: 'What is true gibberish on advanced taxes',
+      description: 'It is time to talk about advanced taxes ',
     }))
     .then(() => Concept.create({
       idCourse: 6,
