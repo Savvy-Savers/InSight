@@ -38,7 +38,7 @@ const MapModal = (props) => {
       alignItems: 'center',
       borderRadius: 4,
       borderColor: 'rgba(0, 0, 0, 0.1)',
-      height: 340,
+      height: 200,
       flex: 0,
       flexBais: 30,
       marginTop: 200,
@@ -90,10 +90,10 @@ const MapModal = (props) => {
         isVisible={isModalVisible}
         style={styles.modal}
         backdropOpacity={0}
-        onBackdropPress={setModalVisible(false)}
+        onBackdropPress={() => setModalVisible(false)}
       >
         <View style={styles.achievement}>
-          <Text>{course.topic}</Text>
+          <Text style={styles.name}>{course.topic}</Text>
           <Button style={styles.button} title="Start the course! " onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} />
         </View>
       </Modal>
