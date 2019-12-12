@@ -14,7 +14,7 @@ import { deployment } from 'react-native-dotenv';
 const MapModal = (props) => {
   const { navigate } = useNavigation();
   const [isModalVisible, setModalVisible] = useState(true);
-  const { course, toggleModal } = props;
+  const { course, toggleModal, status } = props;
   console.log(props);
   const [badgeAchievement, setBadgeAchievement] = useState({});
 
@@ -79,9 +79,11 @@ const MapModal = (props) => {
     },
   };
 
-  // const toggleModal = () => {
-  //   setModalVisible(!isModalVisible);
-  // };
+  useEffect(async() => {
+    const id = course.id;
+    const badge = await axios.get(`http://${deployment}:8080/course/${id}/badge'`);
+    setBadgeAchievement(badge.data || {});
+  });
 
 
   return (
@@ -94,7 +96,20 @@ const MapModal = (props) => {
       >
         <View style={styles.achievement}>
           <Text style={styles.name}>{course.topic}</Text>
-          <Button style={styles.button} title="Start the course! " onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} />
+          {/* if the course is completed, we show the badge achieved, else show the placeholder image */}
+          {status ? (
+            <View>
+              <Text style={styles.description}>{`${badgeAchievement.description}`}</Text>
+              <Image style={styles.badge} source={{ uri: badgeAchievement.iconUrl }}/>
+              <Text style={styles.name}>{`${badgeAchievement.name}`}</Text>
+            </View>
+          ) : (
+            <View>
+              <Text style={styles.description}>{`${badgeAchievement.description}`}</Text>
+              <Text style={styles.stats}>{`Worth ${badgeAchievement.experiencePoints} experience points`}</Text>
+            </View>
+          )}
+          <Button style={styles.button} title="Start Learning! " onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} />
         </View>
       </Modal>
     </View>

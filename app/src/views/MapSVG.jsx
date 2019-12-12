@@ -6,8 +6,6 @@ import { useNavigation } from 'react-navigation-hooks';
 import { View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import MapModal from './MapModal';
-import { setAutoFocusEnabled } from 'expo/build/AR';
-
 
 function MapSvg(props) {
   const { courses, coursesCompleted } = props;
@@ -100,7 +98,8 @@ function MapSvg(props) {
           key={courses[7].topic}
           onPress={() => { toggleModal(courses[7]); }}
         />
-        {isModalVisible ? (<MapModal course={course} toggleModal={toggleModal} />) : null}
+        {isModalVisible ? (
+          <MapModal course={course} toggleModal={toggleModal} status={coursesCompleted.includes(course.id)} />) : null}
       </Svg>
     </View>
   );
