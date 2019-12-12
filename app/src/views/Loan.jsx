@@ -118,7 +118,7 @@ export default class Loan extends Component {
           <View 
           style={styles.results}
           >
-  <Text style={{fontSize: 15, color: 'blue'}}>{this.state.response}
+  <Text style={{fontSize: 15, color: Colors.accent}}>{this.state.response}
   </Text>
   </View>
   : null
