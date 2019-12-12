@@ -36,39 +36,34 @@ const MapModal = (props) => {
       padding: 30,
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: 4,
-      borderColor: 'rgba(0, 0, 0, 0.1)',
-      height: 250,
+      borderRadius: 10,
+      borderColor: 'lightblue',
+      height: 220,
       flex: 0,
       flexBais: 30,
       marginTop: 200,
+      borderWidth: 5,
     },
     falseModal: {
       backgroundColor: 'white',
       padding: 30,
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: 4,
-      borderColor: 'rgba(0, 0, 0, 0.1)',
+      borderRadius: 10,
+      borderColor: 'lightblue',
       height: 200,
       flex: 0,
       flexBais: 30,
       marginTop: 200,
+      borderWidth: 5,
     },
     name: {
       color: '#000',
-      fontSize: 20,
+      fontSize: 14,
       fontWeight: 'bold',
       margin: 5,
     },
     description: {
-      color: '#000',
-      fontSize: 20,
-      textAlign: 'center',
-      fontWeight: 'bold',
-      margin: 5,
-    },
-    body: {
       color: '#000',
       fontSize: 14,
       textAlign: 'center',
@@ -77,14 +72,14 @@ const MapModal = (props) => {
     },
     stats: {
       color: '#000',
-      fontSize: 14,
+      fontSize: 12,
       fontWeight: 'bold',
       textAlign: 'center',
     },
     badge: {
       width: 50,
       height: 50,
-      margin: 20,
+      margin: 10,
     },
     button: {
       margin: 20,
@@ -97,7 +92,6 @@ const MapModal = (props) => {
     setBadgeAchievement(badge.data || {});
   });
 
-
   return (
     <View style={styles.parent}>
       <Modal
@@ -108,7 +102,7 @@ const MapModal = (props) => {
       >
         <View style={styles.achievement}>
           <Text style={styles.name}>{course.topic}</Text>
-          {/* if the course is completed, we show the badge achieved, else show the placeholder image */}
+          {/* if the course is completed, we show the badge achieved, else placeholder image */}
           {status ? (
             <View>
               <Text style={styles.description}>{`${badgeAchievement.description}`}</Text>
