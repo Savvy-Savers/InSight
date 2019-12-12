@@ -71,15 +71,14 @@ const MapModal = (props) => {
     },
     button: {
       margin: 20,
-      color: 'orange',
     },
   };
 
-  // useEffect(async () => {
-  //   const { id } = course;
-  //   const badge = await axios.get(`http://${deployment}:8080/course/${id}/badge'`);
-  //   setBadgeAchievement(badge.data || {});
-  // });
+  useEffect(async () => {
+    const { id } = course;
+    const badge = await axios.get(`http://${deployment}:8080/course/${id}/badge'`);
+    setBadgeAchievement(badge.data || {});
+  });
 
   return (
     <View style={styles.parent}>
