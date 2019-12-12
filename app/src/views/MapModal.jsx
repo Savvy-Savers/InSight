@@ -31,27 +31,14 @@ const MapModal = (props) => {
       alignItems: 'center',
       alignSelf: 'center',
     },
-    trueModal: {
+    modal: {
       backgroundColor: 'white',
       padding: 30,
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: 10,
+      borderRadius: 20,
       borderColor: 'lightblue',
-      height: 220,
-      flex: 0,
-      flexBais: 30,
-      marginTop: 200,
-      borderWidth: 5,
-    },
-    falseModal: {
-      backgroundColor: 'white',
-      padding: 30,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 10,
-      borderColor: 'lightblue',
-      height: 200,
+      height: 230,
       flex: 0,
       flexBais: 30,
       marginTop: 200,
@@ -59,13 +46,13 @@ const MapModal = (props) => {
     },
     name: {
       color: '#000',
-      fontSize: 14,
+      fontSize: 20,
       fontWeight: 'bold',
       margin: 5,
     },
     description: {
       color: '#000',
-      fontSize: 14,
+      fontSize: 16,
       textAlign: 'center',
       fontWeight: 'bold',
       margin: 5,
@@ -86,17 +73,17 @@ const MapModal = (props) => {
     },
   };
 
-  useEffect(async () => {
-    const { id } = course;
-    const badge = await axios.get(`http://${deployment}:8080/course/${id}/badge'`);
-    setBadgeAchievement(badge.data || {});
-  });
+  // useEffect(async () => {
+  //   const { id } = course;
+  //   const badge = await axios.get(`http://${deployment}:8080/course/${id}/badge'`);
+  //   setBadgeAchievement(badge.data || {});
+  // });
 
   return (
     <View style={styles.parent}>
       <Modal
         isVisible={isModalVisible}
-        style={status ? styles.trueModal : styles.falseModal}
+        style={styles.Modal}
         backdropOpacity={0}
         onBackdropPress={() => toggleModal()}
       >
@@ -112,6 +99,7 @@ const MapModal = (props) => {
           ) : (
             <View>
               <Text style={styles.description}>{`${badgeAchievement.description}`}</Text>
+              <Image style={styles.badge} source={{ uri: badgeAchievement.iconUrl }} />
               <Text style={styles.stats}>{`Worth ${badgeAchievement.experiencePoints} experience points`}</Text>
             </View>
           )}
