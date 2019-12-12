@@ -4,6 +4,7 @@ import * as Google from "expo-google-app-auth";
 import axios from 'axios';
 import {andriodId, iphoneId, deployment } from 'react-native-dotenv';
 import NavBar from './NavBar';
+import { StackViewCard } from "react-navigation-stack";
 
 
 export default class Login extends React.Component {
@@ -24,6 +25,7 @@ export default class Login extends React.Component {
       })
     
       if (type === "success") {
+        //  STORE THE USER TOKEN
         storeData = async () => {
           try {
             await AsyncStorage.setItem('@token', accessToken) // Stores the data across the app
@@ -33,15 +35,18 @@ export default class Login extends React.Component {
         }
         storeData();
 
+        //  SET THE STATE  TO USER DATA
         this.setState({
           signedIn: true,
           name: user.name,
           photoUrl: user.photoUrl
         })
+        // ADD THE USER TO THE DATABASE
         return axios.post(`http://${deployment}:8080/profile/user/`, {
           user,
           accessToken,
-        })
+        });
+
       } else {
         console.log("cancelled")
       }

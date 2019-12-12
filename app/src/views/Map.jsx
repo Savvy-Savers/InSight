@@ -37,7 +37,7 @@ class MapScreen extends React.Component {
             // an array of courseIds or an empty array for a new user
             this.setState({
               coursesCompleted: completedCourses.data,
-            })
+            });
           });
       })
       .then(async () => {
