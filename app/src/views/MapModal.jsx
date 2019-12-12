@@ -83,7 +83,7 @@ const MapModal = (props) => {
     <View style={styles.parent}>
       <Modal
         isVisible={isModalVisible}
-        style={styles.Modal}
+        style={styles.modal}
         backdropOpacity={0}
         onBackdropPress={() => toggleModal()}
       >
