@@ -11,6 +11,7 @@ import { ListItem } from 'react-native-elements';
 import { deployment } from 'react-native-dotenv';
 import axios from 'axios';
 import NavBar from './NavBar';
+import Colors from '../constants/Colors';
 
 const styles = StyleSheet.create({
   image: {
@@ -22,12 +23,44 @@ const styles = StyleSheet.create({
     borderRadius: 150,
   },
   progressBar: {
-    height: 20,
+    height: 30,
     width: '100%',
     backgroundColor: 'white',
     borderColor: '#000',
-    borderWidth: 2,
+    borderWidth: 3,
     borderRadius: 5,
+  },
+  levelInfo: {
+    height: 60,
+    width: '100%',
+    borderColor: Colors.secondAccent,
+    borderWidth: 6,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    // borderRadius: 5,
+    margin: 10,
+    flexDirection: 'row',
+  },
+  innerContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    borderColor: Colors.secondAccent,
+    borderWidth: 0,
+  },
+  innerInfo: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 10,
+  },
+  text: {
+    fontSize: 24,
+    color: Colors.secondAccent,
+  },
+  textDetails: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: Colors.accent,
+    textAlign: 'right',
   },
 });
 
@@ -72,7 +105,6 @@ class ProfileScreen extends React.Component {
         return axios.get(`http://${deployment}:8080/profile/user/${profile.id}/level`);
       })
       .then((levelData) => {
-        console.log(levelData.data);
         this.setState({
           currentLevel: levelData.data.currentLevel,
           nextLevel: levelData.data.nextLevel,
@@ -93,14 +125,38 @@ class ProfileScreen extends React.Component {
         <NavBar navigation={this.props.navigation} />
         <View style={{ alignItems: 'center', justifyContent: 'center', margin: 5 }}>
           <Image style={styles.image} source={{ uri: profile.photoUrl }} />
-          <Text>{`${profile.givenName} ${profile.familyName}`}</Text>
-          <Text>{`Level: ${currentLevel.name}`}</Text>
-          <Text>{`${profile.totalExperiencePoints} XP`}</Text>
+          <Text style={{ fontSize: 30, color: Colors.secondAccent, fontWeight: 'bold' }}>{`${profile.givenName} ${profile.familyName}`}</Text>
+          <View style={styles.levelInfo}>
+            <View style={{ ...styles.innerContainer, borderRightWidth: 3 }}>
+              <View style={styles.innerInfo}>
+                <Text style={{ ...styles.text }}>Level:</Text>
+              </View>
+              <View style={styles.innerInfo}>
+                <Text style={{ ...styles.textDetails }}>{currentLevel.name}</Text>
+              </View>
+            </View>
+            <View style={{ ...styles.innerContainer, borderLeftWidth: 3 }}>
+              <View style={styles.innerInfo}>
+                <Text style={{ ...styles.text }}>EXP:</Text>
+              </View>
+              <View style={styles.innerInfo}>
+                <Text style={{ ...styles.textDetails }}>{profile.totalExperiencePoints}</Text>
+              </View>
+            </View>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flex: 1 }}>
+              <Text style={{ ...styles.text }}>EXP to next level:</Text>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={{ ...styles.textDetails }}>{nextLevel.experiencePointsThreshold - profile.totalExperiencePoints}</Text>
+            </View>
+          </View>
           <View style={styles.progressBar}>
             <View style={{
               ...StyleSheet.absoluteFill,
               backgroundColor: '#8BED4F',
-              width: `${(nextLevel.experiencePointsThreshold - currentLevel.experiencePointsThreshold) / profile.totalExperiencePoints}%`,
+              width: `${((profile.totalExperiencePoints - currentLevel.experiencePointsThreshold) / (nextLevel.experiencePointsThreshold - currentLevel.experiencePointsThreshold)) * 100}%`,
             }}
             />
           </View>
