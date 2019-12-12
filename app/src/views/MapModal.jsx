@@ -62,6 +62,7 @@ const MapModal = (props) => {
       fontSize: 12,
       fontWeight: 'bold',
       textAlign: 'center',
+      margin: 5,
     },
     badge: {
       width: 50,
@@ -70,6 +71,7 @@ const MapModal = (props) => {
     },
     button: {
       margin: 20,
+      color: 'orange',
     },
   };
 
@@ -94,7 +96,7 @@ const MapModal = (props) => {
             <View>
               <Text style={styles.description}>{`${badgeAchievement.description}`}</Text>
               <Image style={styles.badge} source={{ uri: badgeAchievement.iconUrl }}/>
-              <Text style={styles.name}>{`${badgeAchievement.name}`}</Text>
+              <Text style={styles.stats}>{`${badgeAchievement.name}`}</Text>
             </View>
           ) : (
             <View>
