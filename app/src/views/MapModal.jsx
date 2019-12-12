@@ -9,7 +9,7 @@ import { Button } from 'react-native-elements';
 import Modal from 'react-native-modal';
 import { useNavigation } from 'react-navigation-hooks';
 import { deployment } from 'react-native-dotenv';
-
+import axios from 'axios';
 
 const MapModal = (props) => {
   const { navigate } = useNavigation();
@@ -31,7 +31,19 @@ const MapModal = (props) => {
       alignItems: 'center',
       alignSelf: 'center',
     },
-    modal: {
+    trueModal: {
+      backgroundColor: 'white',
+      padding: 30,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 4,
+      borderColor: 'rgba(0, 0, 0, 0.1)',
+      height: 250,
+      flex: 0,
+      flexBais: 30,
+      marginTop: 200,
+    },
+    falseModal: {
       backgroundColor: 'white',
       padding: 30,
       justifyContent: 'center',
@@ -70,8 +82,8 @@ const MapModal = (props) => {
       textAlign: 'center',
     },
     badge: {
-      width: 100,
-      height: 100,
+      width: 50,
+      height: 50,
       margin: 20,
     },
     button: {
@@ -79,8 +91,8 @@ const MapModal = (props) => {
     },
   };
 
-  useEffect(async() => {
-    const id = course.id;
+  useEffect(async () => {
+    const { id } = course;
     const badge = await axios.get(`http://${deployment}:8080/course/${id}/badge'`);
     setBadgeAchievement(badge.data || {});
   });
@@ -90,7 +102,7 @@ const MapModal = (props) => {
     <View style={styles.parent}>
       <Modal
         isVisible={isModalVisible}
-        style={styles.modal}
+        style={status ? styles.trueModal : styles.falseModal}
         backdropOpacity={0}
         onBackdropPress={() => toggleModal()}
       >
