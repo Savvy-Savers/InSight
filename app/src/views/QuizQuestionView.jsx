@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { CheckBox } from 'react-native-elements';
-import BadgeModal from './BadgeModal';
+import BadgeModal from '../components/BadgeModal';
 
 const styles = {
   wrapper: {

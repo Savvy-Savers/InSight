@@ -35,14 +35,15 @@ const BadgeModal = (props) => {
     },
     modal: {
       backgroundColor: 'white',
-      padding: 22,
-      alignSelf: 'center',
+      padding: 30,
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 4,
       borderColor: 'rgba(0, 0, 0, 0.1)',
       height: 340,
       flex: 0,
+      flexBais: 30,
+      marginTop: 200,
     },
     name: {
       color: '#000',

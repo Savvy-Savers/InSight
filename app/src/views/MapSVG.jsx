@@ -1,22 +1,24 @@
 /* Every time you want to place SVG element in your app - you should wrap it using <Svg> component
  Without this tag other element's won’t be visible, because vectors need points.
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
-import axios from 'axios';
 import { View } from 'react-native';
-import Svg, { Circle, Rect, SvgUri } from 'react-native-svg';
+import Svg, { Circle } from 'react-native-svg';
+import MapModal from './MapModal';
+import { setAutoFocusEnabled } from 'expo/build/AR';
+
 
 function MapSvg(props) {
-  const { courses, coursesCompleted, profile } = props;
+  const { courses, coursesCompleted } = props;
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [course, setCourse] = useState(null);
   const { navigate } = useNavigation();
 
-
-  // if the users has completed the course, we want to X over it
-  // need to check if the course id is in the coursed Completed Array;
-
-  // check if each course is completed
-  // if cousesCompleted.contains(course[0].id)
+  const toggleModal = (clickedCourse) => {
+    setModalVisible(!isModalVisible);
+    setCourse(clickedCourse);
+  };
 
   return (
     <View>
@@ -29,9 +31,11 @@ function MapSvg(props) {
           fill={coursesCompleted.includes(courses[0].id) ? 'pink' : 'lightgreen'}
           title={courses[0].topic}
           key={courses[0].topic}
-          onPress={() => { navigate('Course', { id: courses[0].id, name: courses[0].topic }); }}
+          //  open model
+          onPress={() => { toggleModal(courses[0]); }}
+          // onPress={() => { navigate('Course', { id: courses[0].id, name: courses[0].topic }); }}
         />
-        {/* {cousesCompleted.contains(course[0].id) ? } */}
+        {isModalVisible ? (<MapModal course={course} />) : null}
         <Circle
           cx="92"
           cy="40"
