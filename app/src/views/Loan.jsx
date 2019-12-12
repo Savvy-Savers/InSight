@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Button, Text, TextInput, View } from 'react-native';
 import Colors from '../constants/Colors';
+import NavBar from './NavBar';
 
 const styles = StyleSheet.create({
   button: {
@@ -110,8 +111,8 @@ export default class Loan extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Header />
+      <View style={{ flex: 1 }}>
+        <NavBar navigation={this.props.navigation} />
         {
           this.state.completed ? 
           <View 
