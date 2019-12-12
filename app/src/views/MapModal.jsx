@@ -14,7 +14,7 @@ import { deployment } from 'react-native-dotenv';
 const MapModal = (props) => {
   const { navigate } = useNavigation();
   const [isModalVisible, setModalVisible] = useState(true);
-  const { course } = props;
+  const { course, toggleModal } = props;
   console.log(props);
   const [badgeAchievement, setBadgeAchievement] = useState({});
 
@@ -79,9 +79,9 @@ const MapModal = (props) => {
     },
   };
 
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
+  // const toggleModal = () => {
+  //   setModalVisible(!isModalVisible);
+  // };
 
 
   return (
@@ -90,7 +90,7 @@ const MapModal = (props) => {
         isVisible={isModalVisible}
         style={styles.modal}
         backdropOpacity={0}
-        onBackdropPress={() => setModalVisible(false)}
+        onBackdropPress={() => toggleModal()}
       >
         <View style={styles.achievement}>
           <Text style={styles.name}>{course.topic}</Text>

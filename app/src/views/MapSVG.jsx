@@ -16,8 +16,10 @@ function MapSvg(props) {
   const { navigate } = useNavigation();
 
   const toggleModal = (clickedCourse) => {
-    setModalVisible(true);
-    setCourse(clickedCourse);
+    setModalVisible(!isModalVisible);
+    if (clickedCourse) {
+      setCourse(clickedCourse);
+    }
   };
 
   return (
@@ -98,7 +100,7 @@ function MapSvg(props) {
           key={courses[7].topic}
           onPress={() => { toggleModal(courses[7]); }}
         />
-        {isModalVisible ? (<MapModal course={course} />) : null}
+        {isModalVisible ? (<MapModal course={course} toggleModal={toggleModal} />) : null}
       </Svg>
     </View>
   );
