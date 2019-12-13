@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
-  AsyncStorage,
   Image,
 } from 'react-native';
 import { Button } from 'react-native-elements';
@@ -10,6 +9,7 @@ import Modal from 'react-native-modal';
 import { useNavigation } from 'react-navigation-hooks';
 import { deployment } from 'react-native-dotenv';
 import axios from 'axios';
+import Colors from '../constants/Colors';
 
 const MapModal = (props) => {
   const { navigate } = useNavigation();
@@ -37,7 +37,7 @@ const MapModal = (props) => {
       alignItems: 'center',
       borderRadius: 20,
       borderColor: 'lightblue',
-      height: 230,
+      height: 240,
       flex: 0,
       flexBais: 30,
       marginTop: 200,
@@ -64,20 +64,24 @@ const MapModal = (props) => {
       margin: 5,
     },
     badge: {
-      width: 50,
-      height: 50,
-      margin: 10,
+      width: 80,
+      height: 80,
+      margin: 5,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     button: {
       margin: 20,
     },
   };
 
-  // useEffect(async () => {
-  //   const { id } = course;
-  //   const badge = await axios.get(`http://${deployment}:8080/course/${id}/badge'`);
-  //   setBadgeAchievement(badge.data || {});
-  // });
+  useEffect(() => {
+    const getBadge = async () => {
+      const badge = await axios.get(`http://${deployment}:8080/course/${course.id}/badge`);
+      setBadgeAchievement(badge.data || {});
+    };
+    getBadge();
+  }, []);
 
   return (
     <View style={styles.parent}>
@@ -91,19 +95,18 @@ const MapModal = (props) => {
           <Text style={styles.name}>{course.topic}</Text>
           {/* if the course is completed, we show the badge achieved, else placeholder image */}
           {status ? (
-            <View>
-              <Text style={styles.description}>{`${badgeAchievement.description}`}</Text>
-              <Image style={styles.badge} source={{ uri: badgeAchievement.iconUrl }}/>
-              <Text style={styles.stats}>{`${badgeAchievement.name}`}</Text>
+            <View style={styles.achievement}>
+              <Image style={styles.badge} source={{ uri: badgeAchievement.iconUrl }} />
+              <Text style={styles.stats}>{`You've already earned the ${badgeAchievement.name} badge`}</Text>
+              <Button style={styles.button} title="Review Course" onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} />
             </View>
           ) : (
-            <View>
-              <Text style={styles.description}>{`${badgeAchievement.description}`}</Text>
-              <Image style={styles.badge} source={{ uri: badgeAchievement.iconUrl }} />
+            <View style={styles.achievement}>
+              <Image style={styles.badge} source={require('../assets/icons/purple-square-question-mark-icon-by-vexels.png')} />
               <Text style={styles.stats}>{`Worth ${badgeAchievement.experiencePoints} experience points`}</Text>
+              <Button style={styles.button} title="Start Learning! " onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} />
             </View>
           )}
-          <Button style={styles.button} title="Start Learning! " onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} />
         </View>
       </Modal>
     </View>

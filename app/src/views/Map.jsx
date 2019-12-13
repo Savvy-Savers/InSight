@@ -4,6 +4,7 @@ import { deployment } from 'react-native-dotenv';
 import { withNavigationFocus } from 'react-navigation';
 import axios from 'axios';
 import MapSvg from './MapSVG';
+import Colors from '../constants/Colors';
 
 class MapScreen extends React.Component {
   constructor(props) {
@@ -53,8 +54,8 @@ class MapScreen extends React.Component {
   render() {
     const { courses, coursesCompleted, isLoaded } = this.state;
     return (
-      <ImageBackground source={require('../assets/images/journey.png')}
-        imageStyle={{ resizeMode: 'stretch' }}
+      <ImageBackground source={require('../assets/images/purplemapdetails.png')}
+        imageStyle={{ resizeMode: "cover" }}
         style={{ width: '100%', height: '100%' }}
       >
         <View>

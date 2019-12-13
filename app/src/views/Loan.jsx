@@ -8,14 +8,15 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     height: 10,
     width: 30,
-    color: 'white'
+    color: 'white',
+    margin: 5,
   },
   container: {
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
-    bottom: 50
+    bottom: 50,
   },
   inputs: {
     width: 300,
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
     width: 300,
     alignSelf: 'center',
     height: 70,
-    margin: 10
+    margin: 10,
   },
   header: {
     height: 100,
@@ -37,8 +38,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.accent,
     justifyContent: 'center',
     position: 'absolute',
-    top: 100
-  }
+    top: 100,
+  },
 });
 
 export default class Loan extends Component {
@@ -49,8 +50,8 @@ export default class Loan extends Component {
       principal: '',
       years: '',
       response: '',
-      completed: false
-    }
+      completed: false,
+    };
 
     this.reset = this.reset.bind(this);
     this.calculate = this.calculate.bind(this);
@@ -62,13 +63,13 @@ export default class Loan extends Component {
       principal: '',
       years: '',
       response: '',
-      completed: false
-    })
+      completed: false,
+    });
   }
 
   calculate() {
     function getMonths(yrs) {
-      return yrs * 12
+      return yrs * 12;
     }
 
     function convertRate(rate) {
@@ -76,75 +77,79 @@ export default class Loan extends Component {
     }
 
     function MonthlyPayments(r, p, yrs) {
-      months = getMonths(yrs);
-      rate = convertRate(r);
-      this.values = function() {
-        return { months: months, rate: rate, principal: p }
-      }
-      this.total = function() {
-        top = rate * Math.pow((1 + rate), months);
-        bottom = Math.pow(1 + rate, months) - 1;
+      const months = getMonths(yrs);
+      const rate = convertRate(r);
+      this.values = function () {
+        return { months: months, rate: rate, principal: p };
+      };
+      this.total = function () {
+        const top = rate * Math.pow((1 + rate), months);
+        const bottom = Math.pow(1 + rate, months) - 1;
         return Math.round(p * (top / bottom));
-      }
-      this.message = function() {
-        return `At an interest rate of ${rate}% with ${months} monthly payments & a principal of $${p}, your total installment repayments will be $${this.total()}!`
-      }
+      };
+      this.message = function () {
+        return `At an interest rate of ${rate}% with ${months} monthly payments & a principal of $${p}, your total installment repayments will be $${this.total()}!`;
+      };
     }
 
     const loan = new MonthlyPayments(this.state.rate, this.state.principal, this.state.years);
 
     this.setState({
       response: loan.message(),
-      completed: true
+      completed: true,
     });
   }
 
   render() {
+    // destructed the variables. required by eslint
+    const {
+      completed,
+      response,
+      rate,
+      years,
+    } = this.state;
+
+    const { navigation } = this.props;
+
     return (
       <View style={{ flex: 1 }}>
-        <NavBar navigation={this.props.navigation} />
-        {
-          this.state.completed ? 
-          <View 
-          style={styles.results}
-          >
-  <Text style={{fontSize: 15, color: Colors.accent}}>{this.state.response}
-  </Text>
-  </View>
-  : null
-        }
+        <NavBar navigation={navigation} name="Loan Tool" />
+        { completed ? (
+          <View style={styles.results}>
+            <Text style={{ fontSize: 15, color: Colors.accent }}>{response}</Text>
+          </View>
+        ) : null }
         <TextInput
-        keyboardType = 'numeric'
-        placeholder = 'Interest Rate'
-        style={styles.inputs}
-        value={`${this.state.rate}`}
-        onChangeText={(text) => this.setState({rate: text})}
+          keyboardType="numeric"
+          placeholder="Interest Rate"
+          style={styles.inputs}
+          value={`${rate}`}
+          onChangeText={(text) => this.setState({ rate: text })}
         />
         <TextInput
-        keyboardType = 'numeric'
-        placeholder = 'Principal'
-        style={styles.inputs}
-        onChangeText={(text) => this.setState({principal: text})}
+          keyboardType="numeric"
+          placeholder="Principal"
+          style={styles.inputs}
+          onChangeText={(text) => this.setState({ principal: text })}
         />
         <TextInput
-        keyboardType = 'numeric'
-        placeholder = 'Years'
-        style={styles.inputs}
-        value={`${this.state.years}`}
-        onChangeText={(text) => this.setState({years: text})}
+          keyboardType="numeric"
+          placeholder="Years"
+          style={styles.inputs}
+          value={`${years}`}
+          onChangeText={(text) => this.setState({ years: text })}
         />
         <Button
-        onPress={this.calculate}
-        style={styles.button}
-        title='Calculate'
+          onPress={this.calculate}
+          style={styles.button}
+          title="Calculate"
         />
-        
         <Button
-        onPress={this.reset}
-        style={styles.button}
-        title='Reset'
+          onPress={this.reset}
+          style={styles.button}
+          title="Reset"
         />
       </View>
-    )
+    );
   }
 }

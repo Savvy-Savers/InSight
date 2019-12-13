@@ -4,7 +4,7 @@ import * as Google from "expo-google-app-auth";
 import axios from 'axios';
 import {andriodId, iphoneId, deployment } from 'react-native-dotenv';
 import NavBar from './NavBar';
-import { StackViewCard } from "react-navigation-stack";
+import Colors from '../constants/Colors';
 
 
 export default class Login extends React.Component {
@@ -58,6 +58,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <View style={{flex: 1}}>
+
         {this.state.signedIn ? (
           <LoggedInPage name={this.state.name} photoUrl={this.state.photoUrl} navigation={this.props.navigation} />
         ) : (
@@ -71,6 +72,19 @@ export default class Login extends React.Component {
 const LoginPage = props => {
   return (
     <View style={styles.container}>
+      <View style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+      }}
+      >
+        <Image
+          styles={{ flex: 1, resizeMode: 'contain' }}
+          source={require('../assets/images/bg1.png')}
+        />
+      </View>
       <Text style={styles.signIn}>Welcome to InSight! </Text>
       <Button title="Sign in with Google" 
         containerStyle={{
@@ -88,8 +102,21 @@ const LoginPage = props => {
 const LoggedInPage = props => {
   return (
     <View style={{flex: 1}}>
-      <NavBar navigation={props.navigation} />
+      <NavBar navigation={props.navigation} name="Main" />
       <View style={styles.container}>
+      <View style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+      }}
+      >
+        <Image
+          styles={{ flex: 1, resizeMode: 'contain' }}
+          source={require('../assets/images/bg2.png')}
+        />
+      </View>
         <Text style={styles.header}>Insight</Text>
         <Text style={styles.welcome}>Welcome {props.name}!</Text>
         <Image style={styles.image} source={{ uri: props.photoUrl }} />
@@ -102,10 +129,9 @@ const LoggedInPage = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "transparent",
     alignItems: "center",
     justifyContent: "center",
-    margin: 15, 
   },
   image: {
     marginTop: 15,
@@ -120,12 +146,15 @@ const styles = StyleSheet.create({
     // fontFamily: 'LobsterTwo-Bold',
     fontSize: 56,
     marginTop: 10,
+    color: Colors.primary,
   },
   signIn: {
     fontWeight: 'bold',
-    // fontFamily: 'LobsterTwo-Bold',
-    fontSize: 30,
-    margin:20
+    // fontFamily: '',
+    fontSize: 60,
+    textAlign: "center",
+    color: Colors.primary,
+    margin:30
   },
   welcome: {
     fontWeight: 'bold',
@@ -137,5 +166,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     margin: 30,
     textAlign: "center",
+    fontWeight: 'bold',
   },
 })
