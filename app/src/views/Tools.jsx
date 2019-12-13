@@ -259,6 +259,7 @@ export default class ToolsScreen extends React.Component {
             title="Submit"
             onPress={this.submitBudget}
             buttonStyle={{ backgroundColor: Colors.primary }}
+            containerStyle={{ margin: 10 }}
           />
         </View>
       </View>
