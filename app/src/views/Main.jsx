@@ -6,6 +6,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import NavBar from './NavBar';
+import Colors from '../constants/Colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
 
 function MainScreen(props) {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <ImageBackground source={{ uri: './src/assets/images/cascade.png' }} style={{ width: '100%', height: '100%' }}>
         <NavBar navigation={props.navigation} />
         <View style={styles.container}>

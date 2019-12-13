@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { StyleSheet, Button, Text, TextInput, View } from 'react-native';
+import Colors from '../constants/Colors';
+
 
 const styles = StyleSheet.create({
   button: {
     backgroundColor: 'blue',
     height: 10,
     width: 30,
-    color: 'white'
+    color: 'white',
   },
   container: {
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
-    bottom: 50
+    bottom: 50,
   },
   inputs: {
     width: 300,
@@ -21,13 +23,13 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 10,
     padding: 5,
-    backgroundColor: 'lightblue'
+    backgroundColor: 'lightblue',
   },
   results: {
     width: 300,
     alignSelf: 'center',
     height: 70,
-    margin: 10
+    margin: 10,
   },
   header: {
     height: 100,
@@ -35,15 +37,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightblue',
     justifyContent: 'center',
     position: 'absolute',
-    top: 60
-  }
+    top: 60,
+  },
 });
 
 const Header = () => {
-  return(
+  return (
     <View style={styles.header}>
       <Text style={{fontSize: 15, alignSelf: 'center'}}
-        Loan Calculator
+      Loan Calculator
         ></Text>
     </View>
   )
@@ -58,8 +60,8 @@ export default class Loan extends Component {
       principal: 0,
       years: 0,
       response: '',
-      completed: false
-    }
+      completed: false,
+    };
 
     this.reset = this.reset.bind(this);
     this.calculate = this.calculate.bind(this);
@@ -71,13 +73,13 @@ export default class Loan extends Component {
       principal: '',
       years: 0,
       response: '',
-      completed: false
-    })
+      completed: false,
+    });
   }
 
   calculate() {
     function getMonths(yrs) {
-      return yrs * 12
+      return yrs * 12,
     }
 
     function convertRate(rate) {

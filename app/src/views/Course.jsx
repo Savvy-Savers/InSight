@@ -5,6 +5,8 @@ import Swiper from 'react-native-swiper';
 import { useNavigation } from 'react-navigation-hooks';
 import axios from 'axios';
 import { deployment } from 'react-native-dotenv';
+import Colors from '../constants/Colors';
+
 
 function CourseScreen(props) {
   const [course, setCourse] = useState({});
