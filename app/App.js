@@ -11,9 +11,7 @@ import Login from './src/views/Login';
 import MapScreen from './src/views/Map';
 import ProfileScreen from './src/views/Profile';
 import MainScreen from './src/views/Main';
-import AboutScreen from './src/views/About';
 import SettingScreen from './src/views/Setting';
-import PolicyScreen from './src/views/Policy';
 import ResourcesScreen from './src/views/Resources';
 import ToolsScreen from './src/views/Tools';
 import QuizScreen from './src/views/Quiz';
@@ -77,10 +75,8 @@ const AppNavigator = createDrawerNavigator(
     Map: CourseNavigator,
     'Course Tools': ToolsScreen,
     Loan,
-    About: AboutScreen,
     Settings: SettingScreen,
     Resources: ResourcesScreen,
-    Policy: PolicyScreen,
   },
   {
     initialRouteName: 'Main',
@@ -99,6 +95,5 @@ const AppLogin = createSwitchNavigator(
     initialRouteName: 'AuthLoading',
   },
 );
-
 
 const AppContainer = createAppContainer(AppNavigator, AppLogin);
