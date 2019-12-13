@@ -75,7 +75,7 @@ const BadgeModal = (props) => {
     badge: {
       width: 100,
       height: 100,
-      margin: 20,
+      margin: 10,
     },
     button: {
       margin: 20,

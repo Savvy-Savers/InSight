@@ -15,7 +15,6 @@ const MapModal = (props) => {
   const { navigate } = useNavigation();
   const [isModalVisible, setModalVisible] = useState(true);
   const { course, toggleModal, status } = props;
-  console.log(props);
   const [badgeAchievement, setBadgeAchievement] = useState({});
 
   const styles = {
@@ -74,11 +73,11 @@ const MapModal = (props) => {
     },
   };
 
-  useEffect(async () => {
-    const { id } = course;
-    const badge = await axios.get(`http://${deployment}:8080/course/${id}/badge'`);
-    setBadgeAchievement(badge.data || {});
-  });
+  // useEffect(async () => {
+  //   const { id } = course;
+  //   const badge = await axios.get(`http://${deployment}:8080/course/${id}/badge'`);
+  //   setBadgeAchievement(badge.data || {});
+  // });
 
   return (
     <View style={styles.parent}>
