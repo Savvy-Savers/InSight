@@ -122,10 +122,10 @@ class ProfileScreen extends React.Component {
     return (
       // Basic display to show necessary variables, to be revised
       <View style={{ flex: 1 }}>
-        <NavBar navigation={this.props.navigation} />
+        <NavBar navigation={this.props.navigation} name="Profile" />
         <View style={{ alignItems: 'center', justifyContent: 'center', margin: 5 }}>
           <Image style={styles.image} source={{ uri: profile.photoUrl }} />
-          <Text style={{ fontSize: 30, color: Colors.secondAccent, fontWeight: 'bold' }}>{`${profile.givenName} ${profile.familyName}`}</Text>
+          <Text style={{ fontSize: 35, color: Colors.secondAccent, fontWeight: 'bold' }}>{`${profile.givenName} ${profile.familyName}`}</Text>
           <View style={styles.levelInfo}>
             <View style={{ ...styles.innerContainer, borderRightWidth: 3 }}>
               <View style={styles.innerInfo}>
