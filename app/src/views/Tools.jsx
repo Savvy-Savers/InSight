@@ -229,53 +229,55 @@ export default class ToolsScreen extends React.Component {
           />
         </View>
         <View style={{ backgroundColor: 'white' }}>
-          <Input // Input for user income
-            label="Income"
-            onChangeText={(text) => this.updateText('income', text)}
-            value={income === 0 ? null : income.toString()}
-            placeholder="Enter your income"
-            keyboardType="numeric"
-            labelStyle={styles.input}
-          />
-        </View>
-        <View style={styles.container}>
-          <ButtonGroup // Button group to determine what kind of income user has
-            onPress={this.updateIndex}
-            selectedIndex={selectedIndex}
-            buttons={buttons}
-            containerStyle={{ height: 45, ...styles.btnGroup }}
-            innerBorderStyle={{ width: 4, color: Colors.secondAccent }}
-            selectedButtonStyle={{ backgroundColor: Colors.primary }}
-            textStyle={{ fontSize: 18 }}
-          />
-        </View>
-        <View style={styles.container}>
-          <Input // Input for user outcome
-            label="Monthly Expenses"
-            onChangeText={(text) => this.updateText('outcome', text)}
-            value={outcome === 0 ? null : outcome.toString()}
-            placeholder="Rent, electricity, internet"
-            keyboardType="numeric"
-            labelStyle={styles.input}
-          />
-        </View>
-        <View style={styles.container}>
-          <Input // Input for user savings
-            label="Savings"
-            onChangeText={(text) => this.updateText('savings', text)}
-            value={savings === 0 ? null : savings.toString()}
-            placeholder={`We recommend 25% of net worth: ${Math.floor(((income / incomeModifier) - outcome) * 0.25)}`}
-            keyboardType="numeric"
-            labelStyle={styles.input}
-          />
-        </View>
-        <View style={{ ...styles.container }}>
-          <Button // Button to submit all budget data to server
-            title="Submit"
-            onPress={this.submitBudget}
-            buttonStyle={{ backgroundColor: Colors.primary }}
-            containerStyle={{ margin: 10 }}
-          />
+          <View>
+            <Input // Input for user income
+              label="Income"
+              onChangeText={(text) => this.updateText('income', text)}
+              value={income === 0 ? null : income.toString()}
+              placeholder="Enter your income"
+              keyboardType="numeric"
+              labelStyle={styles.input}
+            />
+          </View>
+          <View style={styles.container}>
+            <ButtonGroup // Button group to determine what kind of income user has
+              onPress={this.updateIndex}
+              selectedIndex={selectedIndex}
+              buttons={buttons}
+              containerStyle={{ height: 45, ...styles.btnGroup }}
+              innerBorderStyle={{ width: 4, color: Colors.secondAccent }}
+              selectedButtonStyle={{ backgroundColor: Colors.primary }}
+              textStyle={{ fontSize: 18 }}
+            />
+          </View>
+          <View style={styles.container}>
+            <Input // Input for user outcome
+              label="Monthly Expenses"
+              onChangeText={(text) => this.updateText('outcome', text)}
+              value={outcome === 0 ? null : outcome.toString()}
+              placeholder="Rent, electricity, internet"
+              keyboardType="numeric"
+              labelStyle={styles.input}
+            />
+          </View>
+          <View style={styles.container}>
+            <Input // Input for user savings
+              label="Savings"
+              onChangeText={(text) => this.updateText('savings', text)}
+              value={savings === 0 ? null : savings.toString()}
+              placeholder={`We recommend 25% of net worth: ${Math.floor(((income / incomeModifier) - outcome) * 0.25)}`}
+              keyboardType="numeric"
+              labelStyle={styles.input}
+            />
+          </View>
+          <View style={{ ...styles.container }}>
+            <Button // Button to submit all budget data to server
+              title="Submit"
+              onPress={this.submitBudget}
+              buttonStyle={{ backgroundColor: Colors.primary }}
+              containerStyle={{ margin: 10 }}
+            />
+          </View>
         </View>
       </View>
     );
