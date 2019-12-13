@@ -166,6 +166,18 @@ const getCourseBadge = (badgeId) => Badge.findOne({
     console.error(err);
   });
 
+const getCourseObject = (courseId) => Course.findOne({
+  where: {
+    id: courseId,
+  },
+  attributes: {
+    exclude: ['createdAt', 'updatedAt'],
+  },
+})
+  .catch((err) => {
+    console.error(err);
+  });
+
 /**
  * Gets the user's acquired badges.
  * @param {integer} userId - The user's ID.
@@ -316,6 +328,7 @@ module.exports = {
   insertUserBadge,
   getCompletedCourse,
   getCompletedCourseStatus,
+  getCourseObject,
   getCourseBadge,
   getBudget,
   setBudget,
