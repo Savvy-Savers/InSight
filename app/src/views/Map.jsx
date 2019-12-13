@@ -54,8 +54,8 @@ class MapScreen extends React.Component {
   render() {
     const { courses, coursesCompleted, isLoaded } = this.state;
     return (
-      <ImageBackground source={require('../assets/images/journey.png')}
-        imageStyle={{ resizeMode: 'stretch' }}
+      <ImageBackground source={require('../assets/images/purplemapdetails.png')}
+        imageStyle={{ resizeMode: "cover" }}
         style={{ width: '100%', height: '100%' }}
       >
         <View>

@@ -1,19 +1,19 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
 import QuizQuestionView from './QuizQuestionView';
 import Colors from '../constants/Colors';
 
 const styles = {
   wrapper: {
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
   },
   slides: {
-    flex: 4,
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flex: 3,
+    // flexDirection: 'row',
     alignItems: 'center',
+    margin: 20,
   },
 };
 
@@ -33,6 +33,19 @@ export default class QuizScreen extends React.Component {
     return (
     // mapping over the concpets, and getting their questions
       <View style={{ flex: 1 }}>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+        }}
+        >
+          <Image
+            styles={{ flex: 1, resizeMode: 'center' }}
+            source={require('../assets/images/bg2.png')}
+          />
+        </View>
         <Swiper
           key={concepts.length}
           style={styles.wrapper}
@@ -42,13 +55,15 @@ export default class QuizScreen extends React.Component {
           {/* map over the concept and displays each associated question
           there is only one question per concept */}
           {concepts.map((concept, index) => (
-            <QuizQuestionView
-              concept={concept}
-              index={index}
-              key={concept.id}
-              lastQuestion={lastQuestion}
-              courseBadgeId={courseBadgeId}
-            />
+            <View key={concept.id} style={styles.slides}>
+              <QuizQuestionView
+                concept={concept}
+                index={index}
+                key={concept.id}
+                lastQuestion={lastQuestion}
+                courseBadgeId={courseBadgeId}
+              />
+            </View>
           ))}
         </Swiper>
       </View>

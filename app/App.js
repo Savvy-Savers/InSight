@@ -10,7 +10,6 @@ import CourseScreen from './src/views/Course';
 import Login from './src/views/Login';
 import MapScreen from './src/views/Map';
 import ProfileScreen from './src/views/Profile';
-import MainScreen from './src/views/Main';
 import ToolsScreen from './src/views/Tools';
 import QuizScreen from './src/views/Quiz';
 import LoanScreen from './src/views/Loan';
@@ -102,8 +101,8 @@ const AppNavigator = createDrawerNavigator(
   },
 );
 
-const AppStack = createStackNavigator({ Home: Login, Other: MainScreen });
-const AuthStack = createStackNavigator({ Home: MainScreen });
+const AppStack = createStackNavigator({ Home: Login });
+const AuthStack = createStackNavigator({ Home: Login });
 
 const AppLogin = createSwitchNavigator(
   {
