@@ -1,5 +1,10 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/no-access-state-in-setstate */
 import React, { Component } from 'react';
-import { StyleSheet, Button, Text, TextInput, View } from 'react-native';
+import {
+  StyleSheet, Button, Text, TextInput, View,
+} from 'react-native';
 import Colors from '../constants/Colors';
 import NavBar from './NavBar';
 
@@ -24,7 +29,7 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 10,
     padding: 5,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   results: {
     width: 300,
@@ -80,11 +85,11 @@ export default class Loan extends Component {
       const months = getMonths(yrs);
       const rate = convertRate(r);
       this.values = function () {
-        return { months: months, rate: rate, principal: p };
+        return { months, rate, principal: p };
       };
       this.total = function () {
-        const top = rate * Math.pow((1 + rate), months);
-        const bottom = Math.pow(1 + rate, months) - 1;
+        const top = rate ** ((1 + rate), months);
+        const bottom = (1 + rate ** months) - 1;
         return Math.round(p * (top / bottom));
       };
       this.message = function () {
