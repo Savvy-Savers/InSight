@@ -41,16 +41,6 @@ const styles = StyleSheet.create({
   }
 });
 
-const Header = () => {
-  return(
-    <View style={styles.header}>
-      <Text style={{fontSize: 25, alignSelf: 'center'}}
-        >Loan Calculator</Text>
-    </View>
-  )
-}
-
-
 export default class Loan extends Component {
   constructor(props) {
     super(props);
