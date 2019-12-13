@@ -3,11 +3,8 @@ import {
   Text,
   View,
   AsyncStorage,
-<<<<<<< HEAD
-  Image,
-=======
   StyleSheet,
->>>>>>> 9248a76aedc1384ad2a418ea883f8eb0ff1ef11a
+  Image,
 } from 'react-native';
 import {
   Input,
@@ -25,6 +22,7 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
     marginTop: 10,
+    backgroundColor: 'white',
   },
   input: {
     fontSize: 20,
@@ -217,8 +215,6 @@ export default class ToolsScreen extends React.Component {
     // Display for the first time setup for the budget
     const setup = (
       <View>
-<<<<<<< HEAD
-
         <View style={{
           position: 'absolute',
           top: 0,
@@ -233,23 +229,10 @@ export default class ToolsScreen extends React.Component {
           />
         </View>
         <View style={{ backgroundColor: 'white' }}>
-=======
-        <View style={styles.container}>
->>>>>>> 9248a76aedc1384ad2a418ea883f8eb0ff1ef11a
           <Input // Input for user income
             label="Income"
             onChangeText={(text) => this.updateText('income', text)}
             value={income === 0 ? null : income.toString()}
-<<<<<<< HEAD
-            placeholder="Gimme ur $"
-          />
-          <ButtonGroup // Button group to determine what kind of income user has (weekly/monthly etc)
-            onPress={this.updateIndex}
-            selectedIndex={selectedIndex}
-            buttons={buttons}
-            containerStyle={{ height: 40 }}
-          />
-=======
             placeholder="Enter your income"
             keyboardType="numeric"
             labelStyle={styles.input}
@@ -267,32 +250,21 @@ export default class ToolsScreen extends React.Component {
           />
         </View>
         <View style={styles.container}>
->>>>>>> 9248a76aedc1384ad2a418ea883f8eb0ff1ef11a
           <Input // Input for user outcome
             label="Monthly Expenses"
             onChangeText={(text) => this.updateText('outcome', text)}
             value={outcome === 0 ? null : outcome.toString()}
             placeholder="Rent, electricity, internet"
-<<<<<<< HEAD
-          />
-=======
             keyboardType="numeric"
             labelStyle={styles.input}
           />
         </View>
         <View style={styles.container}>
->>>>>>> 9248a76aedc1384ad2a418ea883f8eb0ff1ef11a
           <Input // Input for user savings
             label="Savings"
             onChangeText={(text) => this.updateText('savings', text)}
             value={savings === 0 ? null : savings.toString()}
             placeholder={`We recommend 25% of net worth: ${Math.floor(((income / incomeModifier) - outcome) * 0.25)}`}
-<<<<<<< HEAD
-          />
-          <Button // Button to submit all budget data to server
-            title="Submit"
-            onPress={this.submitBudget}
-=======
             keyboardType="numeric"
             labelStyle={styles.input}
           />
@@ -303,7 +275,6 @@ export default class ToolsScreen extends React.Component {
             onPress={this.submitBudget}
             buttonStyle={{ backgroundColor: Colors.primary }}
             containerStyle={{ margin: 10 }}
->>>>>>> 9248a76aedc1384ad2a418ea883f8eb0ff1ef11a
           />
         </View>
       </View>
