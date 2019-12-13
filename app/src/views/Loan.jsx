@@ -3,16 +3,12 @@
 /* eslint-disable react/no-access-state-in-setstate */
 import React, { Component } from 'react';
 import {
-<<<<<<< HEAD
   StyleSheet,
   Button,
   Text,
   TextInput,
   View,
   Image,
-=======
-  StyleSheet, Button, Text, TextInput, View,
->>>>>>> 71c57a1a7c561dc788c792af8d1946940391c4fe
 } from 'react-native';
 import Colors from '../constants/Colors';
 import NavBar from './NavBar';
@@ -41,10 +37,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   results: {
-    width: 300,
-    alignSelf: 'center',
-    height: 70,
-    margin: 10,
+    textAlign: 'center',
+    padding: 20,
     backgroundColor: 'white',
   },
   header: {
