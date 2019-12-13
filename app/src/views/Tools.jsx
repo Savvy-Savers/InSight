@@ -274,7 +274,7 @@ export default class ToolsScreen extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <NavBar navigation={navigation} />
+        <NavBar navigation={navigation} name="Budget Tool" />
         {firstTime || update ? setup : budget}
       </View>
     );
