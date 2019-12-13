@@ -82,7 +82,7 @@ function MapSvg(props) {
           cy="65.5"
           r="4.5"
           fill={coursesCompleted.includes(courses[4].id) ? 'gray' : 'none'}
-          fillOpacity={0.8}
+          fillOpacity={0.9}
           title={courses[4].topic}
           key={courses[4].topic}
           onPress={() => { toggleModal(courses[4]); }}
