@@ -71,7 +71,7 @@ const enterFakeData = (
     .then(() => Concept.create({
       idCourse: 1,
       question: 'How do you create a budget?',
-      description: 'The key to creating a good budget is to determine income, calculate expenses, and set financial goals!',
+      description: 'To create a good budget you must determine income, calculate expenses, and set financial goals!',
     }))
     .then(() => Concept.create({
       idCourse: 2,
@@ -114,55 +114,55 @@ const enterFakeData = (
       description: 'Discussing origininating fees',
     }))
     .then(() => Answer.create({
-      choice: 'you buy everything',
-      description: 'No, dont do that!',
+      choice: 'A tool to make your coffee',
+      description: 'No, that\'s a coffee machine!',
       isCorrect: false,
       idConcept: 1,
     }))
     .then(() => Answer.create({
-      choice: 'you plan it out',
-      description: 'Yes, dont do that!',
+      choice: 'A tool to help you track your income and outcome',
+      description: 'Yes! Budget\'s are crucial to help you manage your assets',
       isCorrect: true,
       idConcept: 1,
     }))
     .then(() => Answer.create({
-      choice: 'you cry',
-      description: 'budgeting isnt that bad!',
+      choice: 'A tool to help you spend money',
+      description: 'Although it does help you know how much you can spend, that isn\'t it\'s full purpose.',
       isCorrect: false,
       idConcept: 1,
     }))
     .then(() => Answer.create({
-      choice: 'you do nothing',
-      description: 'no you have to do something',
+      choice: 'You spend some money and see how much you have leftover.',
+      description: 'You probably want to calculate how much you money you can spend before you spend it.',
       isCorrect: false,
       idConcept: 2,
     }))
     .then(() => Answer.create({
-      choice: 'you make it yourself',
-      description: 'yes! know your budget',
+      choice: 'You tally up your monthly income and expenses and decide how the leftover should be used',
+      description: 'Yes! A budget should let you know exactly how much money you have coming in.',
       isCorrect: true,
       idConcept: 2,
     }))
     .then(() => Answer.create({
-      choice: 'you have your cousin do it',
-      description: 'maybe you should take charge of your financial life',
+      choice: 'You have your cousin do it',
+      description: 'Maybe you should do it yourself and take charge of your financial life.',
       isCorrect: false,
       idConcept: 2,
     }))
     .then(() => Answer.create({
-      choice: 'spend 50% on needs, 30% on wants, and 20% to savings',
+      choice: 'Spend 50% on needs, 30% on wants, and 20% to savings',
       description: 'This is a great way to allocate your money into budget categories, especially for the first time!',
       isCorrect: true,
       idConcept: 3,
     }))
     .then(() => Answer.create({
-      choice: 'spend 50% on wants, 30% on needs, and 20% to savings',
+      choice: 'Spend 50% on wants, 30% on needs, and 20% to savings',
       description: 'We appreicate that you known what you want, but spending that much on wants is not condusive to balance',
       isCorrect: false,
       idConcept: 3,
     }))
     .then(() => Answer.create({
-      choice: 'spend 50% on saving, 30% on needs, and 20% to wants',
+      choice: 'Spend 50% on saving, 30% on needs, and 20% to wants',
       description: 'Whoo you are pretty frugal! Not a bad thing, yet this isn\'t the saying',
       isCorrect: false,
       idConcept: 3,
@@ -380,42 +380,42 @@ const enterFakeData = (
     .then(() => {
       Level.create({
         id: 1,
-        name: 'Level 1',
+        name: '1',
         experiencePointsThreshold: 0,
       });
     })
     .then(() => {
       Level.create({
         id: 2,
-        name: 'Level 2',
+        name: '2',
         experiencePointsThreshold: 150,
       });
     })
     .then(() => {
       Level.create({
         id: 3,
-        name: 'Level 3',
+        name: '3',
         experiencePointsThreshold: 350,
       });
     })
     .then(() => {
       Level.create({
         id: 4,
-        name: 'Level 4',
+        name: '4',
         experiencePointsThreshold: 600,
       });
     })
     .then(() => {
       Level.create({
         id: 5,
-        name: 'Level 5',
+        name: '5',
         experiencePointsThreshold: 900,
       });
     })
     .then(() => {
       Level.create({
         id: 6,
-        name: 'Level 6',
+        name: '6',
         experiencePointsThreshold: 1250,
       });
     });

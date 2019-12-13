@@ -3,6 +3,7 @@
 /* eslint-disable react/no-access-state-in-setstate */
 import React, { Component } from 'react';
 import {
+<<<<<<< HEAD
   StyleSheet,
   Button,
   Text,
@@ -10,6 +11,12 @@ import {
   View,
   Image,
 } from 'react-native';
+=======
+  Input,
+  Button,
+} from 'react-native-elements';
+import { StyleSheet, Text, View } from 'react-native';
+>>>>>>> 9248a76aedc1384ad2a418ea883f8eb0ff1ef11a
 import Colors from '../constants/Colors';
 import NavBar from './NavBar';
 
@@ -141,6 +148,7 @@ export default class Loan extends Component {
             <Text style={{ fontSize: 15, color: Colors.accent }}>{response}</Text>
           </View>
         ) : null }
+<<<<<<< HEAD
         <View style={{ backgroundColor: 'white' }}>
           <TextInput
             keyboardType="numeric"
@@ -173,6 +181,42 @@ export default class Loan extends Component {
             title="Reset"
           />
         </View>
+=======
+        <Input
+          keyboardType="numeric"
+          label="Interest Rate"
+          style={styles.inputs}
+          value={`${rate}`}
+          onChangeText={(text) => this.setState({ rate: text })}
+        />
+        <Input
+          keyboardType="numeric"
+          label="Principal"
+          style={styles.inputs}
+          onChangeText={(text) => this.setState({ principal: text })}
+        />
+        <Input
+          keyboardType="numeric"
+          label="Years"
+          style={styles.inputs}
+          value={`${years}`}
+          onChangeText={(text) => this.setState({ years: text })}
+        />
+        <Button
+          onPress={this.calculate}
+          style={styles.button}
+          title="Calculate"
+          buttonStyle={{ backgroundColor: Colors.primary }}
+          containerStyle={{ margin: 10 }}
+        />
+        <Button
+          onPress={this.reset}
+          style={styles.button}
+          title="Reset"
+          buttonStyle={{ backgroundColor: Colors.primary }}
+          containerStyle={{ margin: 10 }}
+        />
+>>>>>>> 9248a76aedc1384ad2a418ea883f8eb0ff1ef11a
       </View>
     );
   }

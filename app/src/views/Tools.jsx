@@ -3,7 +3,11 @@ import {
   Text,
   View,
   AsyncStorage,
+<<<<<<< HEAD
   Image,
+=======
+  StyleSheet,
+>>>>>>> 9248a76aedc1384ad2a418ea883f8eb0ff1ef11a
 } from 'react-native';
 import {
   Input,
@@ -15,6 +19,25 @@ import { deployment } from 'react-native-dotenv';
 import axios from 'axios';
 import Pie from './Pie';
 import NavBar from './NavBar';
+import Colors from '../constants/Colors';
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 10,
+    marginTop: 10,
+  },
+  input: {
+    fontSize: 20,
+    color: Colors.secondAccent,
+  },
+  btnGroup: {
+    borderWidth: 4,
+    borderColor: Colors.secondAccent,
+  },
+  text: {
+    fontSize: 20,
+  },
+});
 
 export default class ToolsScreen extends React.Component {
   constructor(props) {
@@ -106,14 +129,15 @@ export default class ToolsScreen extends React.Component {
 
   // update handler for all the text fields for creating a budget
   updateText(element, value) {
+    const val = value.replace(/\D/g, '');
     if (element === 'income') {
-      this.setState({ income: Number(value) });
+      this.setState({ income: Number(val) });
     } else if (element === 'outcome') {
-      this.setState({ outcome: Number(value) });
+      this.setState({ outcome: Number(val) });
     } else if (element === 'savings') {
-      this.setState({ savings: Number(value) });
+      this.setState({ savings: Number(val) });
     } else if (element === 'spend') {
-      this.setState({ spend: Number(value) });
+      this.setState({ spend: Number(val) });
     }
   }
 
@@ -193,6 +217,7 @@ export default class ToolsScreen extends React.Component {
     // Display for the first time setup for the budget
     const setup = (
       <View>
+<<<<<<< HEAD
 
         <View style={{
           position: 'absolute',
@@ -208,10 +233,14 @@ export default class ToolsScreen extends React.Component {
           />
         </View>
         <View style={{ backgroundColor: 'white' }}>
+=======
+        <View style={styles.container}>
+>>>>>>> 9248a76aedc1384ad2a418ea883f8eb0ff1ef11a
           <Input // Input for user income
             label="Income"
             onChangeText={(text) => this.updateText('income', text)}
             value={income === 0 ? null : income.toString()}
+<<<<<<< HEAD
             placeholder="Gimme ur $"
           />
           <ButtonGroup // Button group to determine what kind of income user has (weekly/monthly etc)
@@ -220,21 +249,61 @@ export default class ToolsScreen extends React.Component {
             buttons={buttons}
             containerStyle={{ height: 40 }}
           />
+=======
+            placeholder="Enter your income"
+            keyboardType="numeric"
+            labelStyle={styles.input}
+          />
+        </View>
+        <View style={styles.container}>
+          <ButtonGroup // Button group to determine what kind of income user has
+            onPress={this.updateIndex}
+            selectedIndex={selectedIndex}
+            buttons={buttons}
+            containerStyle={{ height: 45, ...styles.btnGroup }}
+            innerBorderStyle={{ width: 4, color: Colors.secondAccent }}
+            selectedButtonStyle={{ backgroundColor: Colors.primary }}
+            textStyle={{ fontSize: 18 }}
+          />
+        </View>
+        <View style={styles.container}>
+>>>>>>> 9248a76aedc1384ad2a418ea883f8eb0ff1ef11a
           <Input // Input for user outcome
             label="Monthly Expenses"
             onChangeText={(text) => this.updateText('outcome', text)}
             value={outcome === 0 ? null : outcome.toString()}
             placeholder="Rent, electricity, internet"
+<<<<<<< HEAD
           />
+=======
+            keyboardType="numeric"
+            labelStyle={styles.input}
+          />
+        </View>
+        <View style={styles.container}>
+>>>>>>> 9248a76aedc1384ad2a418ea883f8eb0ff1ef11a
           <Input // Input for user savings
             label="Savings"
             onChangeText={(text) => this.updateText('savings', text)}
             value={savings === 0 ? null : savings.toString()}
             placeholder={`We recommend 25% of net worth: ${Math.floor(((income / incomeModifier) - outcome) * 0.25)}`}
+<<<<<<< HEAD
           />
           <Button // Button to submit all budget data to server
             title="Submit"
             onPress={this.submitBudget}
+=======
+            keyboardType="numeric"
+            labelStyle={styles.input}
+          />
+        </View>
+        <View style={{ ...styles.container }}>
+          <Button // Button to submit all budget data to server
+            title="Submit"
+            onPress={this.submitBudget}
+            buttonStyle={{ backgroundColor: Colors.primary }}
+            containerStyle={{ margin: 10 }}
+>>>>>>> 9248a76aedc1384ad2a418ea883f8eb0ff1ef11a
           />
         </View>
       </View>
@@ -243,11 +312,11 @@ export default class ToolsScreen extends React.Component {
     // Display for the budget
     const budget = (
       <View style={{ flex: 1 }}>
-        <View style={{ flex: 1, alignItems: 'center' }}>
+        <View style={{ alignItems: 'center' }}>
           <Pie // Pie chart display
             pieWidth={200}
             pieHeight={200}
-            colors={['#1f77b4', '#ff7f0e']}
+            colors={[Colors.primary, Colors.accent]}
             width={250}
             height={250}
             data={[
@@ -259,24 +328,27 @@ export default class ToolsScreen extends React.Component {
         <View style={{
           flex: 2,
           alignSelf: 'center',
-          width: '50%',
+          width: '70%',
         }}
         >
-          <Text>
+          <Text style={styles.text}>
             {`Weekly budget: $${Math.round(weeklyDisposable * 100) / 100}`}
           </Text>
-          <Text>{`Total spent: $${Math.round(spent * 100) / 100}`}</Text>
+          <Text style={styles.text}>{`Total spent: $${Math.round(spent * 100) / 100}`}</Text>
           <Input // Input for user income
             label="Expense"
             leftIcon={<Icon name="dollar" />}
             onChangeText={(text) => this.updateText('spend', text)}
-            value={spend.toString()}
+            value={spend === 0 ? null : spend.toString()}
+            keyboardType="numeric"
             errorStyle={{ color: 'red' }}
             // errorMessage="ENTER A VALID ERROR HERE"
           />
           <Button // Button to send new expense
             title="Spend"
             onPress={this.submitExpense}
+            buttonStyle={{ backgroundColor: Colors.primary }}
+            containerStyle={{ margin: 10 }}
           />
           <Button // Button to send new expense
             style={{
@@ -284,6 +356,8 @@ export default class ToolsScreen extends React.Component {
             }}
             title="Update Budget"
             onPress={() => this.setState({ update: true })}
+            buttonStyle={{ backgroundColor: Colors.primary }}
+            containerStyle={{ margin: 10 }}
           />
         </View>
       </View>
