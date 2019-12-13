@@ -3,6 +3,7 @@ import {
   Text,
   View,
   AsyncStorage,
+  Image,
 } from 'react-native';
 import {
   Input,
@@ -192,34 +193,50 @@ export default class ToolsScreen extends React.Component {
     // Display for the first time setup for the budget
     const setup = (
       <View>
-        <Input // Input for user income
-          label="Income"
-          onChangeText={(text) => this.updateText('income', text)}
-          value={income === 0 ? null : income.toString()}
-          placeholder="Gimme ur $"
-        />
-        <ButtonGroup // Button group to determine what kind of income user has (weekly/monthly etc)
-          onPress={this.updateIndex}
-          selectedIndex={selectedIndex}
-          buttons={buttons}
-          containerStyle={{ height: 40 }}
-        />
-        <Input // Input for user outcome
-          label="Monthly Expenses"
-          onChangeText={(text) => this.updateText('outcome', text)}
-          value={outcome === 0 ? null : outcome.toString()}
-          placeholder="Rent, electricity, internet"
-        />
-        <Input // Input for user savings
-          label="Savings"
-          onChangeText={(text) => this.updateText('savings', text)}
-          value={savings === 0 ? null : savings.toString()}
-          placeholder={`We recommend 25% of net worth: ${Math.floor(((income / incomeModifier) - outcome) * 0.25)}`}
-        />
-        <Button // Button to submit all budget data to server
-          title="Submit"
-          onPress={this.submitBudget}
-        />
+
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+        }}
+        >
+          <Image
+            styles={{ flex: 1, resizeMode: 'center' }}
+            source={require('../assets/images/bg4.png')}
+          />
+        </View>
+        <View style={{ backgroundColor: 'white' }}>
+          <Input // Input for user income
+            label="Income"
+            onChangeText={(text) => this.updateText('income', text)}
+            value={income === 0 ? null : income.toString()}
+            placeholder="Gimme ur $"
+          />
+          <ButtonGroup // Button group to determine what kind of income user has (weekly/monthly etc)
+            onPress={this.updateIndex}
+            selectedIndex={selectedIndex}
+            buttons={buttons}
+            containerStyle={{ height: 40 }}
+          />
+          <Input // Input for user outcome
+            label="Monthly Expenses"
+            onChangeText={(text) => this.updateText('outcome', text)}
+            value={outcome === 0 ? null : outcome.toString()}
+            placeholder="Rent, electricity, internet"
+          />
+          <Input // Input for user savings
+            label="Savings"
+            onChangeText={(text) => this.updateText('savings', text)}
+            value={savings === 0 ? null : savings.toString()}
+            placeholder={`We recommend 25% of net worth: ${Math.floor(((income / incomeModifier) - outcome) * 0.25)}`}
+          />
+          <Button // Button to submit all budget data to server
+            title="Submit"
+            onPress={this.submitBudget}
+          />
+        </View>
       </View>
     );
 

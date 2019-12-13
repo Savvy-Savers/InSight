@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Button, Text, TextInput, View } from 'react-native';
+import {
+  StyleSheet,
+  Button,
+  Text,
+  TextInput,
+  View,
+  Image,
+} from 'react-native';
 import Colors from '../constants/Colors';
 import NavBar from './NavBar';
 
@@ -24,13 +31,14 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 10,
     padding: 5,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   results: {
     width: 300,
     alignSelf: 'center',
     height: 70,
     margin: 10,
+    backgroundColor: 'white',
   },
   header: {
     height: 100,
@@ -113,42 +121,57 @@ export default class Loan extends Component {
 
     return (
       <View style={{ flex: 1 }}>
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+        }}
+        >
+          <Image
+            styles={{ flex: 1, resizeMode: 'center' }}
+            source={require('../assets/images/bg2.png')}
+          />
+        </View>
         <NavBar navigation={navigation} name="Loan Tool" />
         { completed ? (
           <View style={styles.results}>
             <Text style={{ fontSize: 15, color: Colors.accent }}>{response}</Text>
           </View>
         ) : null }
-        <TextInput
-          keyboardType="numeric"
-          placeholder="Interest Rate"
-          style={styles.inputs}
-          value={`${rate}`}
-          onChangeText={(text) => this.setState({ rate: text })}
-        />
-        <TextInput
-          keyboardType="numeric"
-          placeholder="Principal"
-          style={styles.inputs}
-          onChangeText={(text) => this.setState({ principal: text })}
-        />
-        <TextInput
-          keyboardType="numeric"
-          placeholder="Years"
-          style={styles.inputs}
-          value={`${years}`}
-          onChangeText={(text) => this.setState({ years: text })}
-        />
-        <Button
-          onPress={this.calculate}
-          style={styles.button}
-          title="Calculate"
-        />
-        <Button
-          onPress={this.reset}
-          style={styles.button}
-          title="Reset"
-        />
+        <View style={{ backgroundColor: 'white' }}>
+          <TextInput
+            keyboardType="numeric"
+            placeholder="Interest Rate"
+            style={styles.inputs}
+            value={`${rate}`}
+            onChangeText={(text) => this.setState({ rate: text })}
+          />
+          <TextInput
+            keyboardType="numeric"
+            placeholder="Principal"
+            style={styles.inputs}
+            onChangeText={(text) => this.setState({ principal: text })}
+          />
+          <TextInput
+            keyboardType="numeric"
+            placeholder="Years"
+            style={styles.inputs}
+            value={`${years}`}
+            onChangeText={(text) => this.setState({ years: text })}
+          />
+          <Button
+            onPress={this.calculate}
+            style={styles.button}
+            title="Calculate"
+          />
+          <Button
+            onPress={this.reset}
+            style={styles.button}
+            title="Reset"
+          />
+        </View>
       </View>
     );
   }
