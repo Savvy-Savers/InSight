@@ -102,7 +102,7 @@ export default class Loan extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <NavBar navigation={this.props.navigation} />
+        <NavBar navigation={this.props.navigation} name="Loan Tool" />
         {
           this.state.completed ? 
           <View 
