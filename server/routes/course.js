@@ -4,6 +4,7 @@ const {
   getCourses,
   getCourseBadge,
   getCompletedCourseStatus,
+  getCourseObject,
   updateUserXp,
   insertUserBadge,
 } = require('../db/helper');
@@ -28,6 +29,21 @@ router.get('/list', (req, res) => {
     })
     .catch((err) => {
       console.error(err);
+    });
+});
+
+// Endpoint to retrieve a the badge for a particular course
+router.get('/:id/badge', (req, res) => {
+  const { id } = req.params;
+  getCourseObject(id)
+    .then((courseData) => {
+      return getCourseBadge(courseData.idBadge);
+    })
+    .then((badgeData) => {
+      res.json(badgeData);
+    })
+    .catch((err) => {
+      console.log(err);
     });
 });
 

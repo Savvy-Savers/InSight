@@ -35,14 +35,16 @@ const BadgeModal = (props) => {
     },
     modal: {
       backgroundColor: 'white',
-      padding: 22,
-      alignSelf: 'center',
+      padding: 30,
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: 4,
-      borderColor: 'rgba(0, 0, 0, 0.1)',
+      borderRadius: 10,
+      borderColor: 'lightblue',
       height: 340,
       flex: 0,
+      flexBais: 30,
+      marginTop: 140,
+      borderWidth: 5,
     },
     name: {
       color: '#000',
@@ -73,7 +75,7 @@ const BadgeModal = (props) => {
     badge: {
       width: 100,
       height: 100,
-      margin: 20,
+      margin: 10,
     },
     button: {
       margin: 20,

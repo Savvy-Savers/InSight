@@ -1,22 +1,24 @@
 /* Every time you want to place SVG element in your app - you should wrap it using <Svg> component
  Without this tag other element's won’t be visible, because vectors need points.
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
-import axios from 'axios';
 import { View } from 'react-native';
-import Svg, { Circle, Rect, SvgUri } from 'react-native-svg';
+import Svg, { Circle } from 'react-native-svg';
+import MapModal from './MapModal';
 
 function MapSvg(props) {
-  const { courses, coursesCompleted, profile } = props;
+  const { courses, coursesCompleted } = props;
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [course, setCourse] = useState(null);
   const { navigate } = useNavigation();
 
-
-  // if the users has completed the course, we want to X over it
-  // need to check if the course id is in the coursed Completed Array;
-
-  // check if each course is completed
-  // if cousesCompleted.contains(course[0].id)
+  const toggleModal = (clickedCourse) => {
+    setModalVisible(!isModalVisible);
+    if (clickedCourse) {
+      setCourse(clickedCourse);
+    }
+  };
 
   return (
     <View>
@@ -29,9 +31,10 @@ function MapSvg(props) {
           fill={coursesCompleted.includes(courses[0].id) ? 'pink' : 'lightgreen'}
           title={courses[0].topic}
           key={courses[0].topic}
-          onPress={() => { navigate('Course', { id: courses[0].id, name: courses[0].topic }); }}
+          //  open model
+          onPress={() => { toggleModal(courses[0]); }}
+          // onPress={() => { navigate('Course', { id: courses[0].id, name: courses[0].topic }); }}
         />
-        {/* {cousesCompleted.contains(course[0].id) ? } */}
         <Circle
           cx="92"
           cy="40"
@@ -39,7 +42,7 @@ function MapSvg(props) {
           fill={coursesCompleted.includes(courses[1].id) ? 'pink' : 'lightgreen'}
           title={courses[1].topic}
           key={courses[1].topic}
-          onPress={() => { navigate('Course', { id: courses[1].id, name: courses[1].topic }); }}
+          onPress={() => { toggleModal(courses[1]); }}
         />
         <Circle
           cx="40"
@@ -48,7 +51,7 @@ function MapSvg(props) {
           fill={coursesCompleted.includes(courses[2].id) ? 'pink' : 'lightgreen'}
           title={courses[2].topic}
           key={courses[2].topic}
-          onPress={() => { navigate('Course', { id: courses[2].id, name: courses[2].topic }); }}
+          onPress={() => { toggleModal(courses[2]); }}
         />
         <Circle
           cx="18"
@@ -57,7 +60,7 @@ function MapSvg(props) {
           fill={coursesCompleted.includes(courses[3].id) ? 'pink' : 'lightgreen'}
           title={courses[3].topic}
           key={courses[3].topic}
-          onPress={() => { navigate('Course', { id: courses[3].id, name: courses[3].topic }); }}
+          onPress={() => { toggleModal(courses[3]); }}
         />
         <Circle
           cx="55"
@@ -66,7 +69,7 @@ function MapSvg(props) {
           fill={coursesCompleted.includes(courses[4].id) ? 'pink' : 'lightgreen'}
           title={courses[4].topic}
           key={courses[4].topic}
-          onPress={() => { navigate('Course', { id: courses[4].id, name: courses[4].topic }); }}
+          onPress={() => { toggleModal(courses[4]); }}
         />
         <Circle
           cx="80"
@@ -75,7 +78,7 @@ function MapSvg(props) {
           fill={coursesCompleted.includes(courses[5].id) ? 'pink' : 'lightgreen'}
           title={courses[5].topic}
           key={courses[5].topic}
-          onPress={() => { navigate('Course', { id: courses[5].id, name: courses[5].topic }); }}
+          onPress={() => { toggleModal(courses[5]); }}
         />
         <Circle
           cx="85"
@@ -84,7 +87,7 @@ function MapSvg(props) {
           fill={coursesCompleted.includes(courses[6].id) ? 'pink' : 'lightgreen'}
           title={courses[6].topic}
           key={courses[6].topic}
-          onPress={() => { navigate('Course', { id: courses[6].id, name: courses[6].topic }); }}
+          onPress={() => { toggleModal(courses[6]); }}
         />
         <Circle
           cx="30"
@@ -93,8 +96,10 @@ function MapSvg(props) {
           fill={coursesCompleted.includes(courses[7].id) ? 'pink' : 'lightgreen'}
           title={courses[7].topic}
           key={courses[7].topic}
-          onPress={() => { navigate('Course', { id: courses[7].id, name: courses[7].topic }); }}
+          onPress={() => { toggleModal(courses[7]); }}
         />
+        {isModalVisible ? (
+          <MapModal course={course} toggleModal={toggleModal} status={coursesCompleted.includes(course.id)} />) : null}
       </Svg>
     </View>
   );
