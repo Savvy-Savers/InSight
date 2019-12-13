@@ -88,7 +88,7 @@ const LoginPage = props => {
 const LoggedInPage = props => {
   return (
     <View style={{flex: 1}}>
-      <NavBar navigation={props.navigation} />
+      <NavBar navigation={props.navigation} name="Main" />
       <View style={styles.container}>
         <Text style={styles.header}>Insight</Text>
         <Text style={styles.welcome}>Welcome {props.name}!</Text>
@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
     // fontFamily: 'LobsterTwo-Bold',
     fontSize: 56,
     marginTop: 10,
+    color: '#3C2056',
   },
   signIn: {
     fontWeight: 'bold',

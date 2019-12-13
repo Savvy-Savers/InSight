@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, Button, Text, TextInput, View } from 'react-native';
 import Colors from '../constants/Colors';
-
+import NavBar from './NavBar';
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: Colors.primary,
     height: 10,
     width: 30,
     color: 'white',
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     height: 40,
     margin: 10,
     padding: 5,
-    backgroundColor: 'lightblue',
+    backgroundColor: 'white'
   },
   results: {
     width: 300,
@@ -34,23 +34,12 @@ const styles = StyleSheet.create({
   header: {
     height: 100,
     width: 500,
-    backgroundColor: 'lightblue',
+    backgroundColor: Colors.accent,
     justifyContent: 'center',
     position: 'absolute',
-    top: 60,
-  },
+    top: 100
+  }
 });
-
-const Header = () => {
-  return (
-    <View style={styles.header}>
-      <Text style={{fontSize: 15, alignSelf: 'center'}}
-      Loan Calculator
-        ></Text>
-    </View>
-  )
-}
-
 
 export default class Loan extends Component {
   constructor(props) {
@@ -112,14 +101,14 @@ export default class Loan extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Header />
+      <View style={{ flex: 1 }}>
+        <NavBar navigation={this.props.navigation} name="Loan Tool" />
         {
           this.state.completed ? 
           <View 
           style={styles.results}
           >
-  <Text style={{fontSize: 15, color: 'blue'}}>{this.state.response}
+  <Text style={{fontSize: 15, color: Colors.accent}}>{this.state.response}
   </Text>
   </View>
   : null

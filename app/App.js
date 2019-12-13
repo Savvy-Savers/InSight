@@ -14,6 +14,7 @@ import MainScreen from './src/views/Main';
 import ToolsScreen from './src/views/Tools';
 import QuizScreen from './src/views/Quiz';
 import LoanScreen from './src/views/Loan';
+import Colors from './src/constants/Colors';
 
 // This is the entry point for Expo! We cann't move this file - so instead,
 // we are using it to return the rest of our app views.
@@ -29,9 +30,13 @@ const CourseNavigator = createStackNavigator(
     Map: {
       screen: MapScreen,
       navigationOptions: ({ navigation }) => ({
-        title: 'Map',
+        headerTitle: 'Map',
+        headerTitleStyle: {
+          fontSize: 30,
+          fontWeight: 'normal',
+        },
         headerStyle: {
-          backgroundColor: '#2089DC',
+          backgroundColor: Colors.secondary,
         },
         headerTintColor: '#fff',
         headerLeft: (
@@ -52,17 +57,35 @@ const CourseNavigator = createStackNavigator(
     Course: {
       screen: CourseScreen,
       navigationOptions: ({ navigation }) => ({
-        title: `${navigation.state.params.name}`,
+        headerTitle: `${navigation.state.params.name}`,
+        headerTitleStyle: {
+          fontSize: 30,
+          fontWeight: 'normal',
+        },
         headerStyle: {
-          backgroundColor: '#2089DC',
+          backgroundColor: Colors.secondary,
         },
         headerTintColor: '#fff',
       }),
     },
-    Quiz: QuizScreen,
+    Quiz: {
+      screen: QuizScreen,
+      navigationOptions: ({ navigation }) => ({
+        headerTitle: 'Quiz',
+        headerTitleStyle: {
+          fontSize: 30,
+          fontWeight: 'normal',
+        },
+        headerStyle: {
+          backgroundColor: Colors.secondary,
+        },
+        headerTintColor: '#fff',
+      }),
+    },
   },
   {
     initialRouteName: 'Map',
+    headerLayoutPreset: 'center',
   },
 );
 

@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { Header } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Colors from '../constants/Colors';
 
 // Header for app
 function NavBar(props) {
@@ -26,6 +27,10 @@ function NavBar(props) {
             </TouchableOpacity>
           )
         }
+        centerComponent={{ text: props.name, style: { color: '#fff', fontSize: 30 } }}
+        containerStyle={{
+          backgroundColor: Colors.secondary,
+        }}
       />
     </View>
   );
