@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Button, Text, TextInput, View } from 'react-native';
+import {
+  Input,
+  Button,
+} from 'react-native-elements';
+import { StyleSheet, Text, View } from 'react-native';
 import Colors from '../constants/Colors';
 import NavBar from './NavBar';
 
@@ -119,22 +123,22 @@ export default class Loan extends Component {
             <Text style={{ fontSize: 15, color: Colors.accent }}>{response}</Text>
           </View>
         ) : null }
-        <TextInput
+        <Input
           keyboardType="numeric"
-          placeholder="Interest Rate"
+          label="Interest Rate"
           style={styles.inputs}
           value={`${rate}`}
           onChangeText={(text) => this.setState({ rate: text })}
         />
-        <TextInput
+        <Input
           keyboardType="numeric"
-          placeholder="Principal"
+          label="Principal"
           style={styles.inputs}
           onChangeText={(text) => this.setState({ principal: text })}
         />
-        <TextInput
+        <Input
           keyboardType="numeric"
-          placeholder="Years"
+          label="Years"
           style={styles.inputs}
           value={`${years}`}
           onChangeText={(text) => this.setState({ years: text })}
@@ -143,11 +147,15 @@ export default class Loan extends Component {
           onPress={this.calculate}
           style={styles.button}
           title="Calculate"
+          buttonStyle={{ backgroundColor: Colors.primary }}
+          containerStyle={{ margin: 10 }}
         />
         <Button
           onPress={this.reset}
           style={styles.button}
           title="Reset"
+          buttonStyle={{ backgroundColor: Colors.primary }}
+          containerStyle={{ margin: 10 }}
         />
       </View>
     );
