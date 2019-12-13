@@ -4,6 +4,7 @@ import { deployment } from 'react-native-dotenv';
 import { withNavigationFocus } from 'react-navigation';
 import axios from 'axios';
 import MapSvg from './MapSVG';
+import Colors from '../constants/Colors';
 
 class MapScreen extends React.Component {
   constructor(props) {

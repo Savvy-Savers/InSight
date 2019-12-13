@@ -3,6 +3,7 @@ import React from 'react';
 import { View } from 'react-native';
 import Swiper from 'react-native-swiper';
 import QuizQuestionView from './QuizQuestionView';
+import Colors from '../constants/Colors';
 
 const styles = {
   wrapper: {

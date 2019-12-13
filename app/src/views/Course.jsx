@@ -25,6 +25,10 @@ function CourseScreen(props) {
   }, []); // Array necessary to not repeat endlessly
 
   const styles = {
+    container: {
+      flex: 1,
+      backgroundColor: Colors.primary,
+    },
     wrapper: {
       backgroundColor: '#fff',
     },
