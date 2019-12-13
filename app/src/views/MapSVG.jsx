@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from 'react-navigation-hooks';
 import { View } from 'react-native';
-import Svg, { Circle, Text, G } from 'react-native-svg';
+import Svg, { Circle } from 'react-native-svg';
 import MapModal from './MapModal';
 import Colors from '../constants/Colors';
 
@@ -39,7 +39,7 @@ function MapSvg(props) {
         />
         <Circle
           cx="27.5"
-          cy="92"
+          cy="91.5"
           r="3"
           fill={coursesCompleted.includes(courses[1].id) ? 'gray' : 'none'}
           fillOpacity={0.8}
@@ -50,7 +50,7 @@ function MapSvg(props) {
         <Circle
           cx="64"
           cy="106"
-          r="4"
+          r="5"
           fill={coursesCompleted.includes(courses[2].id) ? 'gray' : 'none'}
           fillOpacity={0.8}
           title={courses[2].topic}
@@ -79,8 +79,8 @@ function MapSvg(props) {
         />
         <Circle
           cx="39.5"
-          cy="65"
-          r="4"
+          cy="65.5"
+          r="4.5"
           fill={coursesCompleted.includes(courses[4].id) ? 'gray' : 'none'}
           fillOpacity={0.8}
           title={courses[4].topic}
@@ -108,9 +108,9 @@ function MapSvg(props) {
           onPress={() => { toggleModal(courses[6]); }}
         />
         <Circle
-          cx="59"
+          cx="60"
           cy="3"
-          r="6"
+          r="5.5"
           fill={coursesCompleted.includes(courses[7].id) ? 'gray' : 'none'}
           fillOpacity={0.8}
           title={courses[7].topic}
@@ -119,13 +119,11 @@ function MapSvg(props) {
         />
         <Circle
           cx="95"
-          cy="3"
-          r="5"
-          fill={coursesCompleted.includes(courses[7].id) ? 'gray' : 'none'}
-          fillOpacity={0.8}
-          title={courses[7].topic}
+          cy="1"
+          r="3.5"
           key={10}
-          onPress={() => { toggleModal(courses[7]); }}
+          fill="none"
+
         />
         {isModalVisible ? (
           <MapModal course={course} toggleModal={toggleModal} status={coursesCompleted.includes(course.id)} />) : null}

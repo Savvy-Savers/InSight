@@ -3,7 +3,6 @@ import { Text, View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
 import { useNavigation } from 'react-navigation-hooks';
-import { LinearGradient } from 'expo';
 import axios from 'axios';
 import { deployment } from 'react-native-dotenv';
 import Colors from '../constants/Colors';

@@ -166,5 +166,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     margin: 30,
     textAlign: "center",
+    fontWeight: 'bold',
   },
 })
