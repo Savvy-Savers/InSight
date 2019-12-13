@@ -46,8 +46,8 @@ export default class Loan extends Component {
     super(props);
     this.state = {
       rate: '',
-      principal: 0,
-      years: 0,
+      principal: '',
+      years: '',
       response: '',
       completed: false
     }
@@ -60,7 +60,7 @@ export default class Loan extends Component {
     this.setState({
       rate: '',
       principal: '',
-      years: 0,
+      years: '',
       response: '',
       completed: false
     })
