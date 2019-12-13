@@ -9,6 +9,7 @@ import Modal from 'react-native-modal';
 import { useNavigation } from 'react-navigation-hooks';
 import { deployment } from 'react-native-dotenv';
 import axios from 'axios';
+import Colors from '../constants/Colors';
 
 const MapModal = (props) => {
   const { navigate } = useNavigation();

@@ -6,6 +6,7 @@ import { useNavigation } from 'react-navigation-hooks';
 import { View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import MapModal from './MapModal';
+import Colors from '../constants/Colors';
 
 function MapSvg(props) {
   const { courses, coursesCompleted } = props;
