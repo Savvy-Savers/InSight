@@ -38,9 +38,9 @@ function MapSvg(props) {
           // onPress={() => { navigate('Course', { id: courses[0].id, name: courses[0].topic }); }}
         />
         <Circle
-          cx="26"
+          cx="27.5"
           cy="92"
-          r="5"
+          r="3"
           fill={coursesCompleted.includes(courses[1].id) ? 'gray' : 'none'}
           fillOpacity={0.8}
           title={courses[1].topic}
@@ -48,9 +48,9 @@ function MapSvg(props) {
           onPress={() => { toggleModal(courses[1]); }}
         />
         <Circle
-          cx="68"
-          cy="104"
-          r="5"
+          cx="64"
+          cy="106"
+          r="4"
           fill={coursesCompleted.includes(courses[2].id) ? 'gray' : 'none'}
           fillOpacity={0.8}
           title={courses[2].topic}
@@ -58,7 +58,7 @@ function MapSvg(props) {
           onPress={() => { toggleModal(courses[2]); }}
         />
         <Circle
-          cx="90"
+          cx="87"
           cy="90"
           r="6"
           fill={coursesCompleted.includes(courses[3].id) ? 'gray' : 'none'}
@@ -68,8 +68,8 @@ function MapSvg(props) {
           onPress={() => { toggleModal(courses[3]); }}
         />
         <Circle
-          cx="55"
-          cy="79"
+          cx="52"
+          cy="78"
           r="6"
           fill={coursesCompleted.includes(courses[3].id) ? 'gray' : 'none'}
           fillOpacity={0.8}
@@ -78,9 +78,9 @@ function MapSvg(props) {
           onPress={() => { toggleModal(courses[3]); }}
         />
         <Circle
-          cx="40"
-          cy="67"
-          r="6"
+          cx="39.5"
+          cy="65"
+          r="4"
           fill={coursesCompleted.includes(courses[4].id) ? 'gray' : 'none'}
           fillOpacity={0.8}
           title={courses[4].topic}
@@ -88,8 +88,8 @@ function MapSvg(props) {
           onPress={() => { toggleModal(courses[4]); }}
         />
         <Circle
-          cx="63"
-          cy="39"
+          cx="64"
+          cy="38"
           r="5"
           fill={coursesCompleted.includes(courses[5].id) ? 'gray' : 'none'}
           fillOpacity={0.8}
@@ -98,9 +98,9 @@ function MapSvg(props) {
           onPress={() => { toggleModal(courses[5]); }}
         />
         <Circle
-          cx="70"
-          cy="20"
-          r="6"
+          cx="71"
+          cy="21"
+          r="5"
           fill={coursesCompleted.includes(courses[6].id) ? 'gray' : 'none'}
           fillOpacity={0.8}
           title={courses[6].topic}
