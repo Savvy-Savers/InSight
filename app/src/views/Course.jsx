@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
 import { useNavigation } from 'react-navigation-hooks';
 import axios from 'axios';
 import { deployment } from 'react-native-dotenv';
+import Colors from '../constants/Colors';
+
 
 function CourseScreen(props) {
   const [course, setCourse] = useState({});
@@ -12,6 +14,8 @@ function CourseScreen(props) {
   const [courseBadgeId, setCourseBadgeId] = useState(0);
   const { id } = props.navigation.state.params;
   const { navigate } = useNavigation();
+  const resizeMode = 'center';
+
 
   useEffect(() => {
     axios.get(`http://${deployment}:8080/course/list/${id}`)
@@ -24,7 +28,7 @@ function CourseScreen(props) {
 
   const styles = {
     wrapper: {
-      backgroundColor: '#fff',
+      backgroundColor: 'transparent',
     },
     slides: {
       flex: 3,
@@ -44,6 +48,19 @@ function CourseScreen(props) {
 
   return (
     <View style={{ flex: 1 }}>
+      <View style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+      }}
+      >
+        <Image
+          styles={{ flex: 1, resizeMode }}
+          source={require('../assets/images/bg1.png')}
+        />
+      </View>
       <Swiper
         key={concepts.length}
         style={styles.wrapper}

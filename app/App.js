@@ -10,12 +10,9 @@ import CourseScreen from './src/views/Course';
 import Login from './src/views/Login';
 import MapScreen from './src/views/Map';
 import ProfileScreen from './src/views/Profile';
-import MainScreen from './src/views/Main';
-import SettingScreen from './src/views/Setting';
-import ResourcesScreen from './src/views/Resources';
 import ToolsScreen from './src/views/Tools';
 import QuizScreen from './src/views/Quiz';
-import Loan from './src/views/Loan';
+import LoanScreen from './src/views/Loan';
 import Colors from './src/constants/Colors';
 
 // This is the entry point for Expo! We cann't move this file - so instead,
@@ -97,17 +94,15 @@ const AppNavigator = createDrawerNavigator(
     Profile: ProfileScreen,
     Map: CourseNavigator,
     'Budget Tool': ToolsScreen,
-    'Loan Tool': Loan,
-    Settings: SettingScreen,
-    Resources: ResourcesScreen,
+    'Loan Tool': LoanScreen,
   },
   {
     initialRouteName: 'Main',
   },
 );
 
-const AppStack = createStackNavigator({ Home: Login, Other: MainScreen });
-const AuthStack = createStackNavigator({ Home: MainScreen });
+const AppStack = createStackNavigator({ Home: Login });
+const AuthStack = createStackNavigator({ Home: Login });
 
 const AppLogin = createSwitchNavigator(
   {

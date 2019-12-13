@@ -9,12 +9,12 @@ import Modal from 'react-native-modal';
 import { useNavigation } from 'react-navigation-hooks';
 import { deployment } from 'react-native-dotenv';
 import axios from 'axios';
+import Colors from '../constants/Colors';
 
 const MapModal = (props) => {
   const { navigate } = useNavigation();
   const [isModalVisible, setModalVisible] = useState(true);
   const { course, toggleModal, status } = props;
-  console.log(props);
   const [badgeAchievement, setBadgeAchievement] = useState({});
 
   const styles = {
@@ -96,16 +96,17 @@ const MapModal = (props) => {
           {/* if the course is completed, we show the badge achieved, else placeholder image */}
           {status ? (
             <View style={styles.achievement}>
-              <Image style={styles.badge} source={{ uri: badgeAchievement.iconUrl }}/>
-              <Text style={styles.stats}>{`${badgeAchievement.name}`}</Text>
+              <Image style={styles.badge} source={{ uri: badgeAchievement.iconUrl }} />
+              <Text style={styles.stats}>{`You've already earned the ${badgeAchievement.name} badge`}</Text>
+              <Button style={styles.button} title="Review Course" onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} />
             </View>
           ) : (
             <View style={styles.achievement}>
               <Image style={styles.badge} source={require('../assets/icons/purple-square-question-mark-icon-by-vexels.png')} />
               <Text style={styles.stats}>{`Worth ${badgeAchievement.experiencePoints} experience points`}</Text>
+              <Button style={styles.button} title="Start Learning! " onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} />
             </View>
           )}
-          <Button style={styles.button} title="Start Learning! " onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} />
         </View>
       </Modal>
     </View>

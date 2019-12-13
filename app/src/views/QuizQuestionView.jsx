@@ -2,19 +2,23 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import BadgeModal from '../components/BadgeModal';
+import Colors from '../constants/Colors';
 
 const styles = {
   wrapper: {
     backgroundColor: '#fff',
   },
   slides: {
-    flex: 4,
+    flex: 3,
     textAlign: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 5,
+    margin: 20,
 
+  },
+  checkbox: {
+    borderRadius: 50,
   },
   question: {
     textAlign: 'center',
@@ -119,6 +123,7 @@ export default class QuizQuestionView extends React.Component {
               // conditionally renders the color of choice container
               containerStyle={this.state[answer.id] ? { backgroundColor: answer.isCorrect ? 'lightgreen' : 'pink' } : null}
               onPress={() => this.setDescription(answer)}
+              style={styles.checkbox}
             />
           ))}
         </View>
