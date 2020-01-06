@@ -11,6 +11,7 @@ import { useNavigation } from 'react-navigation-hooks';
 import { deployment } from 'react-native-dotenv';
 import axios from 'axios';
 import Confetti from './Confetti';
+import Colors from '../constants/Colors';
 
 const BadgeModal = (props) => {
   const { navigate } = useNavigation();
@@ -110,7 +111,11 @@ const BadgeModal = (props) => {
 
   return (
     <View style={styles.parent}>
-      <Button style={styles.button} title="Finish Quiz! " onPress={() => { toggleModal(); }} />
+      <Button 
+      style={styles.button} 
+      title="Finish Quiz! " 
+      buttonStyle={{ backgroundColor: Colors.primary }}
+      onPress={() => { toggleModal(); }} />
       <Modal
         isVisible={isModalVisible}
         style={styles.modal}
@@ -133,7 +138,11 @@ const BadgeModal = (props) => {
           </View>
         )}
         <View style={{ margin: 20 }}>
-          <Button style={styles.button} title="Continue Journey " onPress={() => { navigate('Map'); }} />
+          <Button 
+          style={styles.button} 
+          title="Continue Journey " 
+          buttonStyle={{ backgroundColor: Colors.primary }}
+          onPress={() => { navigate('Map'); }} />
         </View>
       </Modal>
     </View>
