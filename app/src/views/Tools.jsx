@@ -265,7 +265,7 @@ export default class ToolsScreen extends React.Component {
               label="Savings"
               onChangeText={(text) => this.updateText('savings', text)}
               value={savings === 0 ? null : savings.toString()}
-              placeholder={`We recommend 25% of net worth: ${Math.floor(((income / incomeModifier) - outcome) * 0.25)}`}
+              placeholder={`We recommend 20% of net worth: ${Math.floor(((income / incomeModifier) - outcome) * 0.2)}`}
               keyboardType="numeric"
               labelStyle={styles.input}
             />
