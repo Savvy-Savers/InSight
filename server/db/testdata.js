@@ -71,7 +71,7 @@ const enterFakeData = (
     .then(() => Concept.create({
       idCourse: 1,
       question: 'How do you create a budget?',
-      description: 'To create a good budget you must determine income, calculate expenses, and set financial goals!',
+      description: 'To create a good budget you must determine income and calculate expenses!',
     }))
     .then(() => Concept.create({
       idCourse: 2,

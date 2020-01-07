@@ -1,5 +1,6 @@
 import React from "react"
-import { StyleSheet, Text, View, Image, Button, AsyncStorage } from "react-native"
+import { StyleSheet, Text, View, Image, AsyncStorage } from "react-native"
+import { Button } from "react-native-elements"
 import * as Google from "expo-google-app-auth";
 import axios from 'axios';
 import {andriodId, iphoneId, deployment } from 'react-native-dotenv';
@@ -86,15 +87,17 @@ const LoginPage = props => {
         />
       </View>
       <Text style={styles.signIn}>Welcome to InSight! </Text>
-      <Button title="Sign in with Google" 
+      <Button 
+        title="Sign in with Google" 
         containerStyle={{
           marginLeft: 5,
           marginRight: 5,
           marginTop: 10,
           borderRadius: 10, // adds the rounded corners
-          backgroundColor: '#fff'
         }}
-      onPress={() => props.signIn()} />
+        buttonStyle={{ backgroundColor: Colors.primary }}
+        onPress={() => props.signIn()} 
+      />
     </View>
   )
 }
@@ -117,7 +120,7 @@ const LoggedInPage = props => {
           source={require('../assets/images/bg2.png')}
         />
       </View>
-        <Text style={styles.header}>Insight</Text>
+        <Text style={styles.header}>InSight</Text>
         <Text style={styles.welcome}>Welcome {props.name}!</Text>
         <Image style={styles.image} source={{ uri: props.photoUrl }} />
         <Text style={styles.body}>Swipe right to start your journey to financial enlightenment!</Text>
@@ -165,6 +168,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 10,
     margin: 30,
+    padding: 20,
     textAlign: "center",
     fontWeight: 'bold',
   },

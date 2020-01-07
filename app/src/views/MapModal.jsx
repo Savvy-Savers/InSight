@@ -72,6 +72,7 @@ const MapModal = (props) => {
     },
     button: {
       margin: 20,
+      backgroundColor: Colors.primary,
     },
   };
 
@@ -98,13 +99,21 @@ const MapModal = (props) => {
             <View style={styles.achievement}>
               <Image style={styles.badge} source={{ uri: badgeAchievement.iconUrl }} />
               <Text style={styles.stats}>{`You've already earned the ${badgeAchievement.name} badge`}</Text>
-              <Button style={styles.button} title="Review Course" onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} />
+              <Button style={styles.button} 
+                buttonStyle={{ backgroundColor: Colors.primary }}
+                title="Review Course" onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} 
+              />
             </View>
           ) : (
             <View style={styles.achievement}>
               <Image style={styles.badge} source={require('../assets/icons/purple-square-question-mark-icon-by-vexels.png')} />
               <Text style={styles.stats}>{`Worth ${badgeAchievement.experiencePoints} experience points`}</Text>
-              <Button style={styles.button} title="Start Learning! " onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} />
+              <Button 
+                style={styles.button} 
+                buttonStyle={{ backgroundColor: Colors.primary }}
+                title="Start Learning! " 
+                onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} 
+              />
             </View>
           )}
         </View>
