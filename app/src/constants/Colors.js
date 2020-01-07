@@ -5,4 +5,6 @@ export default {
   tertiary: '#5BDEE5',
   accent: '#C9740C',
   secondAccent: '#251435',
+  moneyColor: '#FFBF00',
+  purple: '#9370DB'
 };

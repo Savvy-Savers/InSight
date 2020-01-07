@@ -12,7 +12,7 @@ import NavBar from './NavBar';
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.secondary,
     height: 10,
     width: 30,
     color: 'white',
@@ -163,14 +163,14 @@ export default class Loan extends Component {
             onPress={this.calculate}
             style={styles.button}
             title="Calculate"
-            buttonStyle={{ backgroundColor: Colors.primary }}
+            buttonStyle={{ backgroundColor: Colors.secondary }}
             containerStyle={{ margin: 10 }}
           />
           <Button
             onPress={this.reset}
             style={styles.button}
             title="Reset"
-            buttonStyle={{ backgroundColor: Colors.primary }}
+            buttonStyle={{ backgroundColor: Colors.secondary }}
             containerStyle={{ margin: 10 }}
           />
         </View>

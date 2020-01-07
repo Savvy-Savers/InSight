@@ -72,7 +72,7 @@ const MapModal = (props) => {
     },
     button: {
       margin: 20,
-      backgroundColor: Colors.primary,
+      backgroundColor: Colors.secondary,
     },
   };
 
@@ -100,7 +100,7 @@ const MapModal = (props) => {
               <Image style={styles.badge} source={{ uri: badgeAchievement.iconUrl }} />
               <Text style={styles.stats}>{`You've already earned the ${badgeAchievement.name} badge`}</Text>
               <Button style={styles.button} 
-                buttonStyle={{ backgroundColor: Colors.primary }}
+                buttonStyle={{ backgroundColor: Colors.secondary }}
                 title="Review Course" onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} 
               />
             </View>
@@ -110,7 +110,7 @@ const MapModal = (props) => {
               <Text style={styles.stats}>{`Worth ${badgeAchievement.experiencePoints} experience points`}</Text>
               <Button 
                 style={styles.button} 
-                buttonStyle={{ backgroundColor: Colors.primary }}
+                buttonStyle={{ backgroundColor: Colors.secondary }}
                 title="Start Learning! " 
                 onPress={() => { toggleModal(); navigate('Course', { id: course.id, name: course.topic }); }} 
               />

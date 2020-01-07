@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   textDetails: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: Colors.accent,
+    color: Colors.purple,
     textAlign: 'right',
   },
 });
@@ -155,7 +155,7 @@ class ProfileScreen extends React.Component {
           <View style={styles.progressBar}>
             <View style={{
               ...StyleSheet.absoluteFill,
-              backgroundColor: '#8BED4F',
+              backgroundColor: Colors.moneyColor,
               width: `${((profile.totalExperiencePoints - currentLevel.experiencePointsThreshold) / (nextLevel.experiencePointsThreshold - currentLevel.experiencePointsThreshold)) * 100}%`,
             }}
             />
