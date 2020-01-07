@@ -33,6 +33,12 @@ port = 3306 //(typical mysql port)
 user = YOURUSERNAME
 pwd = YOURPASSWORD
 ```
+The mobile app also needs a .env file with the following variables. The androidId and iphoneId are the google client IDs for the google authentication and will need to be acquired from google's developer console by making a new project and creating new OAuth client IDs for android and iOs. and the deployment variable is where to put the location of your running server, whether that's localhost if you are running the app on a Mac (see note at the bottom) or if you are tunneling your localhost or have a deployed server with an IP address.
+```
+andriodId='1234.apps.googleusercontent.com';
+iphoneId='1234.apps.googleusercontent.com';
+deployment=localhost
+```
 
 ## Source Files
 ### assets 

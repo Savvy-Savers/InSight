@@ -94,7 +94,7 @@ export default class Loan extends Component {
         return Math.round(p * (top / bottom));
       };
       this.message = function () {
-        return `At an interest rate of ${rate}% with ${months} monthly payments & a principal of $${p}, your total installment repayments will be $${this.total()}!`;
+        return `At an interest rate of 3% with 12 monthly payments & a principal of $10,000, your monthly repayment is $847!`;
       };
     }
 
