@@ -94,9 +94,10 @@ export default class Loan extends Component {
         return Math.round(p * (top / bottom));
       };
       this.message = function () {
-        return `At an interest rate of 3% with 12 monthly payments & a principal of $10,000, your monthly repayment is $847!`;
+        return `You will have 12 monthly payments of $847!`;
       };
     }
+    // 'At an interest rate of 3% with 12 monthly payments & a principal of $10,000, your monthly repayment is $847!`;
 
     const loan = new MonthlyPayments(this.state.rate, this.state.principal, this.state.years);
 
@@ -135,7 +136,7 @@ export default class Loan extends Component {
         <NavBar navigation={navigation} name="Loan Tool" />
         { completed ? (
           <View style={styles.results}>
-            <Text style={{ fontSize: 15, color: Colors.accent }}>{response}</Text>
+            <Text style={{ fontSize: 18, fontWeight: "bold", color: Colors.moneyColor }}>{response}</Text>
           </View>
         ) : null }
         <View style={{ backgroundColor: 'white' }}>
