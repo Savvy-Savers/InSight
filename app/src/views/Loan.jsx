@@ -139,7 +139,7 @@ export default class Loan extends Component {
             <Text style={{ fontSize: 18, fontWeight: "bold", color: Colors.moneyColor }}>{response}</Text>
           </View>
         ) : null }
-        <View style={{ backgroundColor: 'white' }}>
+        <View style={{ backgroundColor: 'white', paddingTop: 10}}>
           <Input
             keyboardType="numeric"
             label="Interest Rate"
