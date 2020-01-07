@@ -246,7 +246,7 @@ export default class ToolsScreen extends React.Component {
               buttons={buttons}
               containerStyle={{ height: 45, ...styles.btnGroup }}
               innerBorderStyle={{ width: 4, color: Colors.secondAccent }}
-              selectedButtonStyle={{ backgroundColor: Colors.primary }}
+              selectedButtonStyle={{ backgroundColor: Colors.secondary }}
               textStyle={{ fontSize: 18 }}
             />
           </View>
@@ -274,7 +274,7 @@ export default class ToolsScreen extends React.Component {
             <Button // Button to submit all budget data to server
               title="Submit"
               onPress={this.submitBudget}
-              buttonStyle={{ backgroundColor: Colors.primary }}
+              buttonStyle={{ backgroundColor: Colors.secondary }}
               containerStyle={{ margin: 10 }}
             />
           </View>
@@ -289,7 +289,7 @@ export default class ToolsScreen extends React.Component {
           <Pie // Pie chart display
             pieWidth={200}
             pieHeight={200}
-            colors={[Colors.primary, Colors.accent]}
+            colors={[Colors.secondary, Colors.moneyColor]}
             width={250}
             height={250}
             data={[
@@ -320,7 +320,7 @@ export default class ToolsScreen extends React.Component {
           <Button // Button to send new expense
             title="Spend"
             onPress={this.submitExpense}
-            buttonStyle={{ backgroundColor: Colors.primary }}
+            buttonStyle={{ backgroundColor: Colors.secondary }}
             containerStyle={{ margin: 10 }}
           />
           <Button // Button to send new expense
@@ -329,7 +329,7 @@ export default class ToolsScreen extends React.Component {
             }}
             title="Update Budget"
             onPress={() => this.setState({ update: true })}
-            buttonStyle={{ backgroundColor: Colors.primary }}
+            buttonStyle={{ backgroundColor: Colors.secondary }}
             containerStyle={{ margin: 10 }}
           />
         </View>

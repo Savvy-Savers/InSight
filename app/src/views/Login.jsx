@@ -95,7 +95,7 @@ const LoginPage = props => {
           marginTop: 10,
           borderRadius: 10, // adds the rounded corners
         }}
-        buttonStyle={{ backgroundColor: Colors.primary }}
+        buttonStyle={{ backgroundColor: Colors.secondary }}
         onPress={() => props.signIn()} 
       />
     </View>

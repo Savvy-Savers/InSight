@@ -114,7 +114,7 @@ const BadgeModal = (props) => {
       <Button 
       style={styles.button} 
       title="Finish Quiz! " 
-      buttonStyle={{ backgroundColor: Colors.primary }}
+      buttonStyle={{ backgroundColor: Colors.secondary }}
       onPress={() => { toggleModal(); }} />
       <Modal
         isVisible={isModalVisible}
@@ -141,7 +141,7 @@ const BadgeModal = (props) => {
           <Button 
           style={styles.button} 
           title="Continue Journey " 
-          buttonStyle={{ backgroundColor: Colors.primary }}
+          buttonStyle={{ backgroundColor: Colors.secondary }}
           onPress={() => { navigate('Map'); }} />
         </View>
       </Modal>

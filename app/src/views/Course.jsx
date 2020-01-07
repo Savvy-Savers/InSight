@@ -76,7 +76,7 @@ function CourseScreen(props) {
       <View style={{ marginBottom: 25, alignSelf: 'center', width: '50%' }}>
         <Button
           title="Quiz"
-          buttonStyle={{ backgroundColor: Colors.primary }}
+          buttonStyle={{ backgroundColor: Colors.secondary }}
           onPress={() => { navigate('Quiz', { concepts, courseBadgeId }); }}
         />
       </View>

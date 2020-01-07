@@ -12,7 +12,7 @@ import NavBar from './NavBar';
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.secondary,
     height: 10,
     width: 30,
     color: 'white',
@@ -94,9 +94,10 @@ export default class Loan extends Component {
         return Math.round(p * (top / bottom));
       };
       this.message = function () {
-        return `At an interest rate of 3% with 12 monthly payments & a principal of $10,000, your monthly repayment is $847!`;
+        return `You will have 12 monthly payments of $847!`;
       };
     }
+    // 'At an interest rate of 3% with 12 monthly payments & a principal of $10,000, your monthly repayment is $847!`;
 
     const loan = new MonthlyPayments(this.state.rate, this.state.principal, this.state.years);
 
@@ -135,10 +136,10 @@ export default class Loan extends Component {
         <NavBar navigation={navigation} name="Loan Tool" />
         { completed ? (
           <View style={styles.results}>
-            <Text style={{ fontSize: 15, color: Colors.accent }}>{response}</Text>
+            <Text style={{ fontSize: 18, fontWeight: "bold", color: Colors.moneyColor }}>{response}</Text>
           </View>
         ) : null }
-        <View style={{ backgroundColor: 'white' }}>
+        <View style={{ backgroundColor: 'white', paddingTop: 10}}>
           <Input
             keyboardType="numeric"
             label="Interest Rate"
@@ -163,14 +164,14 @@ export default class Loan extends Component {
             onPress={this.calculate}
             style={styles.button}
             title="Calculate"
-            buttonStyle={{ backgroundColor: Colors.primary }}
+            buttonStyle={{ backgroundColor: Colors.secondary }}
             containerStyle={{ margin: 10 }}
           />
           <Button
             onPress={this.reset}
             style={styles.button}
             title="Reset"
-            buttonStyle={{ backgroundColor: Colors.primary }}
+            buttonStyle={{ backgroundColor: Colors.secondary }}
             containerStyle={{ margin: 10 }}
           />
         </View>
