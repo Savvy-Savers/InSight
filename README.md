@@ -1,6 +1,13 @@
 # InSight
 A Financial Literacy App that rewards users for curiosity and completing learning modules.
 
+<div>
+<img src = "https://user-images.githubusercontent.com/51866859/72934109-b0a7e200-3d28-11ea-87b6-6c9cfa1db97b.png" width = "200" style="padding: 10px">
+
+<img src = "https://user-images.githubusercontent.com/51866859/72934825-ee593a80-3d29-11ea-98e2-0cea2613a0ef.gif" width = "200" style="padding: 10px">
+<img src = "https://user-images.githubusercontent.com/51866859/72934961-23fe2380-3d2a-11ea-9cb9-69b249eaa40a.png" width = "200" style="padding: 10px">
+</div>
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -33,12 +40,16 @@ port = 3306 //(typical mysql port)
 user = YOURUSERNAME
 pwd = YOURPASSWORD
 ```
-The mobile app also needs a .env file with the following variables. The androidId and iphoneId are the google client IDs for the google authentication and will need to be acquired from google's developer console by making a new project and creating new OAuth client IDs for android and iOs. and the deployment variable is where to put the location of your running server, whether that's localhost if you are running the app on a Mac (see note at the bottom) or if you are tunneling your localhost or have a deployed server with an IP address.
+The client side app also needs a .env file with the following variables. 
 ```
 andriodId='1234.apps.googleusercontent.com';
 iphoneId='1234.apps.googleusercontent.com';
 deployment=localhost
 ```
+The androidId and iphoneId are the google client IDs for the google authentication and will need to be acquired from Google's developer console by making a new project and creating new OAuth client IDs.
+
+The deployment variable is the location of your running server, whether that's localhost (see note at the bottom), tunneling, or have a deployed server with an IP address.
+
 
 ## Source Files
 ### assets 
