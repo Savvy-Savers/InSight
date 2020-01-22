@@ -1,6 +1,13 @@
 # InSight
 A Financial Literacy App that rewards users for curiosity and completing learning modules.
 
+<div>
+<img src = "https://user-images.githubusercontent.com/51866859/72934109-b0a7e200-3d28-11ea-87b6-6c9cfa1db97b.png" width = "200" style="padding: 10px">
+
+<img src = "https://user-images.githubusercontent.com/51866859/72934825-ee593a80-3d29-11ea-98e2-0cea2613a0ef.gif" width = "200" style="padding: 10px">
+<img src = "https://user-images.githubusercontent.com/51866859/72934961-23fe2380-3d2a-11ea-9cb9-69b249eaa40a.png" width = "200" style="padding: 10px">
+</div>
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
