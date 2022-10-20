@@ -26,7 +26,7 @@
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "~1.3.0",
     "react-native-modal": "^11.5.3",
-    "react-native-reanimated": "~1.2.0",
+    "react-native-reanimated": "~2.10.0",
     "react-native-screens": "~1.0.0-alpha.23",
     "react-native-scripts": "^2.0.1",
     "react-native-svg": "9.9.5",
